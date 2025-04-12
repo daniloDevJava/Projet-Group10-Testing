@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.*;
 import com.projet.testing.vehicule.model.Vehicule;
 
-public interface VendeurRepository extends JpaRepository<Vehicule, UUID> {
+public interface VehiculeRepository extends JpaRepository<Vehicule, UUID> {
 	Optional<Vehicule> findByRegistrationNumber(String registration);
 	
-	Optional<Vehicule> findByRentalPrice(double price);
+	List<Vehicule> findByRentalPrice(double price);
 	
 
 }
