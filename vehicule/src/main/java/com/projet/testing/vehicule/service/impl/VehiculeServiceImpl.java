@@ -31,14 +31,14 @@ public class VehiculeServiceImpl implements VehiculeService {
 	}
 
 	@Override
-	public VehiculeDto getVehicule(UUID vehicule_id) {
+	public VehiculeDto getVehiculeById(UUID vehicule_id) {
 		Vehicule vehicule = vehiculeRepository.findById(vehicule_id)
 				.orElseThrow(() -> new RuntimeException("Véhicule non trouvé"));
 		return vehiculeMapper.toDto(vehicule);
 	}
 
 	@Override
-	public VehiculeDto getVehicule(String registrationNumber) {
+	public VehiculeDto getVehiculeByNumber(String registrationNumber) {
 		Vehicule vehicule = vehiculeRepository.findByRegistrationNumber(registrationNumber)
 				.orElseThrow(() -> new RuntimeException("Véhicule non trouvé"));
 		return vehiculeMapper.toDto(vehicule);
