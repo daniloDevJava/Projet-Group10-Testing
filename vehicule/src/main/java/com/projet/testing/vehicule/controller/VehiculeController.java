@@ -93,7 +93,7 @@ public class VehiculeController {
 	}
 	
 	@PutMapping("/{id}")
-	@Operation(summary = "")
+	@Operation(summary = "update vehicle")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200" , description = "le vehicule a ete mis a jour avec success"),
 			@ApiResponse(responseCode = "404" , description = "le vehicule n'existe pas"),
