@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@RequestMapping("/vehicle")
+@RequestMapping("/vehicule")
 @AllArgsConstructor
 public class VehiculeController {
 	
@@ -36,56 +36,56 @@ public class VehiculeController {
 	
 	
 	@PostMapping("/create")
-	@Operation(summary = "add an vehicle")
+	@Operation(summary = "add an vehicule")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201" , description = "le velicule a ete ajoutee"),
 			@ApiResponse(responseCode = "400", description = "Bad entry of data .")
 			
 	})
-	public ResponseEntity<VehiculeDto> createVehicle(@Valid @RequestBody VehiculeDto vehiculeDto){
+	public ResponseEntity<VehiculeDto> createVehicule(@Valid @RequestBody VehiculeDto vehiculeDto){
 	
 			VehiculeDto vehicule = vehiculeService.createVehicule(vehiculeDto);
 			return new ResponseEntity<>(vehicule ,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/all")
-	@Operation(summary= "get all vehicles")
+	@Operation(summary= "get all vehicules")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "la liste de vehicules trouvee")
 	})
 	public ResponseEntity<List<VehiculeDto>> getAll(){
 		
-		List<VehiculeDto> listVehicle=vehiculeService.getAllVehicule();
+		List<VehiculeDto> listVehicule=vehiculeService.getAllVehicule();
 		
-		return new ResponseEntity<>(listVehicle ,HttpStatus.OK);
+		return new ResponseEntity<>(listVehicule ,HttpStatus.OK);
 		
 	}
 	
-	@GetMapping("/{id}")
-	@Operation(summary= "get an vehicle by id")
+	@GetMapping("/id/{id}")
+	@Operation(summary= "get an vehicule by id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "le vehicule a ete trouve avec success"),
 			@ApiResponse(responseCode = "404", description =  "le vehicule n'a pas ey=te trouve")
 			
 	})
-	public ResponseEntity<VehiculeDto> getVehicle(@Parameter(description = "id of vehicle") @PathVariable UUID id){
+	public ResponseEntity<VehiculeDto> getVehiculeById(@Parameter(description = "id of vehicule") @PathVariable UUID id){
 		
-		VehiculeDto vehicule= vehiculeService.getVehicule(id);
-		if(vehicule!=null) 
+		VehiculeDto vehicule= vehiculeService.getVehiculeById(id);
+		if(vehicule!=null)
 			return new ResponseEntity<>(vehicule ,HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	@GetMapping("/{registerNum}")
-	@Operation(summary= "get an vehicle by id")
+	@GetMapping("/number/{registerNum}")
+	@Operation(summary= "get an vehicule by number")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "le vehicule  a ete trouve avec success"),
 			@ApiResponse(responseCode = "404", description =  "le vehicule n'a pas ete trouve")
 			
 	})
-	public ResponseEntity<VehiculeDto> getVehicle(@Parameter(description = "id of vehicle") @PathVariable String registerNum){
+	public ResponseEntity<VehiculeDto> getVehiculeByNumber(@Parameter(description = "Number of vehicule") @PathVariable String registerNum){
 		
-		VehiculeDto vehicule= vehiculeService.getVehicule(registerNum);
+		VehiculeDto vehicule= vehiculeService.getVehiculeByNumber(registerNum);
 		if(vehicule!=null) 
 			return new ResponseEntity<>(vehicule ,HttpStatus.OK);
 		else
@@ -93,7 +93,7 @@ public class VehiculeController {
 	}
 	
 	@PutMapping("/{id}")
-	@Operation(summary = "update vehicle")
+	@Operation(summary = "update vehicule")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200" , description = "le vehicule a ete mis a jour avec success"),
 			@ApiResponse(responseCode = "404" , description = "le vehicule n'existe pas"),
@@ -110,25 +110,25 @@ public class VehiculeController {
 	}
 	
 	@GetMapping("/search-by-price")
-	@Operation(summary= "get vehicles by price")
+	@Operation(summary= "get vehicules by price")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "la liste de vehicules trouvee")
 	})
-	public ResponseEntity<List<VehiculeDto>> getAllByprice(@Parameter(description = "the rental price of vehicle") @RequestParam Double rentalPrice){
+	public ResponseEntity<List<VehiculeDto>> getAllByprice(@Parameter(description = "the rental price of vehicule") @RequestParam Double rentalPrice){
 		
-		List<VehiculeDto> listVehicle=vehiculeService.getVehicule(rentalPrice);
+		List<VehiculeDto> listVehicule=vehiculeService.getVehicule(rentalPrice);
 		
-		return new ResponseEntity<>(listVehicle ,HttpStatus.OK);
+		return new ResponseEntity<>(listVehicule ,HttpStatus.OK);
 		
 	}
 	
 	@DeleteMapping("/{id}")
 	 @Operation(summary = "delete admin")
-    public ResponseEntity<String> deleteAdmin(@Parameter(description = "Id Of vehicle") @PathVariable UUID id){
+    public ResponseEntity<String> deleteAdmin(@Parameter(description = "Id Of vehicule") @PathVariable UUID id){
         if(vehiculeService.deleteVehicule(id))
-            return new ResponseEntity<>("{\"message\" : \"vehicle is deleted successfully\"}",HttpStatus.OK);
+            return new ResponseEntity<>("{\"message\" : \"vehicule is deleted successfully\"}",HttpStatus.OK);
         else
-            return new ResponseEntity<>("{\"message\" : \"vehicle doesn't exists\"}",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"message\" : \"vehicule doesn't exists\"}",HttpStatus.NOT_FOUND);
     }
 	
 	

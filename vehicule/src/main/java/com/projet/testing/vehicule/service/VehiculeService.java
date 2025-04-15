@@ -12,9 +12,9 @@ public interface VehiculeService {
 	
 	VehiculeDto createVehicule(VehiculeDto vehiculeDto);
 	
-	VehiculeDto getVehicule(UUID vehicule_id);
+	VehiculeDto getVehiculeById(UUID vehicule_id);
 	
-	VehiculeDto getVehicule(String registerNumber);
+	VehiculeDto getVehiculeByNumber(String registerNumber);
 	
 	List<VehiculeDto> getVehicule(double rentalPrice);
 	
