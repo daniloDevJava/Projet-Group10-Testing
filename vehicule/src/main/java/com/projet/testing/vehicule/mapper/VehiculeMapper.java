@@ -29,6 +29,7 @@ public class VehiculeMapper {
 		
 		VehiculeDto vehiculeDto= new VehiculeDto();
 		
+		vehiculeDto.setId(vehicule.getId());
 		vehiculeDto.setRegistrationNumber(vehicule.getRegistrationNumber());
 		vehiculeDto.setMake(vehicule.getMake());
 		vehiculeDto.setModel(vehicule.getModel());

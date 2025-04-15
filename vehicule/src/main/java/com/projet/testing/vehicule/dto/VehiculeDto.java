@@ -5,6 +5,8 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +20,11 @@ public class VehiculeDto {
 	
 	private UUID id;
 	
-	
+	@NotNull(message = "registration number is mandatory")
+	@NotEmpty
 	private String registrationNumber;
 	
+	@NotNull(message = " make is mandatory")
 	
 	private String make;
 	
