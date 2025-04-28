@@ -1,4 +1,4 @@
-package com.projet.testing.vehicule.dto;
+package com.projet.testing.user.dto;
 
 import java.util.UUID;
 
@@ -15,22 +15,15 @@ import lombok.Setter;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class VehiculeDto {
+public class UserDto {
 
-	private UUID id;
+    private UUID id;
 
-	@NotNull(message = "registration number is mandatory")
-	@NotEmpty
-	private String registrationNumber;
+    @NotNull(message = "Name is mandatory")
+    @NotEmpty(message = "Name cannot be empty")
+    private String name;
 
-	@NotNull(message = "make is mandatory")
-	private String make;
-
-	private String model;
-
-	// l'année de création du véhicule
-	private int year;
-
-	private double rentalPrice;
-
+    @NotNull(message = "Password is mandatory")
+    @NotEmpty(message = "Password cannot be empty")
+    private String password;
 }

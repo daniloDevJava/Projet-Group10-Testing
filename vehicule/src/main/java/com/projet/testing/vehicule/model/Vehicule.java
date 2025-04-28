@@ -19,11 +19,7 @@ public class Vehicule {
 	@GeneratedValue(strategy=GenerationType.UUID)
 	private UUID id;
 	
-<<<<<<< HEAD
 	@Column(nullable=false ,unique=true)
-=======
-	@Column(nullable=false)
->>>>>>> origin/Ariane
 	private String registrationNumber;
 	
 	
@@ -36,11 +32,6 @@ public class Vehicule {
 	private int year;
 	
 	private double rentalPrice;
-	
-	
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/Ariane
+
