@@ -1,4 +1,4 @@
-package com.projet.testing.user.dto;
+package com.api.user.dto;
 
 import java.util.UUID;
 
