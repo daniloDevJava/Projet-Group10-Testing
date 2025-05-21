@@ -18,8 +18,9 @@ public class Vehicule {
 	@Id
 	@GeneratedValue(strategy=GenerationType.UUID)
 	private UUID id;
-	
-	@Column(nullable=false)
+
+
+	@Column(nullable=false ,unique=true)
 	private String registrationNumber;
 	
 	
@@ -35,4 +36,6 @@ public class Vehicule {
 	
 	
 
+
 }
+
