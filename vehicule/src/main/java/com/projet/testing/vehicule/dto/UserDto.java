@@ -21,4 +21,5 @@ public class UserDto {
     private String email;
     @NotNull(message = "name is mandatory")
     private String name;
+    private String mdp;
 }
