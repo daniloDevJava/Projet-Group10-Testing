@@ -19,7 +19,6 @@ public class Vehicule {
 	@GeneratedValue(strategy=GenerationType.UUID)
 	private UUID id;
 
-
 	@Column(nullable=false ,unique=true)
 	private String registrationNumber;
 	
@@ -33,9 +32,6 @@ public class Vehicule {
 	private int year;
 	
 	private double rentalPrice;
-	
-	
-
 
 }
 
