@@ -21,5 +21,6 @@ public class UserDto {
     private String email;
     @NotNull(message = "name is mandatory")
     private String name;
+    @Size(min = 8, message = "le mot de passe est court")
     private String mdp;
 }
