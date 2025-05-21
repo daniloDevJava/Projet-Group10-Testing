@@ -69,7 +69,7 @@ public class VehiculeServiceImpl implements VehiculeService {
 		vehicule.setRegistrationNumber(vehiculeDto.getRegistrationNumber());
 		vehicule.setMake(vehiculeDto.getMake());
 		vehicule.setModel(vehiculeDto.getModel());
-		vehicule.setYear(vehiculeDto.getYear());
+		vehicule.setYear(vehiculeDto.getYear() );
 		vehicule.setRentalPrice(vehiculeDto.getRentalPrice());
 
 		Vehicule updated = vehiculeRepository.save(vehicule);
