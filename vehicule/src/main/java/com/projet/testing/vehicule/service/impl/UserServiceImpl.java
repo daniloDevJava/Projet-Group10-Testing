@@ -6,6 +6,7 @@ import com.projet.testing.vehicule.exception.ErrorModel;
 import com.projet.testing.vehicule.mapper.UserMapper;
 import com.projet.testing.vehicule.model.User;
 import com.projet.testing.vehicule.repository.UserRepository;
+import com.projet.testing.vehicule.service.JwtService;
 import com.projet.testing.vehicule.service.ToKens;
 import com.projet.testing.vehicule.service.UserService;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
 
     @Override
@@ -33,20 +35,11 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> optionalUser=userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());
 
-        if(optionalUser.isEmpty()){
+        if(optionalUser.isEmpty() && verificateGoodEmail(user.getEmail())){
 
-            if(!user.getEmail().contains("@")){
-                ErrorModel errorModel=new ErrorModel();
-                errorModel.setCode("BAD_ENTRY");
-                errorModel.setMessage("L'adresse n'est pas valide");
-                errorModels.add(errorModel);
-                throw new BusinessException(errorModels);
-            }
-            else{
                 user.setUsername(userDto.getName().toUpperCase());
-                user.setMdp(bCryptPasswordEncoder.encode(user.getPassword()));
+                user.setMdp(passwordEncoder.encode(user.getPassword()));
                 return userMapper.toDto(userRepository.save(user));
-            }
 
         }
         else{
@@ -67,11 +60,11 @@ public class UserServiceImpl implements UserService {
 
         if(optionalUser.isPresent()){
             User user= optionalUser.get();
-            user.setMdp(bCryptPasswordEncoder.encode(userDto.getMdp()));
+            user.setMdp(passwordEncoder.encode(userDto.getMdp()));
             user.setUsername(userDto.getName().toUpperCase());
             Optional<User> optionalUserE=userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());
 
-            if(optionalUserE.isEmpty()) {
+            if(optionalUserE.isEmpty() && verificateGoodEmail(user.getEmail())) {
                 user.setEmail(userDto.getEmail());
                 return userMapper.toDto(userRepository.save(user));
             }
@@ -93,10 +86,41 @@ public class UserServiceImpl implements UserService {
         }
         }
 
-       /* @Override
-        public ToKens login(UserDto userDto) throws BusinessException{
+        private static boolean verificateGoodEmail(String mail) throws BusinessException{
+            if(!mail.contains("@") || !mail.contains(".")){
+                List<ErrorModel> errorModels= new ArrayList<>();
+                ErrorModel errorModel=new ErrorModel();
+                errorModel.setCode("BAD_ENTRY");
+                errorModel.setMessage("L'adresse mail est mal formée");
+                errorModels.add(errorModel);
+                throw new BusinessException(errorModels);
+            }
+            else
+                return true;
+        }
 
-        }*/
+        @Override
+        public ToKens login(UserDto userDto) throws BusinessException{
+            Optional<User> optionalUser = userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());
+
+            if (optionalUser.isPresent()) {
+                User utilisateur = optionalUser.get();
+
+                // Vérification du mot de passe
+                if (!passwordEncoder.matches(userDto.getMdp(), utilisateur.getPassword())) {
+                    ErrorModel errorModel = new ErrorModel();
+                    errorModel.setCode("AUTHENTIFICATION FAILED");
+                    errorModel.setMessage("Identifiants invalides");
+                    throw new BusinessException(List.of(errorModel));
+                }
+
+                // Générer les tokens si tout est valide
+                return jwtService.generateTokens(utilisateur);
+            } else {
+                throw new IllegalArgumentException("Utilisateur non trouvé");
+            }
+
+        }
 
     }
 

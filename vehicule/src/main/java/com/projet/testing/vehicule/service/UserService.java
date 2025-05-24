@@ -11,5 +11,5 @@ public interface  UserService {
     public UserDto createUser(UserDto userDto) throws BusinessException;
     public UserDto updateUser(UserDto userDto, UUID id) throws BusinessException;
     public ToKens login(UserDto userDto) throws BusinessException;
-    public ToKens refreshToken(String oldRefreshToken) throws BusinessException;
+    ;
 }
