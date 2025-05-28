@@ -1,15 +1,15 @@
-// App.jsx
+
 import { useState, useEffect } from 'react';
 import '../style/sign.css';
-import carBg  from '../assets/car-bg.jpeg'; 
+import carBg from '../assets/car-bg.jpeg';
 import logo from '../assets/logo.svg';
 
-function Sign() {
+function Login() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
+    "Welcome back",
     "Looking for a car?\nYou are there",
-    "Find your dream car\nwith ease",
-    "The best deals\njust for you"
+    "Find your dream car\nwith ease"
   ];
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function Sign() {
         <div className="overlay"></div>
         <img src={logo} alt="Properlize" className="logo" />
         
-        <div className="slider">
+        <div className="slider"> {/* Changé de slider-content à slider */}
           <h1 className="slide-text">{slides[currentSlide].split('\n').map((line, i) => (
             <div key={i}>{line}</div>
           ))}</h1>
@@ -43,18 +43,17 @@ function Sign() {
       </div>
       
       <div className="right-section">
-        <h2>Create an account</h2>
-        <p>Already have an account? <a href="login">login</a></p>
+        <h2>Login to your account</h2>
+        <p>Don't have an account? <a href="sign">Sign in</a></p>
         
         <form className="auth-form">
-          <input type="text" placeholder="Login" />
-          <input type="email" placeholder="Email" />
+          <input type="text" placeholder="Email or Login" />
           <input type="password" placeholder="Password" />
-          <button type="submit">Create an account</button>
+          <button type="submit">Login</button>
         </form>
       </div>
     </div>
   );
 }
 
-export default Sign;
+export default Login;
