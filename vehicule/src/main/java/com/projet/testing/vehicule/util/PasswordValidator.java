@@ -5,11 +5,19 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 
-
+/**
+ * The type Password validator.
+ */
 @Component
 public class PasswordValidator {
-	
-	public boolean isPasswordValid(String password) {
+
+    /**
+     * Is password valid boolean.
+     *
+     * @param password the password
+     * @return the boolean
+     */
+    public boolean isPasswordValid(String password) {
 	    boolean hasUpper = false, hasLower = false, hasDigit = false;
 	    for (char c : password.toCharArray()) {
 	        if (Character.isUpperCase(c)) hasUpper = true;
@@ -22,7 +30,7 @@ public class PasswordValidator {
 	        if (password.toLowerCase().contains(word)) return false;
 	    }
 
-	    return hasUpper && hasLower && hasDigit;
+	    return hasUpper && hasLower && hasDigit && password.length()>=8;
 	}
 	
 

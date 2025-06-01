@@ -3,16 +3,19 @@ package com.projet.testing.vehicule.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * The type Jwt.
+ */
 @Setter
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@SequenceGenerator(name = "jwt_seq", sequenceName = "jwt_seq", allocationSize = 1)
 public class Jwt {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jwt_seq")
     private Long id;
 
     private String valeur;

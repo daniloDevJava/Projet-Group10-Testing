@@ -8,12 +8,21 @@ import com.projet.testing.vehicule.model.Vehicule;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The type Vehicule mapper.
+ */
 @Component
 @Getter
 @Setter
 public class VehiculeMapper {
-	
-	public Vehicule toEntity(VehiculeDto vehiculeDto) {
+
+    /**
+     * To entity vehicule.
+     *
+     * @param vehiculeDto the vehicule dto
+     * @return the vehicule
+     */
+    public Vehicule toEntity(VehiculeDto vehiculeDto) {
 		
 		Vehicule vehicule = new Vehicule();
 		vehicule.setRegistrationNumber(vehiculeDto.getRegistrationNumber());
@@ -21,11 +30,17 @@ public class VehiculeMapper {
 		vehicule.setModel(vehiculeDto.getModel());
 		vehicule.setYear(vehiculeDto.getYear());
 		vehicule.setRentalPrice(vehiculeDto.getRentalPrice());
-		
+		vehicule.setCheminVersImage(vehiculeDto.getCheminVersImage());
 		return vehicule;
 	}
-	
-	public VehiculeDto toDto(Vehicule vehicule) {
+
+    /**
+     * To dto vehicule dto.
+     *
+     * @param vehicule the vehicule
+     * @return the vehicule dto
+     */
+    public VehiculeDto toDto(Vehicule vehicule) {
 		
 		VehiculeDto vehiculeDto= new VehiculeDto();
 		
@@ -35,6 +50,7 @@ public class VehiculeMapper {
 		vehiculeDto.setModel(vehicule.getModel());
 		vehiculeDto.setYear(vehicule.getYear());
 		vehiculeDto.setRentalPrice(vehicule.getRentalPrice());
+		vehiculeDto.setCheminVersImage(vehicule.getCheminVersImage());
 		
 		return vehiculeDto;
 	}

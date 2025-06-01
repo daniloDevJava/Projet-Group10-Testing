@@ -9,7 +9,9 @@ import com.projet.testing.vehicule.repository.UserRepository;
 import com.projet.testing.vehicule.service.JwtService;
 import com.projet.testing.vehicule.service.ToKens;
 import com.projet.testing.vehicule.service.UserService;
+import com.projet.testing.vehicule.util.PasswordValidator;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -18,6 +20,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * The type User service.
+ */
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -26,6 +31,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final PasswordValidator passwordValidator;
 
 
     @Override
@@ -38,8 +44,18 @@ public class UserServiceImpl implements UserService {
         if(optionalUser.isEmpty() && verificateGoodEmail(user.getEmail())){
 
                 user.setUsername(userDto.getName().toUpperCase());
-                user.setMdp(passwordEncoder.encode(user.getPassword()));
-                return userMapper.toDto(userRepository.save(user));
+                if(passwordValidator.isPasswordValid(user.getPassword())){
+                    user.setMdp(passwordEncoder.encode(user.getPassword()));
+                    return userMapper.toDto(userRepository.save(user));
+                }
+                else
+                {
+                    ErrorModel errorModel=new ErrorModel();
+                    errorModel.setCode("BAD_ENTRY");
+                    errorModel.setMessage("Le mot de passe est faible");
+                    errorModels.add(errorModel);
+                    throw new BusinessException(errorModels, HttpStatus.BAD_REQUEST);
+                }
 
         }
         else{
@@ -47,7 +63,7 @@ public class UserServiceImpl implements UserService {
             errorModel.setCode("AUTHORIZATION_FAILED");
             errorModel.setMessage("il existe deja un user avec cet adresse mail");
             errorModels.add(errorModel);
-            throw new BusinessException(errorModels);
+            throw new BusinessException(errorModels, HttpStatus.FORBIDDEN);
         }
 
     }
@@ -73,7 +89,7 @@ public class UserServiceImpl implements UserService {
                 errorModel.setCode("AUTHORIZATION_FAILED");
                 errorModel.setMessage("il existe deja un user avec cet adresse mail");
                 errorModels.add(errorModel);
-                throw new BusinessException(errorModels);
+                throw new BusinessException(errorModels,HttpStatus.UNAUTHORIZED);
             }
 
             }
@@ -82,7 +98,7 @@ public class UserServiceImpl implements UserService {
             errorModel.setCode("AUTHORIZATION_FAILED");
             errorModel.setMessage("il existe deja un user avec cet adresse mail");
             errorModels.add(errorModel);
-            throw new BusinessException(errorModels);
+            throw new BusinessException(errorModels,HttpStatus.UNAUTHORIZED);
         }
         }
 
@@ -93,7 +109,7 @@ public class UserServiceImpl implements UserService {
                 errorModel.setCode("BAD_ENTRY");
                 errorModel.setMessage("L'adresse mail est mal formée");
                 errorModels.add(errorModel);
-                throw new BusinessException(errorModels);
+                throw new BusinessException(errorModels,HttpStatus.BAD_REQUEST);
             }
             else
                 return true;
@@ -111,7 +127,7 @@ public class UserServiceImpl implements UserService {
                     ErrorModel errorModel = new ErrorModel();
                     errorModel.setCode("AUTHENTIFICATION FAILED");
                     errorModel.setMessage("Identifiants invalides");
-                    throw new BusinessException(List.of(errorModel));
+                    throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);
                 }
 
                 // Générer les tokens si tout est valide

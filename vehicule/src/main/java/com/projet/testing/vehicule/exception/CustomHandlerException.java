@@ -10,9 +10,18 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Custom handler exception.
+ */
 @ControllerAdvice
 public class CustomHandlerException {
-  @ExceptionHandler(MethodArgumentNotValidException.class)
+    /**
+     * Handle field errors response entity.
+     *
+     * @param mav the mav
+     * @return the response entity
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<List<ErrorModel>> handleFieldErrors(MethodArgumentNotValidException mav){
     List<ErrorModel> errorModelList=new ArrayList<>();
     ErrorModel errorModel;
@@ -25,7 +34,14 @@ public class CustomHandlerException {
     }
     return new ResponseEntity<>(errorModelList, HttpStatus.BAD_REQUEST);
   }
-  @ExceptionHandler(BusinessException.class)
+
+    /**
+     * Handle business exception response entity.
+     *
+     * @param bex the bex
+     * @return the response entity
+     */
+    @ExceptionHandler(BusinessException.class)
   public ResponseEntity<List<ErrorModel>> handleBusinessException(BusinessException bex){
     System.err.println("Une Exception coté client a été levée");
     return new ResponseEntity<>(bex.getErrorModels(), HttpStatus.BAD_REQUEST);

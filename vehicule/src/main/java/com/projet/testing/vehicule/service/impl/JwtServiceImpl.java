@@ -7,11 +7,11 @@ import com.projet.testing.vehicule.model.RefreshToken;
 import com.projet.testing.vehicule.model.User;
 import com.projet.testing.vehicule.repository.JwtRepository;
 import com.projet.testing.vehicule.repository.RefreshTokenRepository;
-import com.projet.testing.vehicule.repository.UserRepository;
 import com.projet.testing.vehicule.service.JwtService;
 import com.projet.testing.vehicule.service.ToKens;
 import com.projet.testing.vehicule.util.JwtUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +22,9 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The type Jwt service.
+ */
 @Service
 @AllArgsConstructor
 public class JwtServiceImpl implements JwtService {
@@ -29,15 +32,14 @@ public class JwtServiceImpl implements JwtService {
     private final JwtRepository jwtRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtUtil jwtUtil;
-    private final UserRepository utilisateurRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+
 
     @Override
     public ToKens generateTokens(User utilisateur) {
         long refreshTokenValidity = TimeUnit.DAYS.toSeconds(15);
 
         String accessToken = jwtUtil.generateAccessToken(utilisateur.getEmail());
-        String refreshTokenValue = UUID.randomUUID().toString();
+        String refreshTokenValue = jwtUtil.generateRefreshToken(utilisateur.getEmail(), refreshTokenValidity);
 
         RefreshToken refreshToken = RefreshToken.builder()
                 .valeur(refreshTokenValue)
@@ -73,7 +75,7 @@ public class JwtServiceImpl implements JwtService {
                         ErrorModel errorModel = new ErrorModel();
                         errorModel.setCode("FAILED_AUTHENTIFICATION");
                         errorModel.setMessage("Aucun utilisateur associé à ce RefreshToken");
-                        throw new BusinessException(List.of(errorModel));
+                        throw new BusinessException(List.of(errorModel), HttpStatus.NOT_FOUND);
                     }
                     refreshToken.setExpire(true);
                     refreshTokenRepository.save(refreshToken);
@@ -84,14 +86,14 @@ public class JwtServiceImpl implements JwtService {
             ErrorModel errorModel = new ErrorModel();
             errorModel.setCode("INVALID_ENTRY");
             errorModel.setMessage("refresh token pas encore expiré");
-            throw new BusinessException(List.of(errorModel));
+            throw new BusinessException(List.of(errorModel),HttpStatus.UNAUTHORIZED);
 
 
         }
         ErrorModel errorModel = new ErrorModel();
         errorModel.setCode("INVALID_ENTRY");
         errorModel.setMessage("refresh token inconnu");
-        throw new BusinessException(List.of(errorModel));
+        throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -110,7 +112,7 @@ public class JwtServiceImpl implements JwtService {
                         errorModel.setCode("FAILED_AUTHENTIFICATION");
                         errorModel.setMessage("Aucun utilisateur associé à ce RefreshToken");
                         errorModels.add(errorModel);
-                        throw new BusinessException(errorModels);
+                        throw new BusinessException(errorModels,HttpStatus.NOT_FOUND);
                     }
 
                     return jwtUtil.generateAccessToken(utilisateur.getEmail());
@@ -119,12 +121,12 @@ public class JwtServiceImpl implements JwtService {
             ErrorModel errorModel = new ErrorModel();
             errorModel.setCode("INVALID_ENTRY");
             errorModel.setMessage("refresh token expiré");
-            throw new BusinessException(List.of(errorModel));
+            throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);
 
         }
         ErrorModel errorModel = new ErrorModel();
         errorModel.setCode("INVALID_ENTRY");
         errorModel.setMessage("refresh token inconnu");
-        throw new BusinessException(List.of(errorModel));
+        throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);
     }
 }

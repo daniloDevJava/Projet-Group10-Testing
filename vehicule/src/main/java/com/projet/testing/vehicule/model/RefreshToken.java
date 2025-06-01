@@ -7,17 +7,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
+/**
+ * The type Refresh token.
+ */
 @Setter
 @Getter
 @Builder
-@NoArgsConstructor
+@SequenceGenerator(name = "refresh_token_seq", sequenceName = "refresh_token_seq", allocationSize = 1)
 @AllArgsConstructor
 @Entity
-@Table(name = "refresh-token")
 public class RefreshToken {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "refresh_token_seq")
     private Long id;
     private boolean expire;
     private String valeur;
