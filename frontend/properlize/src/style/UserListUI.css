@@ -1,0 +1,231 @@
+
+
+.app {
+  width: 199vh;
+  display: flex;
+  height: 100vh;
+  background-color: #f4f4f4c9;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #141212;
+  color: white;
+  padding: 20px 0;
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.sidebar .logo span {
+  color: #a855f7;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background-color: #2d2d2d;
+  color: #a855f7;
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  color: #141212;
+  font-size: larger;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.918);
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+}
+
+.userlist {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.932);
+  padding: 20px;
+  margin: 20px 5px;
+  border-radius: 8px;
+}
+
+.userlist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+
+}
+
+.search-bar {
+  display: flex;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.search-bar input {
+  border: none;
+  padding: 5px 25px;
+
+  outline: none;
+}
+
+.Violet{
+  background: #8700BD;
+  border: none;
+  border-radius: none;
+  color: #e9d5ff;
+  padding: 10px;
+}
+
+.add-user {
+  background: #8700BD;
+  color: white;
+  font-size: large;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-user:hover {
+  background: #45196e;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead tr {
+  background: #eee;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  
+}
+th{
+  border-bottom: 1px solid #141212;
+}
+
+tr.highlight {
+  background-color: #e9d5ff;
+}
+
+ input .checkbox{
+  border: 2px solid black;
+  background-color: white;
+}
+
+.icon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.icon.edit {
+  color: #333;
+}
+
+.icon.delete {
+  color: #333;;
+}
+
+.Edit{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.footer {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 110px 15px 15px;
+}
+
+form {
+  display: flex;
+  margin: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 150px;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .left {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer {
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .userlist {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  table th, table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
