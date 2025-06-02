@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 
+/**
+ * The type Jwt util.
+ */
 @Component
 public class JwtUtil {
 
@@ -30,7 +33,7 @@ public class JwtUtil {
     /**
      * Génère un RefreshToken pour un utilisateur.
      *
-     * @param email L'adresse email de l'utilisateur
+     * @param email             L'adresse email de l'utilisateur
      * @param validityInSeconds Durée de validité du RefreshToken en secondes
      * @return Le RefreshToken généré
      */
@@ -78,7 +81,7 @@ public class JwtUtil {
      * Extrait le sujet (email de l'utilisateur) d'un token.
      *
      * @param token Le token JWT
-     * @return L'email contenu dans le token
+     * @return L 'email contenu dans le token
      */
     public String extractSubject(String token) {
         return extractClaims(token).getSubject();

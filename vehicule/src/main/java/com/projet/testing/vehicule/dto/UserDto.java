@@ -9,6 +9,9 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * The type User dto.
+ */
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)

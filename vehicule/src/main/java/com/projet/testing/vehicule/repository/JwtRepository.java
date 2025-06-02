@@ -8,7 +8,23 @@ import java.util.Optional;
 import java.util.List;
 
 
+/**
+ * The interface Jwt repository.
+ */
 public interface JwtRepository extends JpaRepository<Jwt ,Long> {
+    /**
+     * Find by refresh token optional.
+     *
+     * @param refreshToken the refresh token
+     * @return the optional
+     */
     Optional<Jwt> findByRefreshToken(RefreshToken refreshToken);
+
+    /**
+     * Find by utilisateur email list.
+     *
+     * @param email the email
+     * @return the list
+     */
     List<Jwt> findByUtilisateurEmail(String email);
 }

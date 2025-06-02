@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.UUID;
 
 
+/**
+ * The type User.
+ */
 @Getter
 @Setter
 @Entity(name = "users")
