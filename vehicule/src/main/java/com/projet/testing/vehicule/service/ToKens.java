@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The type To kens.
+ * The type Tokens.
  */
 @Getter
 @Setter

@@ -9,6 +9,7 @@ import com.projet.testing.vehicule.repository.UserRepository;
 import com.projet.testing.vehicule.service.JwtService;
 import com.projet.testing.vehicule.service.ToKens;
 import com.projet.testing.vehicule.service.UserService;
+import com.projet.testing.vehicule.dto.ChangePasswordRequest;
 import com.projet.testing.vehicule.util.PasswordValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * The type User service.
@@ -80,7 +82,7 @@ public class UserServiceImpl implements UserService {
             user.setUsername(userDto.getName().toUpperCase());
             Optional<User> optionalUserE=userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());
 
-            if(optionalUserE.isEmpty() && verificateGoodEmail(user.getEmail())) {
+            if(optionalUserE.isEmpty() && verificateGoodEmail(userDto.getEmail())) {
                 user.setEmail(userDto.getEmail());
                 return userMapper.toDto(userRepository.save(user));
             }
@@ -92,13 +94,9 @@ public class UserServiceImpl implements UserService {
                 throw new BusinessException(errorModels,HttpStatus.UNAUTHORIZED);
             }
 
-            }
+        }
         else{
-            ErrorModel errorModel=new ErrorModel();
-            errorModel.setCode("AUTHORIZATION_FAILED");
-            errorModel.setMessage("il existe deja un user avec cet adresse mail");
-            errorModels.add(errorModel);
-            throw new BusinessException(errorModels,HttpStatus.UNAUTHORIZED);
+           throw new IllegalArgumentException("Utilisateur non trouve");
         }
         }
 
@@ -116,7 +114,7 @@ public class UserServiceImpl implements UserService {
         }
 
         @Override
-        public ToKens login(UserDto userDto) throws BusinessException{
+        public ToKens login(UserDto userDto,long time) throws BusinessException{
             Optional<User> optionalUser = userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());
 
             if (optionalUser.isPresent()) {
@@ -125,20 +123,64 @@ public class UserServiceImpl implements UserService {
                 // Vérification du mot de passe
                 if (!passwordEncoder.matches(userDto.getMdp(), utilisateur.getPassword())) {
                     ErrorModel errorModel = new ErrorModel();
-                    errorModel.setCode("AUTHENTIFICATION FAILED");
+                    errorModel.setCode("BAD_CREDENTIALS");
                     errorModel.setMessage("Identifiants invalides");
                     throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);
                 }
 
                 // Générer les tokens si tout est valide
-                return jwtService.generateTokens(utilisateur);
+                return jwtService.generateTokens(utilisateur,time);
             } else {
                 throw new IllegalArgumentException("Utilisateur non trouvé");
             }
 
         }
 
+    @Override
+    public List<UserDto> getAllUsers() {
+        List<User> list=userRepository.findByDeleteAtIsNull();
+        return list.stream().map(userMapper::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public ChangePasswordRequest changePassword(String oldPassword, String newPassword, ChangePasswordRequest changePasswordRequest) {
+
+            Optional<User> optionalUser=userRepository.findByEmailAndDeleteAtIsNull(changePasswordRequest.getEmail());
+            if(optionalUser.isPresent()) {
+                User user= optionalUser.get();
+                UserDto userDto = new UserDto();
+                userDto.setMdp(oldPassword);
+                userDto.setEmail(changePasswordRequest.getEmail());
+                login(userDto,15);
+                if(!oldPassword.equals(newPassword) && passwordValidator.isPasswordValid(newPassword)) {
+                    user.setMdp(passwordEncoder.encode(newPassword));
+                    userRepository.save(user);
+                    changePasswordRequest.setPassword(newPassword);
+                    return changePasswordRequest;
+                }
+                else{
+                    ErrorModel errorModel=new ErrorModel();
+                    errorModel.setMessage("Le nouveau mot de passe ne peut etre egal a l'ancien et doit etre fort");
+                    errorModel.setCode("BAD_ENTRY");
+                    throw new BusinessException(List.of(errorModel),HttpStatus.BAD_REQUEST);
+                }
+            }
+            else
+                throw new IllegalArgumentException("Utilisateur non trouvé pour cette adresse mail");
+
+    }
+
+    @Override
+    public UserDto getUser(String email) {
+        Optional<User> optionalUser=userRepository.findByEmailAndDeleteAtIsNull(email);
+        if(optionalUser.isPresent()) {
+            User user= optionalUser.get();
+            return userMapper.toDto(user);
+        }
+        throw new IllegalArgumentException("Utilisateur non trouvé");
+    }
+
+}
 
 
 
