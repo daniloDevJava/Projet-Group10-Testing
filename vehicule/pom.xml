@@ -127,12 +127,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit5</artifactId>
-            <version>2.24.0</version> <!-- version récente et compatible avec Spring Boot 3 -->
-            <scope>test</scope>
-        </dependency>
+
 
     </dependencies>
 

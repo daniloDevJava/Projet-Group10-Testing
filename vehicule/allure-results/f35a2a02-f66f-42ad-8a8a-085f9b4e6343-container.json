@@ -1,1 +1,0 @@
-{"uuid":"f35a2a02-f66f-42ad-8a8a-085f9b4e6343","name":"Connexions echouees avec de mauvaises informations de connexion l'api devra retourner 404(un email inconnu) et un code 'BAD_ARGUMENTS'403 (un mdp faux) et un code 'BAD_ARGUMENTS'","children":["33caa61d-1ad1-49cd-9063-24e29aae141c"],"befores":[],"afters":[],"start":1749008237922,"stop":1749008238126}
