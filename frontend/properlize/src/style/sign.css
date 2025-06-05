@@ -6,7 +6,7 @@
   font-family: 'Arial', sans-serif;
 }
 
-body {
+.body {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -32,7 +32,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
- 
   padding: 40px;
 }
 
@@ -61,7 +60,7 @@ body {
 .logo {
   width: 200px;
   z-index: 3;
-  margin-top: 50px;
+  
 }
 
 .slider {

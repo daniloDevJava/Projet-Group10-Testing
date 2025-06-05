@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom'
 import Sign from './pages/sign'
 import Login from './pages/login'
 import UserListUI from './pages/UserList'
+import HomePage from './pages/HomePage'
+import HomeUser from './pages/HomeUser'
 
 
 function App() {
@@ -9,6 +11,12 @@ function App() {
     <>
       <Router>
        <div className="App">
+       <Routes>
+          <Route path="/" element={<HomePage/>} />
+        </Routes>
+        <Routes>
+          <Route path="/home" element={<HomeUser/>} />
+        </Routes>
         <Routes>
           <Route path="/sign" element={<Sign/>} />
         </Routes>

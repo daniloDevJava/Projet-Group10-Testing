@@ -1,0 +1,96 @@
+.popular-container {
+    padding: 40px;
+    margin: 0;
+    background-color: rgba(233, 230, 230, 0.952);
+    color:#222222;
+  }
+  
+  .popular-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+  }
+  
+  .car-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .car-image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    object-fit: fill;
+  }
+  
+  .car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .heart {
+    position: absolute;
+    top: 05px;
+    right: 10px;
+    font-size: 40px;
+    color: black;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .heart.liked {
+    top: -15px;
+    right: 10px;
+    font-size: 60px;
+  }
+  
+  .car-info {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .car-info h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .car-info .desc {
+    font-size: 11px;
+    color: #555;
+  }
+  
+  .car-info .price {
+    font-weight: bold;
+    font-size: 13px;
+    color: black;
+  }
+  
+  .view-btn {
+    margin-top: 5px;
+    background-color: black;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .view-btn:hover {
+    background-color: rgba(0, 0, 0, 0.904);
+    transform: scale(1.05);
+  }
+  

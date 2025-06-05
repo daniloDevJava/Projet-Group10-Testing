@@ -149,11 +149,6 @@ tr.highlight {
   background-color: #e9d5ff;
 }
 
- input .checkbox{
-  border: 2px solid black;
-  background-color: white;
-}
-
 .icon {
   cursor: pointer;
   margin-right: 10px;
@@ -181,15 +176,17 @@ tr.highlight {
   padding: 15px 110px 15px 15px;
 }
 
-form {
+
+.user-form form {
   display: flex;
-  margin: 20px;
+  margin: 20px 30px;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+ 
 }
 
-form input {
+.user-form  input,select{
+  
   padding: 10px;
   border: 1px solid #ccc;
   flex: 1;

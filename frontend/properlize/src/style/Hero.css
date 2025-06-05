@@ -1,0 +1,129 @@
+.hero {
+    background: url("../assets/IMG-20250526-WA0006.jpg") no-repeat center center/cover;
+    height: 650px;
+    width: 100%;
+    color: white;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 40px;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #15061bb9;
+    z-index: 0;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+  }
+  
+  
+ 
+  .nav-links a {
+    margin: 0 15px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover {
+    color: #8700BD;
+  }
+  
+  .connexion-btn{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .logout-btn , .sign-btn, .login-btn{
+    display: flex;
+    flex-direction: row;
+    background-color: #8700BD;
+    align-items: center;
+    color: white;
+    border: none;
+    font-size: large;
+    padding: 6px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .logout-btn:hover,.sign-btn:hover, .login-btn:hover{
+    background-color: #6313a0;
+    transform: scale(1.1);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin-top: auto;
+    margin-bottom: 60px;
+  }
+  
+  .tagline {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #e0e0e0;
+  }
+  
+  .hero-content h1 {
+    font-size: 40px;
+    width: 500px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  
+  .cta-btn {
+    background-color: #8700BD;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cta-btn:hover {
+    background-color: #7c2db8;
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      padding: 20px;
+    }
+  
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .hero-content h1 {
+      font-size: 24px;
+    }
+  
+    .cta-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  

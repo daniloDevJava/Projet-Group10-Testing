@@ -20,7 +20,8 @@ function Login() {
   }, [slides.length]);
 
   return (
-    <div className="container">
+    <div className="body">
+           <div className="container">
       <div className="left-section">
         <img src={carBg} alt="Car background" className="car-bg" />
         <div className="overlay"></div>
@@ -53,6 +54,8 @@ function Login() {
         </form>
       </div>
     </div>
+    </div>
+   
   );
 }
 
