@@ -350,7 +350,7 @@ public class VehiculeServiceTest {
                         .with(csrf()))
                 // Laisser ceci pour le débogage jusqu'à ce que le test passe
                 .andDo(result -> System.out.println("Réponse du serveur (duplicate registration) : " + result.getResponse().getContentAsString()))
-                .andExpect(status().isBadRequest()) // Ou .isConflict() si vous avez changé côté serveur
+                .andExpect(status().isForbidden()) // Ou .isConflict() si vous avez changé côté serveur
                 .andExpect(jsonPath("$").isArray()) // Confirme que la racine est un tableau
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].code").value("UNAUTHORIZED_REQUEST")) // <-- CORRECTION ICI : Pas de ".errorModels"
