@@ -7,7 +7,6 @@ import com.projet.testing.vehicule.service.ToKens;
 import com.projet.testing.vehicule.dto.ChangePasswordRequest;
 import com.projet.testing.vehicule.util.JwtUtil;
 import com.aventstack.extentreports.*;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projet.testing.vehicule.service.UserService;
 import com.projet.testing.vehicule.repository.*;
@@ -20,12 +19,14 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import java.nio.file.Paths;
 
 import java.util.Optional;
 import java.util.UUID;
 
 
+import static org.mockito.Mockito.*;
+import static org.springframework.test.util.AssertionErrors.assertFalse;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -51,10 +52,7 @@ public class UserControllerTest {
 
     @BeforeAll
     void setupReport() {
-        ExtentSparkReporter spark = new ExtentSparkReporter(
-                Paths.get("target", "extent-reports", "report.html").toString());
-        extent = new ExtentReports();
-        extent.attachReporter(spark);
+        extent = ReportManager.createReport("UserControllerTest");
         extent.setSystemInfo("Project", "Properlize projet of vehicule's location");
         extent.setSystemInfo("Tester", "DAN YVES BRICE AYOMBA II");
     }
@@ -202,36 +200,75 @@ public class UserControllerTest {
         ToKens toKens=userService.login(request,15);
 
 
+
+
         //Act & Assert
         mockMvc.perform(post("http://localhost:9000/users/refresh-access-tokens")
                         .param("refreshToken",toKens.getRefreshToken()))
                 .andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("accessToken")));
+        assertTrue("Le token entre est valide",jwtUtil.isTokenValid(toKens.getRefreshToken()));
+        assertFalse("Le token entre ne doit pas etre expire",jwtUtil.isTokenExpired(toKens.getRefreshToken()));
 
     }
 
    @Test
    @DisplayName("U7 - tester si a partir d'un refresh token invalide l'api devra renvoyer 403 et un message d'erreur")
     void testRefreshAccessToken_InvalidToken() throws Exception {
+        String token="rjjjjjjjjjjjjjjjjjjbdr";
+
         mockMvc.perform(post("http://localhost:9000/users/refresh-access-tokens")
                         .param("refreshToken","rjjjjjjjjjjjjjjjjjjbdr")
                         .header("Authorization", "Bearer invalid-token"))
                 .andExpect(status().isForbidden())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("refreshToken invalide")));
+        assertFalse("Le token entre est invalide", jwtUtil.isTokenValid(token));
     }
 
     @Test
     @DisplayName("teste de refresh accesstoken qui echoue a cause d'essai avec un refresh token expire  ")
     void testRefreshAccessToken_ExpiredToken() throws Exception {
-        String refreshToken=jwtUtil.generateRefreshToken("test@example.com",0);
 
+        String refreshToken = jwtUtil.generateRefreshToken("test@example.com", 15);
 
+        doReturn(true).when(jwtUtil).isTokenExpired(refreshToken);
         mockMvc.perform(post("http://localhost:9000/users/refresh-access-tokens")
-                        .param("refreshToken",refreshToken)
+                        .param("refreshToken", refreshToken)
                         .header("Authorization", "Bearer expired-token"))
                 .andExpect(status().isForbidden())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("refreshToken invalide ou expiré")));
+
+        assertTrue("Le token est toutefois valide...",jwtUtil.isTokenValid(refreshToken));
+
     }
+
+    @Test
+    @DisplayName("Test de refresh access token qui echoue avec un refresh token inconnu")
+    void testRefreshAccessToken_WithRefreshTokenNotFound() throws Exception {
+        String refresh= jwtUtil.generateAccessToken("test@ex.ple");
+
+        mockMvc.perform(post("http://localhost:9000/users/refresh-access-tokens")
+                        .param("refreshToken", refresh)
+                        .header("Authorization", "Bearer expired-token"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.[0].code").value("INVALID_ENTRY"))
+                .andExpect(jsonPath("$.[0].message").value("refresh token inconnu"));
+    }
+
+
+    @Test
+    @DisplayName("Test de refresh access token qui echoue avec un refresh token inconnu")
+    void testRefreshTokens_WithRefreshTokenNotFound() throws Exception{
+        String refresh= jwtUtil.generateRefreshToken("test@ex.ple",15);
+
+        mockMvc.perform(post("http://localhost:9000/users/refresh-tokens")
+                        .param("refreshToken", refresh)
+                        .header("Authorization", "Bearer expired-token"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.[0].code").value("INVALID_ENTRY"))
+                .andExpect(jsonPath("$.[0].message").value("refresh token inconnu"));
+    }
+
 
     @Test
     @DisplayName("Test de rafraichissements de tokens en succes")
@@ -256,7 +293,8 @@ public class UserControllerTest {
         if(optionalUser.isPresent()) {
 
 
-            ToKens toKens=jwtService.generateTokens(optionalUser.get(),0);
+            ToKens toKens=jwtService.generateTokens(optionalUser.get(),15);
+            doReturn(true).when(jwtUtil).isTokenExpired(toKens.getRefreshToken());
 
 
             mockMvc.perform(post("http://localhost:9000/users/refresh-tokens")
@@ -383,6 +421,19 @@ public class UserControllerTest {
     }
 
     @Test
+    @DisplayName("Test qui echoue avec une adresse mail qui echoue")
+    void testChangePassword_FailedWithEmailNotFound() throws Exception {
+        ChangePasswordRequest req = new ChangePasswordRequest("etltktt@gnnek", "NewPass456!");
+        mockMvc.perform(patch("/users/change-password")
+                        .param("oldPassword","StrongPass123")
+                        .param("newPassword",req.getPassword())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.[0].code").value("BAD_ARGUMENTS"));
+    }
+
+    @Test
     @DisplayName("Test d'echec de changement du mot de passe d'un utilisateur a cause du nouveau mot de passe faible")
     void testChangePassword_WeakPassword() throws Exception {
         ChangePasswordRequest req = new ChangePasswordRequest("test8@example.com", "123");
@@ -428,10 +479,19 @@ public class UserControllerTest {
 
 
     }
+
+    @Test
+    @DisplayName("Test de recherche d'un user par mail qui echoue avec un email non reconnu")
+    void testGetUser_FailedWithNotFoundEmail() throws Exception{
+        mockMvc.perform(get("/users/get/"+"test18000@example.com"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.[0]").exists());
+    }
     
     @AfterAll
     void tearDownReport() {
         extent.flush();
+        ReportManager.generateIndexHtml();
     }
 
 }

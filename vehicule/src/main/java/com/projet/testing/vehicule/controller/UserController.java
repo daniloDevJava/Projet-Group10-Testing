@@ -145,6 +145,7 @@ public class UserController {
             @ApiResponse(responseCode = "400",description = "bad entry")
     })
     public ResponseEntity<String> refreshAccessToken(@RequestParam("refreshToken") String refreshToken) throws BusinessException{
+
         if(jwtUtil.isTokenValid(refreshToken) && !jwtUtil.isTokenExpired(refreshToken)) {
             String accessToken = jwtService.refreshAccessToken(refreshToken);
             return new ResponseEntity<>(" \"accessToken\":" +"\""+ accessToken+"\"", HttpStatus.OK);

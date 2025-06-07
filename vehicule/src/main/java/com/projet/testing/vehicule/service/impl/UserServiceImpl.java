@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
                 user.setUsername(userDto.getName().toUpperCase());
                 if(passwordValidator.isPasswordValid(user.getPassword())){
-                    user.setMdp(passwordEncoder.encode(user.getPassword()));
+                    user.setMdp(passwordEncoder.encode(user.getMdp()));
                     return userMapper.toDto(userRepository.save(user));
                 }
                 else
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
             user.setUsername(userDto.getName().toUpperCase());
             Optional<User> optionalUserE=userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());
 
-            if(optionalUserE.isEmpty() && verificateGoodEmail(userDto.getEmail())) {
+            if((optionalUserE.isEmpty() || userDto.getEmail().equals(user.getEmail())) && verificateGoodEmail(userDto.getEmail()) ) {
                 user.setEmail(userDto.getEmail());
                 return userMapper.toDto(userRepository.save(user));
             }

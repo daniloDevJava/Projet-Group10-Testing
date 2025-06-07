@@ -30,7 +30,7 @@ public class PasswordValidator {
 	        if (password.toLowerCase().contains(word)) return false;
 	    }
 
-	    return hasUpper && hasLower && hasDigit && password.length()>=8;
+	    return hasUpper && hasLower && hasDigit ;
 	}
 	
 

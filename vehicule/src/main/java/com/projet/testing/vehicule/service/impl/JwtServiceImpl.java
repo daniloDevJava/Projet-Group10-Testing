@@ -65,16 +65,11 @@ public class JwtServiceImpl implements JwtService {
         Optional<RefreshToken> optionalrefreshToken = refreshTokenRepository.findByValeurAndExpireFalse(refreshTokenValue);
         if (optionalrefreshToken.isPresent()) {
             RefreshToken refreshToken = optionalrefreshToken.get();
-            if (refreshToken.getExpiration().isBefore(Instant.now())) {
+            if (jwtUtil.isTokenExpired(refreshTokenValue)) {
                 Optional<Jwt> optionalJwt = jwtRepository.findByRefreshToken(refreshToken);
                 if (optionalJwt.isPresent()) {
                     User utilisateur = optionalJwt.get().getUtilisateur();
-                    if (utilisateur == null) {
-                        ErrorModel errorModel = new ErrorModel();
-                        errorModel.setCode("FAILED_AUTHENTIFICATION");
-                        errorModel.setMessage("Aucun utilisateur associé à ce RefreshToken");
-                        throw new BusinessException(List.of(errorModel), HttpStatus.NOT_FOUND);
-                    }
+
                     refreshToken.setExpire(true);
                     refreshTokenRepository.save(refreshToken);
                     return generateTokens(utilisateur,time);
@@ -98,28 +93,14 @@ public class JwtServiceImpl implements JwtService {
     public String refreshAccessToken(String refreshTokenValue) throws BusinessException{
 
         Optional<RefreshToken> optionalrefreshToken = refreshTokenRepository.findByValeurAndExpireFalse(refreshTokenValue);
-        List<ErrorModel> errorModels=new ArrayList<>();
         if (optionalrefreshToken.isPresent()) {
             RefreshToken refreshToken = optionalrefreshToken.get();
-            if (!refreshToken.getExpiration().isBefore(Instant.now())) {
-                Optional<Jwt> optionalJwt = jwtRepository.findByRefreshToken(refreshToken);
-                if (optionalJwt.isPresent()) {
-                    User utilisateur = optionalJwt.get().getUtilisateur();
-                    if (utilisateur == null) {
-                        ErrorModel errorModel = new ErrorModel();
-                        errorModel.setCode("FAILED_AUTHENTIFICATION");
-                        errorModel.setMessage("Aucun utilisateur associé à ce RefreshToken");
-                        errorModels.add(errorModel);
-                        throw new BusinessException(errorModels,HttpStatus.NOT_FOUND);
-                    }
-
-                    return jwtUtil.generateAccessToken(utilisateur.getEmail());
-                }
+            Optional<Jwt> optionalJwt = jwtRepository.findByRefreshToken(refreshToken);
+            if (optionalJwt.isPresent()) {
+                User utilisateur = optionalJwt.get().getUtilisateur();
+                return jwtUtil.generateAccessToken(utilisateur.getEmail());
             }
-            ErrorModel errorModel = new ErrorModel();
-            errorModel.setCode("UNAUTHORIZED");
-            errorModel.setMessage("refresh token expiré");
-            throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);
+
 
         }
         ErrorModel errorModel = new ErrorModel();

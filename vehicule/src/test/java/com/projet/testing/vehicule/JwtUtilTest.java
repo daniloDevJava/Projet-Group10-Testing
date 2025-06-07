@@ -35,10 +35,7 @@ class JwtUtilTest {
 
     @BeforeAll
     void setupReport() {
-        ExtentSparkReporter spark = new ExtentSparkReporter(
-                Paths.get("target", "extent-reports", "reportUtils.html").toString());
-        extent = new ExtentReports();
-        extent.attachReporter(spark);
+        extent = ReportManager.createReport("JwtUtileTest");
         extent.setSystemInfo("Project", "Properlize projet of vehicule's location");
         extent.setSystemInfo("Tester", "DAN YVES BRICE AYOMBA II");
     }
@@ -170,5 +167,6 @@ class JwtUtilTest {
     @AfterAll
     void tearDownReport() {
         extent.flush();
+        ReportManager.generateIndexHtml();
     }
 }
