@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @SequenceGenerator(name = "refresh_token_seq", sequenceName = "refresh_token_seq", allocationSize = 1)
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class RefreshToken {

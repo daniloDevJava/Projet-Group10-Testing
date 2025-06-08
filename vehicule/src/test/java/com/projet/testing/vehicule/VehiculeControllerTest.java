@@ -5,18 +5,21 @@ import com.projet.testing.vehicule.dto.ImagesDto;
 import com.projet.testing.vehicule.dto.VehiculeDto;
 import com.projet.testing.vehicule.model.Vehicule;
 import com.projet.testing.vehicule.repository.VehiculeRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile; // Pour simuler les uploads de fichiers
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.transaction.annotation.Transactional; // Très important pour réinitialiser la BDD
 
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,8 +29,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.assertj.core.api.Assertions.assertThat; // Pour des assertions plus idiomatiques
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // Charge tout le contexte Spring Boot
-@Transactional // Chaque test est exécuté dans une transaction rollbackée à la fin
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@ActiveProfiles("test")
+@Transactional
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // Chaque test est exécuté dans une transaction rollbackée à la fin
 public class VehiculeControllerTest {
 
     @Autowired
@@ -40,6 +45,20 @@ public class VehiculeControllerTest {
 
     @Autowired
     private VehiculeRepository vehiculeRepository; // Le VRAI repository (pas un mock)
+    
+    private ExtentReports extent;
+    private ExtentTest test;
+
+    @BeforeAll
+    void setupReport() {
+        extent = ReportManager.createReport("VehiculeControllerTest");
+        extent.setSystemInfo("Project", "Properlize projet of vehicule's location");
+        extent.setSystemInfo("Tester", "Chenjo Prosper");
+    }
+    @BeforeEach
+    void createTest(TestInfo info) {
+        test = extent.createTest(info.getDisplayName());
+    }
 
     @BeforeEach
     public void setup() {
@@ -55,6 +74,7 @@ public class VehiculeControllerTest {
     // --- V1: Succès de création de véhicule ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Test Succès de création de véhicule")
     public void testCreateVehiculeSuccess() throws Exception {
         VehiculeDto vehiculeDto = new VehiculeDto();
         // Générer un numéro d'immatriculation unique pour ce test
@@ -81,6 +101,7 @@ public class VehiculeControllerTest {
     // --- V2: Echec de création - numéro d'immatriculation vide ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Echec de création - numéro d'immatriculation vide")
     public void createVehicule_invalidInput_emptyRegistrationNumber_shouldReturnBadRequest() throws Exception {
         VehiculeDto invalidVehiculeDto = new VehiculeDto();
         invalidVehiculeDto.setRegistrationNumber(""); // Numéro d'immatriculation vide pour provoquer l'erreur
@@ -107,6 +128,7 @@ public class VehiculeControllerTest {
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Echec de création - numéro d'immatriculation manquant")
     public void createVehicule_invalidInput_nullRegistrationNumber_shouldReturnBadRequest() throws Exception {
         VehiculeDto invalidVehiculeDto = new VehiculeDto();
         invalidVehiculeDto.setRegistrationNumber(null); // Numéro d'immatriculation null
@@ -129,6 +151,7 @@ public class VehiculeControllerTest {
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Echec de création - marque manquante")
     public void createVehicule_invalidInput_nullMake_shouldReturnBadRequest() throws Exception {
         VehiculeDto invalidVehiculeDto = new VehiculeDto();
         invalidVehiculeDto.setRegistrationNumber("DEF456");
@@ -151,6 +174,7 @@ public class VehiculeControllerTest {
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Echec de création - Negatif prix de location")
     public void createVehicule_invalidInput_negativeRentalPrice_shouldReturnBadRequest() throws Exception {
         VehiculeDto invalidVehiculeDto = new VehiculeDto();
         invalidVehiculeDto.setRegistrationNumber("GHI789");
@@ -173,6 +197,7 @@ public class VehiculeControllerTest {
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Echec de création - annee negative")
     public void createVehicule_invalidInput_negativeYear_shouldReturnBadRequest() throws Exception {
         VehiculeDto invalidVehiculeDto = new VehiculeDto();
         invalidVehiculeDto.setRegistrationNumber("YEARNEG");
@@ -197,6 +222,7 @@ public class VehiculeControllerTest {
     // Dans VehiculeIntegrationTest.java, méthode createVehicule_duplicateRegistrationNumber_shouldReturnForbidden
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Échec de création : numéro d'immatriculation en doublon")
     public void createVehicule_duplicateRegistrationNumber_shouldReturnForbidden() throws Exception {
         String baseRegNumber = "DUPLI_" + UUID.randomUUID().toString().substring(0, 8);
         Vehicule existingVehicule = new Vehicule();
@@ -222,7 +248,7 @@ public class VehiculeControllerTest {
                         .with(csrf()))
                 // Laisser ceci pour le débogage jusqu'à ce que le test passe
                 .andDo(result -> System.out.println("Réponse du serveur (duplicate registration) : " + result.getResponse().getContentAsString()))
-                .andExpect(status().isBadRequest()) // Ou .isConflict() si vous avez changé côté serveur
+                .andExpect(status().isForbidden()) // Ou .isConflict() si vous avez changé côté serveur
                 .andExpect(jsonPath("$").isArray()) // Confirme que la racine est un tableau
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].code").value("UNAUTHORIZED_REQUEST")) // <-- CORRECTION ICI : Pas de ".errorModels"
@@ -234,6 +260,7 @@ public class VehiculeControllerTest {
     // --- V4: Succès GET /vehicule/id/{id} ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Succès GET /vehicule/id/{id}")
     public void getVehiculeById_success_shouldReturnVehicule() throws Exception {
         // Pré-condition: Sauvegarder un véhicule pour le récupérer
         Vehicule vehiculeToSave = new Vehicule();
@@ -255,6 +282,7 @@ public class VehiculeControllerTest {
     // Le contrôleur renvoie une chaîne de caractères directement, pas un JSON.
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Succès suppression /vehicule/{id}")
     public void deleteVehicule_success_shouldReturnSuccessMessage() throws Exception {
         // Pré-condition: Sauvegarder un véhicule à supprimer
         Vehicule vehiculeToDelete = new Vehicule();
@@ -275,6 +303,7 @@ public class VehiculeControllerTest {
     // Le contrôleur renvoie une chaîne de caractères directement, pas un JSON.
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Échec suppression : id inconnu")
     public void deleteVehicule_notFound_shouldReturnInternalServerError() throws Exception {
         UUID nonExistentId = UUID.randomUUID(); // Un ID qui n'existe pas
 
@@ -289,19 +318,21 @@ public class VehiculeControllerTest {
     // --- V7: Échec récupération par ID inconnu (Gère la BusinessException de votre contrôleur) ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Échec récupération par ID inconnu (Gère la BusinessException de votre contrôleur)")
     public void getVehiculeById_notFound_shouldReturnNotFound() throws Exception {
         UUID nonExistentId = UUID.randomUUID();
 
         mockMvc.perform(get("/vehicule/id/{id}", nonExistentId)
                         .with(csrf()))
                 .andDo(result -> System.out.println("Réponse du serveur (Véhicule non trouvé - attendu 404) : " + result.getResponse().getContentAsString()))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isNotFound());
 
     }
 
     // --- V8: Succès /vehicule/search-by-price ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Succès /vehicule/search-by-price")
     public void getAllByPrice_success_shouldReturnFilteredList() throws Exception {
         // Pré-condition: Sauvegarder des véhicules avec différents prix
         vehiculeRepository.save(createVehiculeEntity("P1", "Make1", 50.0));
@@ -323,6 +354,7 @@ public class VehiculeControllerTest {
     // --- V9: Succès /vehicule/number/{registerNum} ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Succès /vehicule/number/{registerNum}")
     public void getVehiculeByNumber_success_shouldReturnVehicule() throws Exception {
         // Pré-condition: Sauvegarder un véhicule
         Vehicule vehiculeToSave = new Vehicule();
@@ -344,17 +376,19 @@ public class VehiculeControllerTest {
     // Le contrôleur renvoie HttpStatus.NOT_FOUND (404) et une BusinessException.
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("Échec /vehicule/number/{registerNum}")
     public void getVehiculeByNumber_notFound_shouldReturnNotFound() throws Exception {
         String nonExistentRegistrationNum = "UNKNOWN404";
 
         mockMvc.perform(get("/vehicule/number/{registerNum}", nonExistentRegistrationNum)
                         .with(csrf()))
                 .andDo(result -> System.out.println("Réponse du serveur (Véhicule non trouvé - attendu 404) : " + result.getResponse().getContentAsString()))
-                .andExpect(status().isBadRequest());    }
+                .andExpect(status().isNotFound());    }
 
     // --- V11: Succès update /vehicule/{id} ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("V11: Succès update /vehicule/{id}")
     public void updateVehicule_success_shouldReturnUpdatedVehicule() throws Exception {
         // Pré-condition: Sauvegarder un véhicule à mettre à jour
         Vehicule existingVehicule = new Vehicule();
@@ -391,6 +425,7 @@ public class VehiculeControllerTest {
     // Le contrôleur renvoie HttpStatus.NOT_FOUND (404) et une BusinessException.
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("V10 - Scénario d'échec : ID inexistant pour la mise à jour")
     public void updateVehicule_notFound_shouldReturnNotFound() throws Exception {
         UUID nonExistentId = UUID.randomUUID();
         VehiculeDto updateDto = new VehiculeDto();
@@ -400,13 +435,16 @@ public class VehiculeControllerTest {
         updateDto.setYear(2020); // Ajouter une année valide pour éviter les erreurs de validation du DTO en amont
 
         mockMvc.perform(put("/vehicule/{id}", nonExistentId)
+        		.contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updateDto))
                         .with(csrf()))
                 .andDo(result -> System.out.println("Réponse du serveur (Véhicule non trouvé - attendu 404) : " + result.getResponse().getContentAsString()))
-                .andExpect(status().isBadRequest());    }
+                .andExpect(status().isNotFound());    }
 
     // --- V11 - Scénario d'échec : Validation du DTO de mise à jour ---
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @DisplayName("V11 - Scénario d'échec : Validation du DTO de mise à jour")
     public void updateVehicule_invalidInput_shouldReturnBadRequest() throws Exception {
         // Pré-condition: Sauvegarder un véhicule valide pour avoir un ID existant
         Vehicule existingVehicule = new Vehicule();
@@ -446,5 +484,10 @@ public class VehiculeControllerTest {
         vehicule.setYear(2020);     // Valeur par défaut
         vehicule.setRentalPrice(rentalPrice);
         return vehicule;
+    }
+    @AfterAll
+    void tearDownReport() {
+        extent.flush();
+        ReportManager.generateIndexHtml();
     }
 }
