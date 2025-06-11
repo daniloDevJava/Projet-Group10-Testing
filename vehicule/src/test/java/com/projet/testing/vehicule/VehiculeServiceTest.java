@@ -2,6 +2,7 @@ package com.projet.testing.vehicule;
 
 import com.projet.testing.vehicule.dto.ImagesDto;
 import com.projet.testing.vehicule.dto.VehiculeDto;
+import com.projet.testing.vehicule.exception.DuplicateRegistrationNumberException;
 import com.projet.testing.vehicule.model.Vehicule;
 import com.projet.testing.vehicule.repository.VehiculeRepository;
 import com.projet.testing.vehicule.service.VehiculeService;
@@ -21,8 +22,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull; // Used to check for null returns if service doesn't throw
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -261,13 +261,13 @@ public class VehiculeServiceTest {
     public void test9_deleteVehiculeNotFoundAfterDeletion() {
         UUID nonExistentId = UUID.randomUUID();
 
-        // Call the service directly
-        boolean isDeleted = vehiculeService.deleteVehicule(nonExistentId);
-        assertThat(isDeleted).isFalse(); // Assert that deletion failed (returned false)
+        // S'attend à une RuntimeException et vérifie son message
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            vehiculeService.deleteVehicule(nonExistentId);
+        }, "Should throw RuntimeException for non-existent ID");
 
-        // Verify with the repository (should definitely not be present)
-        assertThat(vehiculeRepository.findById(nonExistentId)).isNotPresent();
-        System.out.println("Tentative de suppression d'un véhicule inexistant (ID: " + nonExistentId + ") a échoué comme prévu (retour false).");
+        assertThat(thrown.getMessage()).isEqualTo("Véhicule non trouvé");
+        System.out.println("Tentative de suppression d'un véhicule inexistant (ID: " + nonExistentId + ") a échoué comme prévu (exception lancée : " + thrown.getMessage() + ").");
     }
 
     /**
@@ -287,12 +287,13 @@ public class VehiculeServiceTest {
         invalidVehiculeDto.setRentalPrice(40.0);
         invalidVehiculeDto.setCheminVersImage("/chemin/image_invalide.jpg");
 
-        // Call the service directly
+        // Appelle le service directement
         VehiculeDto createdDto = vehiculeService.createVehicule(invalidVehiculeDto);
 
-        // Assert that the creation failed (e.g., returned null, or no ID)
+        // Vérifie que la création a échoué (par exemple, en retournant null)
         assertNull(createdDto, "Le DTO créé devrait être null pour une entrée invalide.");
-        // Verify that no vehicle with an empty registration number was persisted
+
+        // Vérifie qu'aucun véhicule avec un numéro d'immatriculation vide n'a été persisté
         assertThat(vehiculeRepository.findByRegistrationNumber("")).isNotPresent();
         System.out.println("Tentative de création avec numéro d'immatriculation vide a échoué comme prévu (non persistant).");
     }
@@ -305,7 +306,7 @@ public class VehiculeServiceTest {
     @Order(11)
     @DisplayName("creation d'un vehicule avec un numero d'immatriculation existant")
     @WithMockUser(username = "admin", roles = {"ADMIN"})
-    public void test11_createVehicule_duplicateRegistrationNumber_shouldNotCreate() {
+    public void test11_createVehicule_duplicateRegistrationNumber_shouldThrowException() {
         // First, create a vehicle to ensure a duplicate exists for the test
         VehiculeDto existingVehicule = new VehiculeDto();
         String tempRegNumber = "DUP_TEST_" + UUID.randomUUID().toString().substring(0, 8);
@@ -325,13 +326,12 @@ public class VehiculeServiceTest {
         duplicateVehiculeDto.setRentalPrice(130.0);
         duplicateVehiculeDto.setCheminVersImage("/images/audi.jpg");
 
-        // Call the service directly
-        VehiculeDto createdDto = vehiculeService.createVehicule(duplicateVehiculeDto);
+        // Expect IllegalArgumentException
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+            vehiculeService.createVehicule(duplicateVehiculeDto);
+        });
 
-        // Assert that the creation failed (e.g., returned null, or no ID)
-        assertNull(createdDto, "Le DTO créé devrait être null pour un numéro d'immatriculation en doublon.");
-        // Verify that no new vehicle with this duplicate registration number was persisted (only the original one)
-        assertThat(vehiculeRepository.findAll()).filteredOn("registrationNumber", tempRegNumber).hasSize(1);
-        System.out.println("Tentative de création avec numéro d'immatriculation en doublon a échoué comme prévu (non persistant).");
+        assertThat(thrown.getMessage()).contains("Il existe deja des vehicules avec ces numeros de registration");
+        System.out.println("Tentative de création avec numéro d'immatriculation en doublon a échoué comme prévu : " + thrown.getMessage());
     }
 }
