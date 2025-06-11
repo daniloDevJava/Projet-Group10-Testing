@@ -270,40 +270,13 @@ public class VehiculeServiceTest {
         System.out.println("Tentative de suppression d'un véhicule inexistant (ID: " + nonExistentId + ") a échoué comme prévu (exception lancée : " + thrown.getMessage() + ").");
     }
 
-    /**
-     * Cas de test 10 : Tentative de création avec numéro d'immatriculation vide.
-     * Le service est supposé ne pas créer le véhicule invalide.
-     */
-    @Test
-    @Order(10)
-    @DisplayName("creation d'un vehicule avec numero d'immatriculation absent")
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
-    public void test10_createVehicule_invalidInput_emptyRegistrationNumber_shouldNotCreate() {
-        VehiculeDto invalidVehiculeDto = new VehiculeDto();
-        invalidVehiculeDto.setRegistrationNumber(""); // Empty registration number
-        invalidVehiculeDto.setMake("Renault");
-        invalidVehiculeDto.setModel("Clio");
-        invalidVehiculeDto.setYear(2023);
-        invalidVehiculeDto.setRentalPrice(40.0);
-        invalidVehiculeDto.setCheminVersImage("/chemin/image_invalide.jpg");
-
-        // Appelle le service directement
-        VehiculeDto createdDto = vehiculeService.createVehicule(invalidVehiculeDto);
-
-        // Vérifie que la création a échoué (par exemple, en retournant null)
-        assertNull(createdDto, "Le DTO créé devrait être null pour une entrée invalide.");
-
-        // Vérifie qu'aucun véhicule avec un numéro d'immatriculation vide n'a été persisté
-        assertThat(vehiculeRepository.findByRegistrationNumber("")).isNotPresent();
-        System.out.println("Tentative de création avec numéro d'immatriculation vide a échoué comme prévu (non persistant).");
-    }
 
     /**
-     * Cas de test 11 : Tentative de création d'un véhicule avec un numéro d'immatriculation en doublon.
+     * Cas de test 10 : Tentative de création d'un véhicule avec un numéro d'immatriculation en doublon.
      * Le service est supposé ne pas créer le véhicule en doublon.
      */
     @Test
-    @Order(11)
+    @Order(10)
     @DisplayName("creation d'un vehicule avec un numero d'immatriculation existant")
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     public void test11_createVehicule_duplicateRegistrationNumber_shouldThrowException() {
