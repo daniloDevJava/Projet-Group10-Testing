@@ -64,6 +64,7 @@ class UserServiceTest {
     @Test
     @DisplayName("Test de levee d'une businessException apres ajout d'un user avec un mot de passe faible")
     void testCreateUserWithWeakPassword_ThrowsBusinessException(){
+    	//Arrange + Act + Assert 1
         BusinessException exception=assertThrows(BusinessException.class ,() ->{
             UserDto user=new UserDto();
             user.setMdp("tamo14");
@@ -71,16 +72,20 @@ class UserServiceTest {
             user.setEmail("test@mple.com");
             userService.createUser(user);
         });
-
+	//Assert 2
         assertEquals("Le mot de passe est faible",exception.getErrorModels().getFirst().getMessage());
 
     }
     @Test
     @DisplayName("Test de levee d'exception apres modification d'une  adresse mail d'un utilisateur avec celle d'un autre utilisateur")
     void testUpdateUserMailWithMailOfOtherUser_ThrowsBusinessException(){
+    
+        //Arrange
         List<UserDto> list=userService.getAllUsers();
         UserDto userToUpdate=userService.getUser("test@example.com");
-
+        
+        
+	//Act + Assert 1
         BusinessException exception=assertThrows(BusinessException.class ,() ->{
 
             userToUpdate.setMdp("tamo14");
@@ -88,20 +93,24 @@ class UserServiceTest {
             userToUpdate.setEmail(list.getLast().getEmail());
             userService.updateUser(userToUpdate,userToUpdate.getId());
         });
-
+	//Assert 2
         assertEquals("il existe deja un user avec cet adresse mail",exception.getErrorModels().getFirst().getMessage());
     }
 
 
     @Test
-    @DisplayName("Test d'ajout d'user dans la bd")
+    @DisplayName("Test d'ajout succès d'user dans la bd")
     void testCreateUser()  {
-
+	    //Arrange
             UserDto user=new UserDto();
             user.setMdp("tuyamo14H");
             user.setName("neymar");
             user.setEmail("test@e1xample.com");
+            
+            //Act
             UserDto created = userService.createUser(user);
+            
+            //Assert
             assertNotNull(created);
             assertNotNull(created.getId());
             assertEquals("test@e1xample.com", created.getEmail());
@@ -111,17 +120,19 @@ class UserServiceTest {
 
 
     @Test
-    @DisplayName("Test de mise a jour d'un utilisateur")
+    @DisplayName("Test de mise a jour reussie d'un utilisateur")
     void testUpdateUser() throws BusinessException {
 
-
+	    //Arrange
             UserDto userToUpdate= userService.getUser("test@example.com");
 
             userToUpdate.setName("UpdatedName");
             userToUpdate.setMdp("NoemarA147");
 
+            //Act
             UserDto updated = userService.updateUser(userToUpdate, userToUpdate.getId());
 
+	    //Assert
             assertEquals("UpdatedName".toUpperCase(), updated.getName());
 
 
@@ -130,14 +141,18 @@ class UserServiceTest {
     @Test
     @DisplayName("Test de chargement de la liste d'users dans la bd")
     void testGetAllUsers() throws BusinessException {
-
+            
+	    //Arrange
             UserDto user=new UserDto();
             user.setName("johnidep");
             user.setEmail("tesr@gmail.com");
             user.setMdp("Passerole12");
             userService.createUser(user);
+            
+            //Act
             List<UserDto> users = userService.getAllUsers();
 
+	    //Assert
             assertFalse(users.isEmpty());
             assertEquals(2, users.size());
 
@@ -148,12 +163,18 @@ class UserServiceTest {
     @DisplayName("Test de reussite d'un login")
     @Transactional
     void testLoginSuccess()  {
+    
+    	    //Arrange
             UserDto user=new UserDto();
             user.setEmail("danil@gmail.com");
             user.setMdp("Passworld304");
             user.setName("Sung Jinwoo");
             userService.createUser(user);
+            
+            //Act
             ToKens tokens = userService.login(user, 15);
+            
+            //Assert
             assertNotNull(tokens);
             assertNotNull(tokens.getAccessToken());
             assertNotNull(tokens.getRefreshToken());
@@ -164,8 +185,9 @@ class UserServiceTest {
     @Test
     @DisplayName("Test find user by mail")
     void testGetUserByEmail()  {
-
+	    //Act
             UserDto fetched = userService.getUser("test@example.com");
+            //Assert
             assertNotNull(fetched);
             assertEquals("John".toUpperCase(), fetched.getName());
 
@@ -175,6 +197,8 @@ class UserServiceTest {
     @DisplayName("Test de changement de  mot de passe")
     @Transactional
     void testChangePassword()  {
+    
+        //Arrange
         UserDto user=new UserDto();
         user.setMdp("tuyamo14H");
         user.setName("neymar");
@@ -183,7 +207,9 @@ class UserServiceTest {
 
         ChangePasswordRequest req = new ChangePasswordRequest( "test@xample.com","newPasswo8d456");
 
+	//Act
         ChangePasswordRequest result = userService.changePassword("tuyamo14H", "newPasswo8d456", req);
+        //Assert
         assertEquals("test@xample.com", result.getEmail());
 
 
@@ -194,7 +220,7 @@ class UserServiceTest {
     @DisplayName("Test d'ajout d'utilisateur existant(mail) et levée d'exception dans la bd")
     void testCreateUserThrowsBusinessException() {
 
-        // Act + Assert : le second appel doit lever une exception
+        // Act + Assert : l' appel doit lever une exception
         BusinessException exception = assertThrows(BusinessException.class, () -> {
             UserDto user=new UserDto();
             user.setEmail("test@example.com");
