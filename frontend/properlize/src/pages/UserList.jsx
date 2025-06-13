@@ -4,101 +4,188 @@ import Notification from '../assets/Notification.svg';
 import logo from '../assets/logo.svg';
 import avatar from "../assets/placeholder.svg";
 import { FaUser, FaSignOutAlt, FaSearch, FaBell, FaPen, FaTrash } from "react-icons/fa";
-//import axios from 'axios'; // Pour AJAX futur
+import axios from 'axios';
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [selectAll, setSelectAll] = useState(false);
+  const [utilisateurs, setUtilisateurs] = useState([]);
+  const [utilisateursSelectionnes, setUtilisateursSelectionnes] = useState([]);
+  const [toutSelectionner, setToutSelectionner] = useState(false);
+  const [afficherFormulaireAdd, setAfficherFormulaireAdd] = useState(false);
+  const [afficherFormulaireEdit, setAfficherFormulaireEdit] = useState(false);
+  const [formulaireAdd, setFormulaireAdd] = useState({ name: '', email: '', password: '' });
+  const [formulaireEdit, setFormulaireEdit] = useState({ name: '', email: '', password: '' });
+  const [indexEdition, setIndexEdition] = useState(null);
+  const [recherche, setRecherche] = useState('');
+  const [utilisateurRecherche, setUtilisateurRecherche] = useState(null);
 
-  const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', status: 'Actif' });
-  const [editingIndex, setEditingIndex] = useState(null);
-
-  // Simulation de récupération des données (à remplacer par un GET AJAX)
   useEffect(() => {
-    // axios.get('/api/users')
-    //   .then(res => setUsers(res.data))
-    //   .catch(err => console.error(err));
-
-    const initialUsers = [
-      { name: "John Smith", email: "JohnSmith@gmail.com", status: "Actif" },
-      { name: "Jane Doe", email: "JaneDoe@gmail.com", status: "Inactif" },
-      { name: "Alice Brown", email: "AliceB@gmail.com", status: "Actif" }
-    ];
-    setUsers(initialUsers);
+    chargerUtilisateurs();
   }, []);
 
-  const toggleSelectAll = () => {
-    if (selectAll) {
-      setSelectedUsers([]);
-    } else {
-      setSelectedUsers(users.map((_, index) => index));
-    }
-    setSelectAll(!selectAll);
-  };
-
-  const toggleUserSelect = (index) => {
-    if (selectedUsers.includes(index)) {
-      setSelectedUsers(selectedUsers.filter((i) => i !== index));
-    } else {
-      setSelectedUsers([...selectedUsers, index]);
+  const chargerUtilisateurs = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/users/all');
+      setUtilisateurs(response.data);
+      setUtilisateurRecherche(null);
+    } catch (error) {
+      console.error("Erreur lors du chargement des utilisateurs :", error);
     }
   };
 
-  const deleteUser = (index) => {
-    // axios.delete(`/api/users/${users[index].id}`)
-    const updatedUsers = users.filter((_, i) => i !== index);
-    setUsers(updatedUsers);
-    setSelectedUsers(selectedUsers.filter((i) => i !== index));
+  const basculerSelection = () => {
+    if (toutSelectionner) {
+      setUtilisateursSelectionnes([]);
+    } else {
+      setUtilisateursSelectionnes(utilisateurs.map((_, index) => index));
+    }
+    setToutSelectionner(!toutSelectionner);
   };
 
-  const deleteSelectedUsers = () => {
-    // axios.post('/api/users/delete-multiple', { ids: selectedUsers })
-    const updatedUsers = users.filter((_, i) => !selectedUsers.includes(i));
-    setUsers(updatedUsers);
-    setSelectedUsers([]);
-    setSelectAll(false);
+  const selectionnerUtilisateur = (index) => {
+    if (utilisateursSelectionnes.includes(index)) {
+      setUtilisateursSelectionnes(utilisateursSelectionnes.filter((i) => i !== index));
+    } else {
+      setUtilisateursSelectionnes([...utilisateursSelectionnes, index]);
+    }
   };
 
-  const handleAddUserClick = () => {
-    setForm({ name: '', email: '', status: 'Actif' });
-    setEditingIndex(null);
-    setShowForm(true);
+  const supprimerUtilisateur = async (index) => {
+    const utilisateur = utilisateurs[index];
+    try {
+      await axios.delete(`http://localhost:9000/users/${utilisateur.id}`);
+      const misAJour = utilisateurs.filter((_, i) => i !== index);
+      setUtilisateurs(misAJour);
+      setUtilisateursSelectionnes(utilisateursSelectionnes.filter((i) => i !== index));
+    } catch (error) {
+      console.error("Erreur lors de la suppression :", error);
+    }
   };
 
-  const handleEditUser = (index) => {
-    setForm(users[index]);
-    setEditingIndex(index);
-    setShowForm(true);
+  const supprimerUtilisateursSelectionnes = async () => {
+    for (const index of utilisateursSelectionnes) {
+      await supprimerUtilisateur(index);
+    }
+    setToutSelectionner(false);
   };
 
-  const handleChange = (e) => {
+  const clicAjouterUtilisateur = () => {
+    setFormulaireAdd({ name: '', email: '', password: '' });
+    setAfficherFormulaireAdd(true);
+    setAfficherFormulaireEdit(false);
+  };
+
+  const modifierUtilisateur = (index) => {
+    const user = utilisateurs[index];
+    setFormulaireEdit({ name: user.name, email: user.email, password: '' });
+    setIndexEdition(index);
+    setAfficherFormulaireEdit(true);
+    setAfficherFormulaireAdd(false);
+  };
+
+  const gererChangementAdd = (e) => {
     const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    setFormulaireAdd(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (editingIndex !== null) {
-      // axios.put(`/api/users/${users[editingIndex].id}`, form)
-      const updated = [...users];
-      updated[editingIndex] = form;
-      setUsers(updated);
-    } else {
-      // axios.post('/api/users', form)
-      setUsers([...users, form]);
+  const gererChangementEdit = (e) => {
+    const { name, value } = e.target;
+    setFormulaireEdit(prev => ({ ...prev, [name]: value }));
+  };
+
+ 
+const soumettreFormulaireAdd = async (e) => {
+  e.preventDefault();
+  try {
+    if (!formulaireAdd.email.trim()) {
+      alert("L'email est requis.");
+      return;
     }
-    setShowForm(false);
-    setForm({ name: '', email: '', status: 'Actif' });
-    setEditingIndex(null);
+
+    const res = await axios.post('http://localhost:9000/users/add', {
+      name: formulaireAdd.name,
+      email: formulaireAdd.email,
+      mdp: formulaireAdd.password, // <-- CHANGEMENT ici
+    });
+
+    setUtilisateurs([...utilisateurs, res.data]);
+    setAfficherFormulaireAdd(false);
+    setFormulaireAdd({ email: '', name: '', password: '' });
+
+  } catch (error) {
+    console.error("Erreur lors de l'ajout :", error);
+    alert("Erreur lors de l'ajout !");
+  }
+};
+
+
+  const soumettreFormulaireEdit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!formulaireEdit.email.trim()) {
+        alert("L'email est requis pour identifier l'utilisateur à modifier.");
+        return;
+      }
+  
+      // 1. Récupération par email
+      const res = await axios.get(`http://localhost:9000/users/get/${formulaireEdit.email}`);
+      const utilisateurExistant = res.data;
+  
+      if (!utilisateurExistant || !utilisateurExistant.id) {
+        alert("Utilisateur introuvable !");
+        return;
+      }
+  
+      // 2. Construction de l'objet de mise à jour
+      const donneesMiseAJour = {
+        id: utilisateurExistant.id,
+        email: formulaireEdit.email,
+        name: formulaireEdit.name,
+        mdp: formulaireEdit.password,
+      };
+  
+      // 3. Requête PUT
+      await axios.put(`http://localhost:9000/users/${utilisateurExistant.id}`, donneesMiseAJour);
+  
+      // 4. Mise à jour de l'état local
+      const misAJour = [...utilisateurs];
+      misAJour[indexEdition] = { ...utilisateurExistant, ...donneesMiseAJour };
+      setUtilisateurs(misAJour);
+  
+      // 5. Réinitialisation des formulaires
+      setAfficherFormulaireEdit(false);
+      setIndexEdition(null);
+      setFormulaireEdit({ name: '', email: '', password: '' });
+  
+    } catch (error) {
+      console.error("Erreur lors de la modification :", error);
+      alert("Erreur lors de la mise à jour !");
+    }
+  };
+
+  const rechercherUtilisateur = async () => {
+    if (!recherche.trim()) {
+      alert("Veuillez entrer un email à rechercher.");
+      return;
+    }
+    try {
+      const res = await axios.get(`http://localhost:9000/users/get/${recherche}`);
+      if (res.data) {
+        setUtilisateurRecherche(res.data);
+      } else {
+        alert("Aucun utilisateur trouvé.");
+        setUtilisateurRecherche(null);
+      }
+    } catch (error) {
+      alert("Utilisateur introuvable !");
+      setUtilisateurRecherche(null);
+    }
   };
 
   return (
     <div className="app">
       <aside className="sidebar">
         <div className="logo1">
-          <a href="/#">
+          <a href="/">
             <img src={logo} alt="Properlize" width={120} />
           </a>
         </div>
@@ -114,9 +201,9 @@ function App() {
 
       <main className="main">
         <header className="header">
-          <span>Welcome Back Eric</span>
+          <span>Welcome Eric</span>
           <div className="header-icons">
-            <img src={Notification} alt="Icone des notifications" width={40} height={40} />
+            <img src={Notification} alt="Notifications" width={40} height={40} />
             <img src={avatar} alt="avatar" className="avatar" />
           </div>
         </header>
@@ -126,42 +213,104 @@ function App() {
             <h2>UserList</h2>
             <div className="left">
               <div className="search-bar">
-                <input type="text" placeholder="Find an User" />
-                <div  className='Violet'>
+                <input
+                  type="text"
+                  placeholder="Rechercher par email"
+                  value={recherche}
+                  onChange={(e) => setRecherche(e.target.value)}
+                />
+                <div className='Violet' onClick={rechercherUtilisateur}>
                   <FaSearch />
                 </div>
               </div>
-              <button className="add-user" onClick={handleAddUserClick}>+ ADD USER</button>
-              {selectedUsers.length > 0 && (
-                <button className="add-user" onClick={deleteSelectedUsers}>Delete All</button>
+              <button className="add-user" onClick={clicAjouterUtilisateur}>+ ADD</button>
+              {utilisateursSelectionnes.length > 0 && (
+                <button className="add-user" onClick={supprimerUtilisateursSelectionnes}>Delete All</button>
               )}
             </div>
           </div>
 
-          {showForm && (
-            <form className="user-form" onSubmit={handleSubmit}>
+          {utilisateurRecherche && (
+            <div className="user-search-result">
+              <h3>Search Result :</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{utilisateurRecherche.name}</td>
+                    <td>{utilisateurRecherche.email}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onClick={() => setUtilisateurRecherche(null)}>close</button>
+            </div>
+          )}
+
+          {afficherFormulaireAdd && (
+            <form className="user-form" onSubmit={soumettreFormulaireAdd}>
               <input
                 type="text"
                 name="name"
                 placeholder="Nom"
-                value={form.name}
-                onChange={handleChange}
+                value={formulaireAdd.name}
+                onChange={gererChangementAdd}
                 required
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Email"
-                value={form.email}
-                onChange={handleChange}
+                value={formulaireAdd.email}
+                onChange={gererChangementAdd}
                 required
               />
-              <select name="status" value={form.status} onChange={handleChange}>
-                <option value="Actif">Actif</option>
-                <option value="Inactif">Inactif</option>
-              </select>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formulaireAdd.password}
+                onChange={gererChangementAdd}
+                required
+              />
               <button type="submit" className="add-user">
-                {editingIndex !== null ? 'Modifier' : 'Ajouter'}
+                Ajouter
+              </button>
+            </form>
+          )}
+
+          {afficherFormulaireEdit && (
+            <form className="user-form" onSubmit={soumettreFormulaireEdit}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Nom"
+                value={formulaireEdit.name}
+                onChange={gererChangementEdit}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formulaireEdit.email}
+                onChange={gererChangementEdit}
+                required
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formulaireEdit.password}
+                onChange={gererChangementEdit}
+                required
+              />
+              <button type="submit" className="add-user">
+                Modifier
               </button>
             </form>
           )}
@@ -173,37 +322,31 @@ function App() {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={selectAll}
-                    onChange={toggleSelectAll}
+                    checked={toutSelectionner}
+                    onChange={basculerSelection}
                   />
                 </th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Status</th>
-                <th>Edit</th>
+                <th>Actions</th>
               </tr>
             </thead>
-
             <tbody>
-              {users.map((user, index) => (
-                <tr
-                  key={index}
-                  className={selectedUsers.includes(index) ? "highlight" : ""}
-                >
+              {utilisateurs.map((user, index) => (
+                <tr key={user.id || index} className={utilisateursSelectionnes.includes(index) ? "highlight" : ""}>
                   <td>
                     <input
                       type="checkbox"
                       className="checkbox"
-                      checked={selectedUsers.includes(index)}
-                      onChange={() => toggleUserSelect(index)}
+                      checked={utilisateursSelectionnes.includes(index)}
+                      onChange={() => selectionnerUtilisateur(index)}
                     />
                   </td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>{user.status}</td>
                   <td className="Edit">
-                    <FaPen className="icon edit" onClick={() => handleEditUser(index)} />
-                    <FaTrash className="icon delete" onClick={() => deleteUser(index)} />
+                    <FaPen className="icon edit" onClick={() => modifierUtilisateur(index)} />
+                    <FaTrash className="icon delete" onClick={() => supprimerUtilisateur(index)} />
                   </td>
                 </tr>
               ))}
@@ -211,7 +354,7 @@ function App() {
           </table>
 
           <div className="footer">
-            Total Number of Users <b>{users.length}</b>
+            Total Number of users : <b>{utilisateurs.length}</b>
           </div>
         </div>
       </main>

@@ -172,8 +172,10 @@ tr.highlight {
   margin-top: 15px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  height: 10px;
   justify-content: space-between;
-  padding: 15px 110px 15px 15px;
+
 }
 
 

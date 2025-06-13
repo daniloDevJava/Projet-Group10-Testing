@@ -48,12 +48,17 @@ const Hero = () => {
           <a href="#">Landcruiser</a>
         </div>
         <div className="connexion-btn">
+          <a href="sign">
           <button className="sign-btn">
             <p>Signin</p>
           </button>
-          <button className="login-btn">
-            <p>Login</p>
-          </button>
+          </a>
+         
+          <a href="login">
+            <button className="login-btn">
+              <p>Login</p>
+            </button>
+          </a>
         </div>
         
       </div>
