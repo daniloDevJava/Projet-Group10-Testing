@@ -20,9 +20,9 @@ public class PasswordValidator {
     public boolean isPasswordValid(String password) {
 	    boolean hasUpper = false, hasLower = false, hasDigit = false;
 	    for (char c : password.toCharArray()) {
-	        if (Character.isUpperCase(c)) hasUpper = true;
-	        else if (Character.isLowerCase(c)) hasLower = true;
-	        else if (Character.isDigit(c)) hasDigit = true;
+	        if (Character.isUpperCase(c) && password.length() >= 8) hasUpper = true;
+	        else if (Character.isLowerCase(c) && password.length() >= 8) hasLower = true;
+	        else if (Character.isDigit(c) && password.length() >= 8) hasDigit = true;
 	    }
 
 	    List<String> forbiddenWords = List.of("password", "123456", "admin");

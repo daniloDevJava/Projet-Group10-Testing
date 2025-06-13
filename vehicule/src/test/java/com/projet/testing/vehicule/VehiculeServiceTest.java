@@ -2,7 +2,6 @@ package com.projet.testing.vehicule;
 
 import com.projet.testing.vehicule.dto.ImagesDto;
 import com.projet.testing.vehicule.dto.VehiculeDto;
-import com.projet.testing.vehicule.exception.DuplicateRegistrationNumberException;
 import com.projet.testing.vehicule.model.Vehicule;
 import com.projet.testing.vehicule.repository.VehiculeRepository;
 import com.projet.testing.vehicule.service.VehiculeService;
