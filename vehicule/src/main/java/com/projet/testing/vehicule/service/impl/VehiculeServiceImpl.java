@@ -43,22 +43,16 @@ public class VehiculeServiceImpl implements VehiculeService {
 
 	@Override
 	public VehiculeDto createVehicule(VehiculeDto vehiculeDto) {
-		
-			Vehicule vehicule = vehiculeMapper.toEntity(vehiculeDto);
-			Vehicule savedVehicule = vehiculeRepository.save(vehicule);
+		Optional<Vehicule> optionalVehicule = vehiculeRepository.findByRegistrationNumber(vehiculeDto.getRegistrationNumber());
+		if (optionalVehicule.isPresent()) {
+			throw new IllegalArgumentException("Il existe deja des vehicules avec ces numeros de registration");
+		}
 
-
-			Optional<Vehicule> optionalVehicule=vehiculeRepository.findByRegistrationNumber(vehiculeDto.getRegistrationNumber());
-			if(optionalVehicule.isEmpty()){
-				return vehiculeMapper.toDto(savedVehicule);
-			}
-			else{
-				throw new IllegalArgumentException("Il existe deja des vehicules avec ces numeros de registration");
-			}
-		
-
-
+		Vehicule vehicule = vehiculeMapper.toEntity(vehiculeDto);
+		Vehicule savedVehicule = vehiculeRepository.save(vehicule);
+		return vehiculeMapper.toDto(savedVehicule);
 	}
+
 
 	@Override
 	public VehiculeDto getVehiculeById(UUID vehicule_id) {

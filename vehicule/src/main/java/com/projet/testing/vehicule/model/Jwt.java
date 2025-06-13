@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @SequenceGenerator(name = "jwt_seq", sequenceName = "jwt_seq", allocationSize = 1)

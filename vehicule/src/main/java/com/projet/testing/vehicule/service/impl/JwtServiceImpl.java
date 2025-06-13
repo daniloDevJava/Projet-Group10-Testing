@@ -12,14 +12,12 @@ import com.projet.testing.vehicule.service.ToKens;
 import com.projet.testing.vehicule.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -35,8 +33,8 @@ public class JwtServiceImpl implements JwtService {
 
 
     @Override
-    public ToKens generateTokens(User utilisateur) {
-        long refreshTokenValidity = TimeUnit.DAYS.toSeconds(15);
+    public ToKens generateTokens(User utilisateur,long refreshTokenValidity) {
+         refreshTokenValidity = TimeUnit.DAYS.toSeconds(refreshTokenValidity);
 
         String accessToken = jwtUtil.generateAccessToken(utilisateur.getEmail());
         String refreshTokenValue = jwtUtil.generateRefreshToken(utilisateur.getEmail(), refreshTokenValidity);
@@ -58,33 +56,28 @@ public class JwtServiceImpl implements JwtService {
                 .build();
         jwtRepository.save(jwt);
 
-        return new ToKens(refreshToken.getValeur(), accessToken);
+        return new ToKens(accessToken,refreshToken.getValeur());
 
     }
 
     @Override
-    public ToKens refreshTokens(String refreshTokenValue) throws BusinessException {
+    public ToKens refreshTokens(String refreshTokenValue,long time) throws BusinessException {
         Optional<RefreshToken> optionalrefreshToken = refreshTokenRepository.findByValeurAndExpireFalse(refreshTokenValue);
         if (optionalrefreshToken.isPresent()) {
             RefreshToken refreshToken = optionalrefreshToken.get();
-            if (refreshToken.getExpiration().isBefore(Instant.now())) {
+            if (jwtUtil.isTokenExpired(refreshTokenValue)) {
                 Optional<Jwt> optionalJwt = jwtRepository.findByRefreshToken(refreshToken);
                 if (optionalJwt.isPresent()) {
                     User utilisateur = optionalJwt.get().getUtilisateur();
-                    if (utilisateur == null) {
-                        ErrorModel errorModel = new ErrorModel();
-                        errorModel.setCode("FAILED_AUTHENTIFICATION");
-                        errorModel.setMessage("Aucun utilisateur associé à ce RefreshToken");
-                        throw new BusinessException(List.of(errorModel), HttpStatus.NOT_FOUND);
-                    }
+
                     refreshToken.setExpire(true);
                     refreshTokenRepository.save(refreshToken);
-                    return generateTokens(utilisateur);
+                    return generateTokens(utilisateur,time);
                 }
 
             }
             ErrorModel errorModel = new ErrorModel();
-            errorModel.setCode("INVALID_ENTRY");
+            errorModel.setCode("UNAUTHORIZED");
             errorModel.setMessage("refresh token pas encore expiré");
             throw new BusinessException(List.of(errorModel),HttpStatus.UNAUTHORIZED);
 
@@ -100,28 +93,14 @@ public class JwtServiceImpl implements JwtService {
     public String refreshAccessToken(String refreshTokenValue) throws BusinessException{
 
         Optional<RefreshToken> optionalrefreshToken = refreshTokenRepository.findByValeurAndExpireFalse(refreshTokenValue);
-        List<ErrorModel> errorModels=new ArrayList<>();
         if (optionalrefreshToken.isPresent()) {
             RefreshToken refreshToken = optionalrefreshToken.get();
-            if (!refreshToken.getExpiration().isBefore(Instant.now())) {
-                Optional<Jwt> optionalJwt = jwtRepository.findByRefreshToken(refreshToken);
-                if (optionalJwt.isPresent()) {
-                    User utilisateur = optionalJwt.get().getUtilisateur();
-                    if (utilisateur == null) {
-                        ErrorModel errorModel = new ErrorModel();
-                        errorModel.setCode("FAILED_AUTHENTIFICATION");
-                        errorModel.setMessage("Aucun utilisateur associé à ce RefreshToken");
-                        errorModels.add(errorModel);
-                        throw new BusinessException(errorModels,HttpStatus.NOT_FOUND);
-                    }
-
-                    return jwtUtil.generateAccessToken(utilisateur.getEmail());
-                }
+            Optional<Jwt> optionalJwt = jwtRepository.findByRefreshToken(refreshToken);
+            if (optionalJwt.isPresent()) {
+                User utilisateur = optionalJwt.get().getUtilisateur();
+                return jwtUtil.generateAccessToken(utilisateur.getEmail());
             }
-            ErrorModel errorModel = new ErrorModel();
-            errorModel.setCode("INVALID_ENTRY");
-            errorModel.setMessage("refresh token expiré");
-            throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);
+
 
         }
         ErrorModel errorModel = new ErrorModel();

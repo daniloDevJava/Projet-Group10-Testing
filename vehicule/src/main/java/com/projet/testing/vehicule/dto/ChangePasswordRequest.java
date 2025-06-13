@@ -1,4 +1,4 @@
-package com.projet.testing.vehicule.util;
+package com.projet.testing.vehicule.dto;
 
 
 import lombok.AllArgsConstructor;

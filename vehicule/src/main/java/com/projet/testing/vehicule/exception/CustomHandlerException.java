@@ -44,6 +44,6 @@ public class CustomHandlerException {
     @ExceptionHandler(BusinessException.class)
   public ResponseEntity<List<ErrorModel>> handleBusinessException(BusinessException bex){
     System.err.println("Une Exception coté client a été levée");
-    return new ResponseEntity<>(bex.getErrorModels(), HttpStatus.BAD_REQUEST);
+    return new ResponseEntity<>(bex.getErrorModels(), bex.getStatus());
   }
 }
