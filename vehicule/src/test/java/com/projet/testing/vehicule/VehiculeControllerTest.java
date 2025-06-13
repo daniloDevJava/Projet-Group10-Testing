@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile; // Pour simuler les uploads de fichiers
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -23,6 +24,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -48,7 +50,7 @@ public class VehiculeControllerTest {
     
     private ExtentReports extent;
     private ExtentTest test;
-
+    private static UUID createdVehiculeId;
     @BeforeAll
     void setupReport() {
         extent = ReportManager.createReport("VehiculeControllerTest");
@@ -349,6 +351,36 @@ public class VehiculeControllerTest {
                 .andExpect(jsonPath("$.length()").value(2)) // Deux véhicules attendus à 50.0
                 .andExpect(jsonPath("$.[0].rentalPrice").value(50.0))
                 .andExpect(jsonPath("$.[1].rentalPrice").value(50.0));
+    }
+
+    /**
+     * Cas de test 5 : Création d'une image pour le véhicule existant (utilisant l'ID du test 1)
+     */
+    @Test
+    @Order(5)
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @Rollback(false) // Si vous avez ajouté @Rollback(false) au test 1, vous voudrez peut-être aussi ici
+    // pour que l'image soit "réellement" ajoutée si des tests futurs devaient la vérifier.
+    public void test5_addImageToVehicule() throws Exception {
+        assertNotNull(createdVehiculeId, "L'ID du véhicule créé ne doit pas être null (test1_createVehiculeSuccess a échoué ?)");
+
+        MockMultipartFile file = new MockMultipartFile(
+                "file",
+                "test-image.jpg",
+                MediaType.IMAGE_JPEG_VALUE,
+                "some image bytes".getBytes()
+        );
+
+        // Correction du chemin et du paramètre pour correspondre au contrôleur
+        mockMvc.perform(multipart("/vehicule/upload/images")
+                        .file(file)
+                        .param("vehiculeId", createdVehiculeId.toString())
+                        .with(csrf()))
+                .andDo(result -> System.out.println("Réponse du serveur (Add Image) : " + result.getResponse().getContentAsString()))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.chemin").exists())
+                .andExpect(jsonPath("$.nom").exists());
     }
 
     // --- V9: Succès /vehicule/number/{registerNum} ---

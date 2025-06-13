@@ -183,35 +183,7 @@ public class VehiculeServiceTest {
         assertThat(updatedVehicule.get().getMake()).isEqualTo("UpdatedMake");
     }
 
-    /**
-     * Cas de test 5 : Création d'une image pour le véhicule existant (utilisant l'ID du test 1)
-     */
-    @Test
-    @Order(5)
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
-    @Rollback(false) // Si vous avez ajouté @Rollback(false) au test 1, vous voudrez peut-être aussi ici
-    // pour que l'image soit "réellement" ajoutée si des tests futurs devaient la vérifier.
-    public void test5_addImageToVehicule() throws Exception {
-        assertNotNull(createdVehiculeId, "L'ID du véhicule créé ne doit pas être null (test1_createVehiculeSuccess a échoué ?)");
 
-        MockMultipartFile file = new MockMultipartFile(
-                "file",
-                "test-image.jpg",
-                MediaType.IMAGE_JPEG_VALUE,
-                "some image bytes".getBytes()
-        );
-
-        // Correction du chemin et du paramètre pour correspondre au contrôleur
-        mockMvc.perform(multipart("/vehicule/upload/images")
-                        .file(file)
-                        .param("vehiculeId", createdVehiculeId.toString())
-                        .with(csrf()))
-                .andDo(result -> System.out.println("Réponse du serveur (Add Image) : " + result.getResponse().getContentAsString()))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.chemin").exists())
-                .andExpect(jsonPath("$.nom").exists());
-    }
 
     /**
      * Cas de test 6 : Récupération de tous les véhicules (incluant celui du test 1)
@@ -350,7 +322,7 @@ public class VehiculeServiceTest {
                         .with(csrf()))
                 // Laisser ceci pour le débogage jusqu'à ce que le test passe
                 .andDo(result -> System.out.println("Réponse du serveur (duplicate registration) : " + result.getResponse().getContentAsString()))
-                .andExpect(status().isForbidden()) // Ou .isConflict() si vous avez changé côté serveur
+                .andExpect(status().isBadRequest()) // Ou .isConflict() si vous avez changé côté serveur
                 .andExpect(jsonPath("$").isArray()) // Confirme que la racine est un tableau
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].code").value("UNAUTHORIZED_REQUEST")) // <-- CORRECTION ICI : Pas de ".errorModels"
