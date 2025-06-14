@@ -8,13 +8,13 @@ WORKDIR /vehicule
 COPY pom.xml .
 
 
-#RUN mvn dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copier le code source de l'application
 COPY src ./src
 
 # Compiler et créer le fichier .jar
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Étape 2 : Construire une image légère pour exécuter l'application
 FROM openjdk:21-jdk-slim

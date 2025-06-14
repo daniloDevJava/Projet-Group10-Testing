@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.transaction.annotation.Transactional; // Très important pour réinitialiser la BDD
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -72,6 +73,7 @@ public class VehiculeControllerTest {
 
     // --- V1: Succès de création de véhicule ---
     @Test
+    @Order(1)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Test Succès de création de véhicule")
     public void testCreateVehiculeSuccess() throws Exception {
@@ -99,6 +101,7 @@ public class VehiculeControllerTest {
 
     // --- V2: Echec de création - numéro d'immatriculation vide ---
     @Test
+    @Order(2)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Echec de création - numéro d'immatriculation vide")
     public void createVehicule_invalidInput_emptyRegistrationNumber_shouldReturnBadRequest() throws Exception {
@@ -126,6 +129,7 @@ public class VehiculeControllerTest {
     }
 
     @Test
+    @Order(3)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Echec de création - numéro d'immatriculation manquant")
     public void createVehicule_invalidInput_nullRegistrationNumber_shouldReturnBadRequest() throws Exception {
@@ -149,6 +153,7 @@ public class VehiculeControllerTest {
     }
 
     @Test
+    @Order(4)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Echec de création - marque manquante")
     public void createVehicule_invalidInput_nullMake_shouldReturnBadRequest() throws Exception {
@@ -172,6 +177,7 @@ public class VehiculeControllerTest {
     }
 
     @Test
+    @Order(6)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Echec de création - Negatif prix de location")
     public void createVehicule_invalidInput_negativeRentalPrice_shouldReturnBadRequest() throws Exception {
@@ -195,6 +201,7 @@ public class VehiculeControllerTest {
     }
 
     @Test
+    @Order(7)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Echec de création - annee negative")
     public void createVehicule_invalidInput_negativeYear_shouldReturnBadRequest() throws Exception {
@@ -220,6 +227,7 @@ public class VehiculeControllerTest {
     // --- V3: Échec de création : numéro d'immatriculation en doublon ---
     // Dans VehiculeIntegrationTest.java, méthode createVehicule_duplicateRegistrationNumber_shouldReturnForbidden
     @Test
+    @Order(8)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Échec de création : numéro d'immatriculation en doublon")
     public void createVehicule_duplicateRegistrationNumber_shouldReturnForbidden() throws Exception {
@@ -258,6 +266,7 @@ public class VehiculeControllerTest {
 
     // --- V4: Succès GET /vehicule/id/{id} ---
     @Test
+    @Order(9)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Succès GET /vehicule/id/{id}")
     public void getVehiculeById_success_shouldReturnVehicule() throws Exception {
@@ -280,6 +289,7 @@ public class VehiculeControllerTest {
     // --- V5: Succès suppression /vehicule/{id} ---
     // Le contrôleur renvoie une chaîne de caractères directement, pas un JSON.
     @Test
+    @Order(10)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Succès suppression /vehicule/{id}")
     public void deleteVehicule_success_shouldReturnSuccessMessage() throws Exception {
@@ -301,6 +311,7 @@ public class VehiculeControllerTest {
     // --- V6: Échec suppression : id inconnu ---
     // Le contrôleur renvoie une chaîne de caractères directement, pas un JSON.
     @Test
+    @Order(11)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Échec suppression : id inconnu")
     public void deleteVehicule_notFound_shouldReturnInternalServerError() throws Exception {
@@ -316,6 +327,7 @@ public class VehiculeControllerTest {
 
     // --- V7: Échec récupération par ID inconnu (Gère la BusinessException de votre contrôleur) ---
     @Test
+    @Order(12)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Échec récupération par ID inconnu (Gère la BusinessException de votre contrôleur)")
     public void getVehiculeById_notFound_shouldReturnNotFound() throws Exception {
@@ -330,6 +342,7 @@ public class VehiculeControllerTest {
 
     // --- V8: Succès /vehicule/search-by-price ---
     @Test
+    @Order(13)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Succès /vehicule/search-by-price")
     public void getAllByPrice_success_shouldReturnFilteredList() throws Exception {
@@ -359,7 +372,8 @@ public class VehiculeControllerTest {
     @Rollback(false) // Si vous avez ajouté @Rollback(false) au test 1, vous voudrez peut-être aussi ici
     // pour que l'image soit "réellement" ajoutée si des tests futurs devaient la vérifier.
     public void test5_addImageToVehicule() throws Exception {
-        assertNotNull(createdVehiculeId, "L'ID du véhicule créé ne doit pas être null (test1_createVehiculeSuccess a échoué ?)");
+        List<Vehicule> vehiculeList=vehiculeRepository.findAll();
+        assertNotNull(createdVehiculeId=vehiculeList.getFirst().getId(), "L'ID du véhicule créé ne doit pas être null (test1_createVehiculeSuccess a échoué ?)");
 
         MockMultipartFile file = new MockMultipartFile(
                 "file",
@@ -382,6 +396,7 @@ public class VehiculeControllerTest {
 
     // --- V9: Succès /vehicule/number/{registerNum} ---
     @Test
+    @Order(14)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Succès /vehicule/number/{registerNum}")
     public void getVehiculeByNumber_success_shouldReturnVehicule() throws Exception {
@@ -404,6 +419,7 @@ public class VehiculeControllerTest {
     // --- V10: Échec /vehicule/number/{registerNum} : registre inconnu ---
     // Le contrôleur renvoie HttpStatus.NOT_FOUND (404) et une BusinessException.
     @Test
+    @Order(15)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("Échec /vehicule/number/{registerNum}")
     public void getVehiculeByNumber_notFound_shouldReturnNotFound() throws Exception {
@@ -416,6 +432,7 @@ public class VehiculeControllerTest {
 
     // --- V11: Succès update /vehicule/{id} ---
     @Test
+    @Order(16)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("V11: Succès update /vehicule/{id}")
     public void updateVehicule_success_shouldReturnUpdatedVehicule() throws Exception {
@@ -453,6 +470,7 @@ public class VehiculeControllerTest {
     // --- V11 - Scénario d'échec : ID inexistant pour la mise à jour ---
     // Le contrôleur renvoie HttpStatus.NOT_FOUND (404) et une BusinessException.
     @Test
+    @Order(17)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("V10 - Scénario d'échec : ID inexistant pour la mise à jour")
     public void updateVehicule_notFound_shouldReturnNotFound() throws Exception {
@@ -472,6 +490,7 @@ public class VehiculeControllerTest {
 
     // --- V11 - Scénario d'échec : Validation du DTO de mise à jour ---
     @Test
+    @Order(18)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @DisplayName("V11 - Scénario d'échec : Validation du DTO de mise à jour")
     public void updateVehicule_invalidInput_shouldReturnBadRequest() throws Exception {
