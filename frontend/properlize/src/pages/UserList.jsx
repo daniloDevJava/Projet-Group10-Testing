@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import '../style/UserListUI.css'; 
+import '../style/UserListUI.css';
 import Notification from '../assets/Notification.svg';
 import logo from '../assets/logo.svg';
 import avatar from "../assets/placeholder.svg";
 import { FaUser, FaSignOutAlt, FaSearch, FaBell, FaPen, FaTrash } from "react-icons/fa";
 import axios from 'axios';
 
-function App() {
+function UserList() {
   const [utilisateurs, setUtilisateurs] = useState([]);
   const [utilisateursSelectionnes, setUtilisateursSelectionnes] = useState([]);
   const [toutSelectionner, setToutSelectionner] = useState(false);
@@ -17,18 +17,25 @@ function App() {
   const [indexEdition, setIndexEdition] = useState(null);
   const [recherche, setRecherche] = useState('');
   const [utilisateurRecherche, setUtilisateurRecherche] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     chargerUtilisateurs();
   }, []);
 
   const chargerUtilisateurs = async () => {
+    setLoading(true);
     try {
       const response = await axios.get('http://localhost:9000/users/all');
       setUtilisateurs(response.data);
       setUtilisateurRecherche(null);
+      setMessage('');
     } catch (error) {
       console.error("Erreur lors du chargement des utilisateurs :", error);
+      setMessage('Erreur lors du chargement des utilisateurs');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,27 +58,42 @@ function App() {
 
   const supprimerUtilisateur = async (index) => {
     const utilisateur = utilisateurs[index];
+    setLoading(true);
     try {
       await axios.delete(`http://localhost:9000/users/${utilisateur.id}`);
       const misAJour = utilisateurs.filter((_, i) => i !== index);
       setUtilisateurs(misAJour);
       setUtilisateursSelectionnes(utilisateursSelectionnes.filter((i) => i !== index));
+      setMessage('Utilisateur supprimé avec succès');
     } catch (error) {
       console.error("Erreur lors de la suppression :", error);
+      setMessage('Erreur lors de la suppression');
+    } finally {
+      setLoading(false);
     }
   };
 
   const supprimerUtilisateursSelectionnes = async () => {
-    for (const index of utilisateursSelectionnes) {
-      await supprimerUtilisateur(index);
+    setLoading(true);
+    try {
+      for (const index of utilisateursSelectionnes) {
+        await supprimerUtilisateur(index);
+      }
+      setToutSelectionner(false);
+      setMessage('Utilisateurs supprimés avec succès');
+    } catch (error) {
+      console.error("Erreur lors de la suppression multiple :", error);
+      setMessage('Erreur lors de la suppression multiple');
+    } finally {
+      setLoading(false);
     }
-    setToutSelectionner(false);
   };
 
   const clicAjouterUtilisateur = () => {
     setFormulaireAdd({ name: '', email: '', password: '' });
     setAfficherFormulaireAdd(true);
     setAfficherFormulaireEdit(false);
+    setMessage('');
   };
 
   const modifierUtilisateur = (index) => {
@@ -80,6 +102,7 @@ function App() {
     setIndexEdition(index);
     setAfficherFormulaireEdit(true);
     setAfficherFormulaireAdd(false);
+    setMessage('');
   };
 
   const gererChangementAdd = (e) => {
@@ -94,9 +117,10 @@ function App() {
 
   const soumettreFormulaireAdd = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (!formulaireAdd.email.trim()) {
-        alert("L'email est requis.");
+        setMessage("L'email est requis.");
         return;
       }
 
@@ -109,18 +133,21 @@ function App() {
       setUtilisateurs([...utilisateurs, res.data]);
       setAfficherFormulaireAdd(false);
       setFormulaireAdd({ email: '', name: '', password: '' });
-
+      setMessage('Utilisateur ajouté avec succès');
     } catch (error) {
       console.error("Erreur lors de l'ajout :", error);
-      alert("Erreur lors de l'ajout !");
+      setMessage("Erreur lors de l'ajout !");
+    } finally {
+      setLoading(false);
     }
   };
 
   const soumettreFormulaireEdit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (!formulaireEdit.email.trim()) {
-        alert("L'email est requis pour identifier l'utilisateur à modifier.");
+        setMessage("L'email est requis pour identifier l'utilisateur à modifier.");
         return;
       }
 
@@ -128,7 +155,7 @@ function App() {
       const utilisateurExistant = res.data;
 
       if (!utilisateurExistant || !utilisateurExistant.id) {
-        alert("Utilisateur introuvable !");
+        setMessage("Utilisateur introuvable !");
         return;
       }
 
@@ -148,34 +175,40 @@ function App() {
       setAfficherFormulaireEdit(false);
       setIndexEdition(null);
       setFormulaireEdit({ name: '', email: '', password: '' });
-
+      setMessage('Utilisateur modifié avec succès');
     } catch (error) {
       console.error("Erreur lors de la modification :", error);
-      alert("Erreur lors de la mise à jour !");
+      setMessage("Erreur lors de la mise à jour !");
+    } finally {
+      setLoading(false);
     }
   };
 
   const rechercherUtilisateur = async () => {
     if (!recherche.trim()) {
-      alert("Veuillez entrer un email à rechercher.");
+      setMessage("Veuillez entrer un email à rechercher.");
       return;
     }
+    setLoading(true);
     try {
       const res = await axios.get(`http://localhost:9000/users/get/${recherche}`);
       if (res.data) {
         setUtilisateurRecherche(res.data);
+        setMessage('');
       } else {
-        alert("Aucun utilisateur trouvé.");
+        setMessage("Aucun utilisateur trouvé.");
         setUtilisateurRecherche(null);
       }
     } catch (error) {
-      alert("Utilisateur introuvable !");
+      setMessage("Utilisateur introuvable !");
       setUtilisateurRecherche(null);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="app">
+    <div className="app" data-testid="user-list-page">
       <aside className="sidebar">
         <div className="logo1">
           <a href="/">
@@ -209,23 +242,45 @@ function App() {
                 <input
                   type="text"
                   placeholder="Rechercher par email"
-                  aria-label="Champ de recherche email"
+                  aria-label="Rechercher par email"
                   value={recherche}
                   onChange={(e) => setRecherche(e.target.value)}
+                  data-testid="search-input"
                 />
-                <button className='Violet' onClick={rechercherUtilisateur} aria-label="Bouton recherche">
+                <button 
+                  className='Violet' 
+                  onClick={rechercherUtilisateur}
+                  aria-label="Rechercher"
+                  data-testid="search-button"
+                >
                   <FaSearch />
                 </button>
               </div>
-              <button className="add-user" onClick={clicAjouterUtilisateur} aria-label="Ajouter un utilisateur">+ ADD</button>
+              <button 
+                className="add-user" 
+                onClick={clicAjouterUtilisateur}
+                aria-label="Ajouter un utilisateur"
+                data-testid="add-user-button"
+              >
+                + ADD
+              </button>
               {utilisateursSelectionnes.length > 0 && (
-                <button className="add-user" onClick={supprimerUtilisateursSelectionnes}>Delete All</button>
+                <button 
+                  className="add-user" 
+                  onClick={supprimerUtilisateursSelectionnes}
+                  data-testid="delete-selected-button"
+                >
+                  Delete All
+                </button>
               )}
             </div>
           </div>
 
+          {message && <div className="message" data-testid="message">{message}</div>}
+          {loading && <div className="loading" data-testid="loading">Chargement...</div>}
+
           {utilisateurRecherche && (
-            <div className="user-search-result">
+            <div className="user-search-result" data-testid="search-results">
               <h3>Search Result :</h3>
               <table>
                 <thead>
@@ -241,12 +296,22 @@ function App() {
                   </tr>
                 </tbody>
               </table>
-              <button onClick={() => setUtilisateurRecherche(null)}>close</button>
+              <button 
+                onClick={() => setUtilisateurRecherche(null)}
+                data-testid="close-search-button"
+              >
+                close
+              </button>
             </div>
           )}
 
           {afficherFormulaireAdd && (
-            <form className="user-form" onSubmit={soumettreFormulaireAdd}>
+            <form 
+              className="user-form" 
+              onSubmit={soumettreFormulaireAdd}
+              data-testid="add-user-form"
+              aria-label="Formulaire d'ajout d'utilisateur"
+            >
               <input
                 type="text"
                 name="name"
@@ -254,6 +319,7 @@ function App() {
                 value={formulaireAdd.name}
                 onChange={gererChangementAdd}
                 required
+                data-testid="name-input"
               />
               <input
                 type="email"
@@ -262,6 +328,7 @@ function App() {
                 value={formulaireAdd.email}
                 onChange={gererChangementAdd}
                 required
+                data-testid="email-input"
               />
               <input
                 type="password"
@@ -270,13 +337,25 @@ function App() {
                 value={formulaireAdd.password}
                 onChange={gererChangementAdd}
                 required
+                data-testid="password-input"
               />
-              <button type="submit" className="add-user">Ajouter</button>
+              <button 
+                type="submit" 
+                className="add-user"
+                data-testid="submit-add-button"
+              >
+                Ajouter
+              </button>
             </form>
           )}
 
           {afficherFormulaireEdit && (
-            <form className="user-form" onSubmit={soumettreFormulaireEdit}>
+            <form 
+              className="user-form" 
+              onSubmit={soumettreFormulaireEdit}
+              data-testid="edit-user-form"
+              aria-label="Formulaire de modification d'utilisateur"
+            >
               <input
                 type="text"
                 name="name"
@@ -284,6 +363,7 @@ function App() {
                 value={formulaireEdit.name}
                 onChange={gererChangementEdit}
                 required
+                data-testid="edit-name-input"
               />
               <input
                 type="email"
@@ -292,6 +372,7 @@ function App() {
                 value={formulaireEdit.email}
                 onChange={gererChangementEdit}
                 required
+                data-testid="edit-email-input"
               />
               <input
                 type="password"
@@ -300,15 +381,30 @@ function App() {
                 value={formulaireEdit.password}
                 onChange={gererChangementEdit}
                 required
+                data-testid="edit-password-input"
               />
-              <button type="submit" className="add-user">Modifier</button>
+              <button 
+                type="submit" 
+                className="add-user"
+                data-testid="submit-edit-button"
+              >
+                Modifier
+              </button>
             </form>
           )}
 
-          <table>
+          <table data-testid="users-table">
             <thead>
               <tr>
-                <th><input type="checkbox" className="checkbox" checked={toutSelectionner} onChange={basculerSelection} /></th>
+                <th>
+                  <input 
+                    type="checkbox" 
+                    className="checkbox" 
+                    checked={toutSelectionner} 
+                    onChange={basculerSelection}
+                    data-testid="select-all-checkbox"
+                  />
+                </th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Actions</th>
@@ -316,20 +412,44 @@ function App() {
             </thead>
             <tbody>
               {utilisateurs.map((user, index) => (
-                <tr key={user.id || index} className={utilisateursSelectionnes.includes(index) ? "highlight" : ""}>
-                  <td><input type="checkbox" className="checkbox" checked={utilisateursSelectionnes.includes(index)} onChange={() => selectionnerUtilisateur(index)} /></td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
+                <tr 
+                  key={user.id || index} 
+                  className={utilisateursSelectionnes.includes(index) ? "highlight" : ""}
+                  data-testid={`user-row-${index}`}
+                >
+                  <td>
+                    <input 
+                      type="checkbox" 
+                      className="checkbox" 
+                      checked={utilisateursSelectionnes.includes(index)} 
+                      onChange={() => selectionnerUtilisateur(index)}
+                      data-testid={`select-user-${index}`}
+                    />
+                  </td>
+                  <td data-testid="user-name">{user.name}</td>
+                  <td data-testid="user-email">{user.email}</td>
                   <td className="Edit">
-                    <FaPen className="icon edit" onClick={() => modifierUtilisateur(index)} />
-                    <FaTrash className="icon delete" title="Supprimer" aria-label="Supprimer" onClick={() => supprimerUtilisateur(index)} />
+                    <FaPen 
+                      className="icon edit" 
+                      onClick={() => modifierUtilisateur(index)}
+                      role="button"
+                      aria-label={`Modifier ${user.name}`}
+                      data-testid={`edit-user-${index}`}
+                    />
+                    <FaTrash 
+                      className="icon delete" 
+                      onClick={() => supprimerUtilisateur(index)}
+                      role="button"
+                      aria-label={`Supprimer ${user.name}`}
+                      data-testid={`delete-user-${index}`}
+                    />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
 
-          <div className="footer">
+          <div className="footer" data-testid="user-count">
             Total Number of users : <b>{utilisateurs.length}</b>
           </div>
         </div>
@@ -338,4 +458,4 @@ function App() {
   );
 }
 
-export default App;
+export default UserList;

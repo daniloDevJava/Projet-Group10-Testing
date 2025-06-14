@@ -13,7 +13,8 @@ export default defineConfig({
 
   // Timeout pour les assertions `expect` (en millisecondes)
   expect: {
-    timeout: 20000,
+    timeout: 
+    1000,
   },
 
   fullyParallel: true,
@@ -23,12 +24,14 @@ export default defineConfig({
   reporter: 'html',
 
   /* --- SECTION LA PLUS IMPORTANTE : 'use' ET 'webServer' --- */
-  
+  // playwright.config.js
+
   use: {
     // --- 1. L'URL DE BASE DE TON APPLICATION ---
     // Change le port si ton application utilise autre chose que 5173 (ex: 3000)
     baseURL: 'http://localhost:5173',
-
+    // Active le mode strict pour les sélecteurs
+    strictSelectors: true,
     // Enregistre une "trace" de l'exécution du test s'il échoue,
     // ce qui te permet de le rejouer étape par étape. Très utile pour le débogage.
     trace: 'on-first-retry',

@@ -2,8 +2,6 @@
 
 import { test, expect } from '@playwright/test';
 
-// --- DONNÉES MOCKÉES ---
-// Simule la réponse de l'API pour la liste de tous les véhicules.
 const MOCK_VEHICLES = [
   { id: 1, make: 'Toyota', model: 'Yaris', year: 2022, rentalPrice: 15000, cheminVersImage: 'path/to/yaris.jpg' },
   { id: 2, make: 'BMW', model: 'X5', year: 2023, rentalPrice: 45000, cheminVersImage: 'path/to/x5.jpg' },
@@ -59,38 +57,35 @@ test.describe('Vehicles Dashboard (/home)', () => {
   });
 
   test('should allow a user to like and unlike a vehicle', async ({ page }) => {
-    // Cible la première carte de voiture (la Toyota Yaris).
+    
     const firstCarCard = page.locator('.car-card').first();
 
-    // Cible l'icône de cœur à l'intérieur de cette carte.
+  
     const heartIcon = firstCarCard.locator('.heart');
 
-    // Étape 1 : Vérifier l'état initial (non "liké").
-    await expect(heartIcon).toHaveText('♡'); // Cœur vide
+    
+    await expect(heartIcon).toHaveText('♡'); 
     await expect(heartIcon).not.toHaveClass(/liked/);
 
-    // Étape 2 : Cliquer pour "liker".
+    
     await heartIcon.click();
 
-    // Étape 3 : Vérifier que l'état a changé (maintenant "liké").
-    await expect(heartIcon).toHaveText('♥'); // Cœur plein
+    
+    await expect(heartIcon).toHaveText('♥'); 
     await expect(heartIcon).toHaveClass(/liked/);
 
-    // Étape 4 : Re-cliquer pour "unliker".
+    
     await heartIcon.click();
 
-    // Étape 5 : Vérifier que l'état est revenu à l'initial.
+    
     await expect(heartIcon).toHaveText('♡');
     await expect(heartIcon).not.toHaveClass(/liked/);
   });
 
   test('should search for a vehicle by price and display results', async ({ page }) => {
-    // Le véhicule avec le prix 35000 est la Mercedes.
+    
     const searchPrice = '35000';
     const vehicleToFind = MOCK_VEHICLES.find(v => v.rentalPrice.toString() === searchPrice);
-
-    // On ne mocke pas de nouvelle route ici, car la recherche par prix
-    // réutilise la route 'vehicule/all' que nous avons déjà mockée.
 
     // 1. Remplir le champ de recherche.
     await page.getByPlaceholder('Rechercher un véhicule').fill(searchPrice);
@@ -116,12 +111,11 @@ test.describe('Vehicles Dashboard (/home)', () => {
     // 1. Cliquer sur le bouton de déconnexion.
     await page.getByRole('button', { name: /Logout/i }).click();
 
-    // 2. Vérifier que l'on est bien redirigé vers la page de login.
-    // On attend un élément clé de la page de login pour être sûr.
+  
     await expect(page.getByRole('heading', { name: 'Login to your account' })).toBeVisible();
     await expect(page).toHaveURL(/.*\/login/);
 
-    // Optionnel : Vérifier que le localStorage a été vidé.
+  
     const userLogin = await page.evaluate(() => localStorage.getItem('userLogin'));
     expect(userLogin).toBeNull();
   });
