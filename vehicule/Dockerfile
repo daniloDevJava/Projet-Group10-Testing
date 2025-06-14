@@ -8,7 +8,7 @@ WORKDIR /vehicule
 COPY pom.xml .
 
 
-RUN mvn dependency:go-offline -B
+#RUN mvn dependency:go-offline -B
 
 # Copier le code source de l'application
 COPY src ./src
