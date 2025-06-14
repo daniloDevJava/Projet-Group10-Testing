@@ -5,10 +5,10 @@ name: Propelize Frontend CI
 on:
   # Exécuter sur les push vers la branche 'main'
   push:
-    branches: [ "imelda" ]
+    branches: [ "imelda","main" ]
   # Exécuter sur les Pull Requests ciblant la branche 'main'
   pull_request:
-    branches: [ "imelda" ]
+    branches: [ "main" ]
 
 # Liste des jobs à exécuter
 jobs:
