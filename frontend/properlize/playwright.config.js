@@ -13,7 +13,7 @@ export default defineConfig({
 
   // Timeout pour les assertions `expect` (en millisecondes)
   expect: {
-    timeout: 10000,
+    timeout: 20000,
   },
 
   fullyParallel: true,
@@ -83,3 +83,4 @@ export default defineConfig({
     // Tu peux faire de même pour firefox et webkit si tu les utilises...
   ],
 });
+

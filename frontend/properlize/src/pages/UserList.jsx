@@ -92,31 +92,29 @@ function App() {
     setFormulaireEdit(prev => ({ ...prev, [name]: value }));
   };
 
- 
-const soumettreFormulaireAdd = async (e) => {
-  e.preventDefault();
-  try {
-    if (!formulaireAdd.email.trim()) {
-      alert("L'email est requis.");
-      return;
+  const soumettreFormulaireAdd = async (e) => {
+    e.preventDefault();
+    try {
+      if (!formulaireAdd.email.trim()) {
+        alert("L'email est requis.");
+        return;
+      }
+
+      const res = await axios.post('http://localhost:9000/users/add', {
+        name: formulaireAdd.name,
+        email: formulaireAdd.email,
+        mdp: formulaireAdd.password,
+      });
+
+      setUtilisateurs([...utilisateurs, res.data]);
+      setAfficherFormulaireAdd(false);
+      setFormulaireAdd({ email: '', name: '', password: '' });
+
+    } catch (error) {
+      console.error("Erreur lors de l'ajout :", error);
+      alert("Erreur lors de l'ajout !");
     }
-
-    const res = await axios.post('http://localhost:9000/users/add', {
-      name: formulaireAdd.name,
-      email: formulaireAdd.email,
-      mdp: formulaireAdd.password, // <-- CHANGEMENT ici
-    });
-
-    setUtilisateurs([...utilisateurs, res.data]);
-    setAfficherFormulaireAdd(false);
-    setFormulaireAdd({ email: '', name: '', password: '' });
-
-  } catch (error) {
-    console.error("Erreur lors de l'ajout :", error);
-    alert("Erreur lors de l'ajout !");
-  }
-};
-
+  };
 
   const soumettreFormulaireEdit = async (e) => {
     e.preventDefault();
@@ -125,37 +123,32 @@ const soumettreFormulaireAdd = async (e) => {
         alert("L'email est requis pour identifier l'utilisateur à modifier.");
         return;
       }
-  
-      // 1. Récupération par email
+
       const res = await axios.get(`http://localhost:9000/users/get/${formulaireEdit.email}`);
       const utilisateurExistant = res.data;
-  
+
       if (!utilisateurExistant || !utilisateurExistant.id) {
         alert("Utilisateur introuvable !");
         return;
       }
-  
-      // 2. Construction de l'objet de mise à jour
+
       const donneesMiseAJour = {
         id: utilisateurExistant.id,
         email: formulaireEdit.email,
         name: formulaireEdit.name,
         mdp: formulaireEdit.password,
       };
-  
-      // 3. Requête PUT
+
       await axios.put(`http://localhost:9000/users/${utilisateurExistant.id}`, donneesMiseAJour);
-  
-      // 4. Mise à jour de l'état local
+
       const misAJour = [...utilisateurs];
       misAJour[indexEdition] = { ...utilisateurExistant, ...donneesMiseAJour };
       setUtilisateurs(misAJour);
-  
-      // 5. Réinitialisation des formulaires
+
       setAfficherFormulaireEdit(false);
       setIndexEdition(null);
       setFormulaireEdit({ name: '', email: '', password: '' });
-  
+
     } catch (error) {
       console.error("Erreur lors de la modification :", error);
       alert("Erreur lors de la mise à jour !");
@@ -210,20 +203,21 @@ const soumettreFormulaireAdd = async (e) => {
 
         <div className="userlist">
           <div className="userlist-header">
-            <h2>UserList</h2>
+            <h1 role="heading" aria-level="1">UserList</h1>
             <div className="left">
               <div className="search-bar">
                 <input
                   type="text"
                   placeholder="Rechercher par email"
+                  aria-label="Champ de recherche email"
                   value={recherche}
                   onChange={(e) => setRecherche(e.target.value)}
                 />
-                <div className='Violet' onClick={rechercherUtilisateur}>
+                <button className='Violet' onClick={rechercherUtilisateur} aria-label="Bouton recherche">
                   <FaSearch />
-                </div>
+                </button>
               </div>
-              <button className="add-user" onClick={clicAjouterUtilisateur}>+ ADD</button>
+              <button className="add-user" onClick={clicAjouterUtilisateur} aria-label="Ajouter un utilisateur">+ ADD</button>
               {utilisateursSelectionnes.length > 0 && (
                 <button className="add-user" onClick={supprimerUtilisateursSelectionnes}>Delete All</button>
               )}
@@ -256,7 +250,7 @@ const soumettreFormulaireAdd = async (e) => {
               <input
                 type="text"
                 name="name"
-                placeholder="Nom"
+                placeholder="Nom complet"
                 value={formulaireAdd.name}
                 onChange={gererChangementAdd}
                 required
@@ -272,14 +266,12 @@ const soumettreFormulaireAdd = async (e) => {
               <input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 value={formulaireAdd.password}
                 onChange={gererChangementAdd}
                 required
               />
-              <button type="submit" className="add-user">
-                Ajouter
-              </button>
+              <button type="submit" className="add-user">Ajouter</button>
             </form>
           )}
 
@@ -288,7 +280,7 @@ const soumettreFormulaireAdd = async (e) => {
               <input
                 type="text"
                 name="name"
-                placeholder="Nom"
+                placeholder="Nom complet"
                 value={formulaireEdit.name}
                 onChange={gererChangementEdit}
                 required
@@ -304,28 +296,19 @@ const soumettreFormulaireAdd = async (e) => {
               <input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 value={formulaireEdit.password}
                 onChange={gererChangementEdit}
                 required
               />
-              <button type="submit" className="add-user">
-                Modifier
-              </button>
+              <button type="submit" className="add-user">Modifier</button>
             </form>
           )}
 
           <table>
             <thead>
               <tr>
-                <th>
-                  <input
-                    type="checkbox"
-                    className="checkbox"
-                    checked={toutSelectionner}
-                    onChange={basculerSelection}
-                  />
-                </th>
+                <th><input type="checkbox" className="checkbox" checked={toutSelectionner} onChange={basculerSelection} /></th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Actions</th>
@@ -334,19 +317,12 @@ const soumettreFormulaireAdd = async (e) => {
             <tbody>
               {utilisateurs.map((user, index) => (
                 <tr key={user.id || index} className={utilisateursSelectionnes.includes(index) ? "highlight" : ""}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      checked={utilisateursSelectionnes.includes(index)}
-                      onChange={() => selectionnerUtilisateur(index)}
-                    />
-                  </td>
+                  <td><input type="checkbox" className="checkbox" checked={utilisateursSelectionnes.includes(index)} onChange={() => selectionnerUtilisateur(index)} /></td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td className="Edit">
                     <FaPen className="icon edit" onClick={() => modifierUtilisateur(index)} />
-                    <FaTrash className="icon delete" onClick={() => supprimerUtilisateur(index)} />
+                    <FaTrash className="icon delete" title="Supprimer" aria-label="Supprimer" onClick={() => supprimerUtilisateur(index)} />
                   </td>
                 </tr>
               ))}

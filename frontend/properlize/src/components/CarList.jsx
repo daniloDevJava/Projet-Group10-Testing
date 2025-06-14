@@ -1,30 +1,25 @@
-import React, { useState } from "react";
-import "../style/CarList.css"; 
-import car1 from "../assets/car4.jpg";
-import car2 from "../assets/car-bg.jpeg";
-import car3 from "../assets/car3.jpg";
-import car4 from "../assets/car5.jpg";
-import car5 from "../assets/car6.jpg";
-import car6 from "../assets/car7.jpg";
-import car7 from "../assets/car8.jpg";
-
-const cars = [
-  { id: 1, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car1 },
-  { id: 2, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car2 },
-  { id: 3, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car3 },
-  { id: 4, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car4 },
-  { id: 5, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car5 },
-  { id: 6, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car6 },
-  { id: 7, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car7 },
-  { id: 1, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car1 },
-  { id: 2, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car2 },
-  { id: 3, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car3 },
-  { id: 4, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car4 },
-  { id: 5, name: "BMW 207", description: "Compare the type checking and the scope", price: "8000 FCFA", image: car5 },
-];
+import React, { useState, useEffect } from "react";
+import "../style/CarList.css";
+import axios from "axios";
+import noImage from "../assets/car1.jpg"; // Image par défaut
 
 const CarList = () => {
+  const [cars, setCars] = useState([]);
   const [likedCars, setLikedCars] = useState([]);
+
+  // Récupération des véhicules depuis l'API
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await axios.get("http://localhost:9000/vehicule/all");
+        setCars(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des véhicules :", error);
+      }
+    };
+
+    fetchCars();
+  }, []);
 
   const toggleLike = (carId) => {
     setLikedCars((prevLikedCars) =>
@@ -39,23 +34,29 @@ const CarList = () => {
       <h2 className="popular-title">Most popular</h2>
       <div className="car-grid">
         {cars.map((car) => {
-          const isLiked = likedCars.includes(car.id);
+          const isLiked = likedCars.includes(car.id || car.registrationNumber); // clé unique
+          const imageUrl =
+            car.cheminVersImage && car.cheminVersImage.trim() !== ""
+              ? car.cheminVersImage
+              : noImage;
+
           return (
-            <div className="car-card" key={car.id}>
+            <div className="car-card" key={car.id || car.registrationNumber}>
               <div className="car-image-container">
-                <img src={car.image} alt={car.name} className="car-image" />
+                <img src={imageUrl} alt={car.model || "Car"} className="car-image" />
                 <span
-                    className={`heart ${isLiked ? "liked" : ""}`}
-                  onClick={() => toggleLike(car.id)}
+                  className={`heart ${isLiked ? "liked" : ""}`}
+                  onClick={() => toggleLike(car.id || car.registrationNumber)}
                 >
                   {isLiked ? "♥" : "♡"}
                 </span>
-
               </div>
               <div className="car-info">
-                <h3>{car.name}</h3>
-                <p className="desc">{car.description}</p>
-                <p className="price">{car.price}</p>
+                <h3>{car.make || "Unknown"} {car.make || ""}</h3>
+            
+                <p className="annee-vehicule">Year: {car.year || 'N/A'}</p>
+
+                <p className="price">{car.rentalPrice ? `${car.rentalPrice} FCFA` : "Price not available"}</p>
                 <button className="view-btn">View Details</button>
               </div>
             </div>

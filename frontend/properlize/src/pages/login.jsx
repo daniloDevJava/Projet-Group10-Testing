@@ -35,10 +35,9 @@ function Login() {
   const togglePassword = () => {
     setShowPassword(prev => !prev);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:9000/users/login', {
         method: 'POST',
@@ -49,21 +48,25 @@ function Login() {
           mdp: formData.password
         })
       });
-
+  
       if (!response.ok) {
         throw new Error('Échec de la connexion');
       }
-
+  
       const data = await response.json();
+  
+    
+      localStorage.setItem("userLogin", formData.login);
+  
       alert('Connexion réussie !');
-      console.log(data);
       navigate('/home');
-
+  
     } catch (error) {
       console.error(error);
       alert('Email, login ou mot de passe incorrect');
     }
   };
+  
 
   return (
     <div className="body">

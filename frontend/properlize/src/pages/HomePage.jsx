@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from '../components/hero';
 import CarList from '../components/CarList';
-//import '../style/HomePage.css';
+import '../style/HomeUser.css';
 import Footer from '../components/Footer';
 
 const HomePage = () => {

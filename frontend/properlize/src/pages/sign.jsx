@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../style/sign.css';
 import carBg from '../assets/car-bg.jpeg'; 
 import logo from '../assets/logo.svg';
@@ -20,6 +20,8 @@ function Sign() {
     mdp: ''
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -28,8 +30,12 @@ function Sign() {
     setShowPassword(prev => !prev);
   };
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
 
     try {
       const response = await fetch('http://localhost:9000/users/add', { 
@@ -47,6 +53,8 @@ function Sign() {
       const data = await response.json();
       alert('Compte créé avec succès !');
       console.log(data);
+      navigate('/login');
+    
     } catch (error) {
       console.error(error);
       alert('Échec de la création du compte');

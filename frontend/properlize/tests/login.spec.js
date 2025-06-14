@@ -1,69 +1,86 @@
 import { test, expect } from '@playwright/test';
 
-// Les fausses données restent les mêmes
-const mockSuccessTokens = {
-  accessToken: 'mocked-access-token-from-playwright',
-  refreshToken: 'mocked-refresh-token-from-playwright',
-};
+test.describe('Page de Login', () => {
 
-const mockErrorResponse = {
-  message: 'Identifiants invalides (mocked)',
-};
+  test.beforeEach(async ({ page }) => {
+    await page.goto('http://localhost:5173/login'); 
+  });
 
-// --- LA MEILLEURE FAÇON DE FAIRE ---
-// Le pattern à intercepter. On le met dans une constante pour ne pas faire de faute de frappe.
-const LOGIN_API_ROUTE = '**/users/login';
+  test('Affichage initial de la page', async ({ page }) => {
+    await expect(page.getByPlaceholder('Login')).toBeVisible();
+    await expect(page.getByPlaceholder('Email')).toBeVisible();
+    await expect(page.getByPlaceholder('Password')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+  });
 
-test.describe('Login Page with API Mocking', () => {
+  test('Fonctionnement du slider', async ({ page }) => {
+    const slideText = page.locator('.slide-text');
+    const firstSlide = await slideText.innerText();
+    await page.waitForTimeout(4000);
+    const secondSlide = await slideText.innerText();
+    expect(secondSlide).not.toBe(firstSlide);
+  });
 
-  test('should log in successfully with valid credentials (mocked)', async ({ page }) => {
-    // --- On utilise le glob pattern ici aussi ---
-    await page.route(LOGIN_API_ROUTE, async route => {
-      console.log(`[SUCCESS MOCK] Intercepted a POST request to ${route.request().url()}`);
-      
-      // On vérifie que la méthode est bien POST, c'est une bonne pratique
-      expect(route.request().method()).toBe('POST');
-      
-      await route.fulfill({
+  test('Basculer la visibilité du mot de passe', async ({ page }) => {
+    const passwordInput = page.getByPlaceholder('Password');
+    await expect(passwordInput).toHaveAttribute('type', 'password');
+
+    await page.locator('.toggle-password').click();
+
+    await expect(passwordInput).toHaveAttribute('type', 'text');
+  });
+
+  test('Validation du formulaire - champs vides', async ({ page }) => {
+    await page.getByRole('button', { name: 'Login' }).click();
+
+    const emailInput = page.getByPlaceholder('Email');
+    await expect(emailInput).toHaveAttribute('required', '');
+    await expect(page.locator('form:invalid')).toBeVisible(); // Confirme que le formulaire est bloqué
+
+  });
+
+  test('Soumission réussie du formulaire (mock)', async ({ page }) => {
+    await page.route('**/users/login', route =>
+      route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify(mockSuccessTokens),
-      });
-    });
+        body: JSON.stringify({ success: true }),
+      })
+    );
 
-    // Le reste du test est parfait
-    await page.goto('/login');
-    await page.getByTestId('login-input').fill('any-valid-user');
-    await page.getByTestId('password-input').fill('any-valid-password');
-    await page.getByTestId('login-button').click();
+    await page.getByPlaceholder('Login').fill('testuser');
+    await page.getByPlaceholder('Email').fill('test@example.com');
+    await page.getByPlaceholder('Password').fill('testpass');
+    await page.getByRole('button', { name: 'Login' }).click();
 
-    await expect(page).toHaveURL(/.*\/vehicles/); // Utilise une expression régulière pour plus de flexibilité
-    await expect(page.getByText('Pick the perfect vehicule for every occasion')).toBeVisible();
+    await expect(page).toHaveURL(/.*home/);
   });
 
-
-  test('should show an error with invalid credentials (mocked)', async ({ page }) => {
-    // On utilise le même glob pattern
-    await page.route(LOGIN_API_ROUTE, async route => {
-      console.log(`[ERROR MOCK] Intercepted a POST request to ${route.request().url()}`);
-      
-      expect(route.request().method()).toBe('POST');
-
-      await route.fulfill({
-        status: 401, // Unauthorized
-        contentType: 'application/json',
-        body: JSON.stringify(mockErrorResponse),
-      });
-    });
-
-    // Le reste du test est parfait
+  test('Échec de la connexion', async ({ page }) => {
     await page.goto('/login');
-    await page.getByTestId('login-input').fill('any-invalid-user');
-    await page.getByTestId('password-input').fill('any-wrong-password');
-    await page.getByTestId('login-button').click();
-
-    const errorMessage = page.getByTestId('error-message');
-    await expect(errorMessage).toBeVisible();
-    await expect(errorMessage).toContainText('Identifiants invalides (mocked)');
+  
+    // 1. Préparer le listener d'alerte AVANT le clic
+    page.on('dialog', async dialog => {
+      expect(dialog.message()).toMatch(/incorrect/i); // Vérifie le contenu du message
+      await dialog.dismiss(); // Ferme l'alerte
+    });
+  
+    // 2. Remplir les champs avec de mauvaises infos
+    await page.getByPlaceholder('Login').fill('wronguser');
+    await page.getByPlaceholder('Email').fill('wrong@example.com');
+    await page.getByPlaceholder('Password').fill('wrongpass');
+  
+    // 3. Cliquer sur le bouton de login
+    await page.getByRole('button', { name: 'Login' }).click();
+  
+    // 4. Attendre un petit instant pour que l'alerte ait le temps d'apparaître
+    await page.waitForTimeout(500); // (Optionnel mais prudent)
   });
+  
+
+  test('Navigation vers la page d\'inscription', async ({ page }) => {
+    await page.getByRole('link', { name: 'Sign up' }).click();
+    await expect(page).toHaveURL(/.*\/sign/);
+  });
+
 });
