@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # Service de la base de données PostgreSQL
+  db:
+    image: postgres:16 # Utilise l'image officielle PostgreSQL
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: ${DB_NAME:-vehicule} # Nom de la base de données
+      POSTGRES_USER: ${DB_USER:-group10} # Nom d'utilisateur de la base de données
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-10-sftw-testing-java} # Mot de passe de la base de données
+    ports:
+      - "5432:5432" # Mappe le port 5432 du conteneur au port 5432 de l'hôte (optionnel, pour accès direct)
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persistance des données de la base de données
+    networks:
+      - app_network # Connecte le service au réseau de l'application
+
+  # Service du backend Spring Boot
+  backend:
+    build:
+      context: ./backend # Spécifie le dossier où se trouve le Dockerfile du backend
+      dockerfile: Dockerfile
+    container_name: spring_backend
+    ports:
+      - "9000:9000" # Mappe le port 9000 du conteneur au port 9000 de l'hôte
+    environment:
+      # Variables d'environnement pour la connexion à la base de données
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/vehicule # 'db' est le nom du service PostgreSQL dans Docker Compose
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-group10}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-10-sftw-testing-java}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update # Configure Hibernate pour mettre à jour le schéma
+      SPRING_JPA_SHOW_SQL: "true" # Affiche les requêtes SQL (pour le débogage)
+    depends_on:
+      - db # S'assure que la base de données démarre avant le backend
+    networks:
+      - app_network # Connecte le service au réseau de l'application
+    restart: on-failure # Redémarre le conteneur s'il échoue
+
+  # Service du frontend React (Vite)
+  frontend:
+    build:
+      context: ./frontend # Spécifie le dossier où se trouve le Dockerfile du frontend
+      dockerfile: Dockerfile
+    container_name: react_frontend
+    ports:
+      - "5173:5173" # Mappe le port 5173 du conteneur (Vite dev server) au port 5173 de l'hôte
+    volumes:
+      - ./frontend:/app # Monte le dossier du frontend pour le rechargement à chaud en développement
+      - /app/node_modules # Empêche le montage des node_modules de l'hôte dans le conteneur
+    depends_on:
+      - backend # S'assure que le backend démarre avant le frontend (utile si le frontend fait des appels au démarrage)
+    networks:
+      - app_network # Connecte le service au réseau de l'application
+    restart: on-failure # Redémarre le conteneur s'il échoue
+
+# Volumes pour la persistance des données
+volumes:
+  db_data: # Volume pour les données PostgreSQL
+
+# Réseau partagé pour la communication entre les services
+networks:
+  app_network:
+    driver: bridge # Utilise un réseau bridge par défaut
+

@@ -1,0 +1,42 @@
+# Page snapshot
+
+```yaml
+- complementary:
+  - link "Properlize":
+    - /url: /
+    - img "Properlize"
+  - list:
+    - listitem:
+      - img
+      - text: UserList
+    - listitem:
+      - img
+      - text: Logout
+- main:
+  - text: Welcome Eric
+  - img "Notifications"
+  - img "avatar"
+  - heading "UserList" [level=1]
+  - textbox "Champ de recherche email"
+  - button "Bouton recherche":
+    - img
+  - button "Ajouter un utilisateur": + ADD
+  - table:
+    - rowgroup:
+      - row "Name Email Actions":
+        - cell:
+          - checkbox
+        - cell "Name"
+        - cell "Email"
+        - cell "Actions"
+    - rowgroup:
+      - row "Bob bob@example.com Supprimer":
+        - cell:
+          - checkbox
+        - cell "Bob"
+        - cell "bob@example.com"
+        - cell "Supprimer":
+          - img
+          - img "Supprimer"
+  - text: "Total Number of users : 1"
+```
