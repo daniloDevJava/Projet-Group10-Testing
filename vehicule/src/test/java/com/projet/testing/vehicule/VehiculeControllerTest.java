@@ -1,17 +1,14 @@
 package com.projet.testing.vehicule;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.projet.testing.vehicule.dto.ImagesDto;
 import com.projet.testing.vehicule.dto.VehiculeDto;
 import com.projet.testing.vehicule.model.Vehicule;
 import com.projet.testing.vehicule.repository.VehiculeRepository;
 import org.junit.jupiter.api.*;
 import com.aventstack.extentreports.*;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile; // Pour simuler les uploads de fichiers
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,7 +17,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.transaction.annotation.Transactional; // Très important pour réinitialiser la BDD
 
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.UUID;
 
