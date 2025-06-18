@@ -73,7 +73,7 @@ Une stratégie de test en trois niveaux a été mise en place pour garantir la q
 git clone https://github.com/daniloDevJava/Projet-Group10-Testing
 
 # Backend
-cd backend //
+cd backend 
 ./mvnw spring-boot:run
 
 # Frontend
