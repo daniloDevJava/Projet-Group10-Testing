@@ -42,7 +42,7 @@ Une stratégie de test en trois niveaux a été mise en place pour garantir la q
 
 | Type de test | Modules testés | Outils utilisés |
 |--------------|----------------|-----------------|
-| Tests unitaires | Services du backend (userService, vehicleService, tokenService) | JUnit 5, Mockito |
+| Tests unitaires | Services du backend (userService, vehicleService, tokenService) | JUnit 5, Mockito, Jacocco |
 | Tests d'intégration | Endpoints REST, couche DAO (avec base H2) | SpringBootTest |
 | Tests End-to-End (E2E) | Interface utilisateur, navigation, formulaire, interactions avec API | Playwright (navigateur Chromium) |
 
