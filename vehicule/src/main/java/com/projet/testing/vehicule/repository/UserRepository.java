@@ -3,6 +3,7 @@ package com.projet.testing.vehicule.repository;
 import com.projet.testing.vehicule.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,4 +27,6 @@ public interface UserRepository extends JpaRepository <User , UUID > {
      * @return the optional
      */
     Optional<User> findByEmailAndDeleteAtIsNull(String email);
+
+    List<User> findByDeleteAtIsNull();
 }

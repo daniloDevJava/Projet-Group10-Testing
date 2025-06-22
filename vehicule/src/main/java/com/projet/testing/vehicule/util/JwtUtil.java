@@ -3,7 +3,7 @@ package com.projet.testing.vehicule.util;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
-
+import com.projet.testing.vehicule.util.JwtUtil;
 import java.security.Key;
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    public final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     /**
      * Génère un AccessToken pour un utilisateur.

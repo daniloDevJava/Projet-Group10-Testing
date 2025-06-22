@@ -53,6 +53,41 @@
 		<scope>runtime</scope>
 		<optional>true</optional>
 	</dependency>
+<<<<<<< HEAD
+=======
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId> <!-- Pour parser les claims avec Jackson -->
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+	<!-- JUnit 5 -->
+	    <dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter</artifactId>
+		<version>5.10.2</version>
+		<scope>test</scope>
+	    </dependency>
+	    <!-- ExtentReports -->
+    <dependency>
+        <groupId>com.aventstack</groupId>
+        <artifactId>extentreports</artifactId>
+        <version>5.1.1</version>
+        <scope>test</scope>
+    </dependency>
+>>>>>>> 3285db4bcac0248e34ab2f5b1d74637b7d04dbd1
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -61,12 +96,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-docker-compose</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
-        </dependency>
+        </dependency!-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
@@ -99,6 +134,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
         <!-- MapStruct processor -->
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -117,6 +153,10 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement -->
+=======
+
+
+>>>>>>> 3285db4bcac0248e34ab2f5b1d74637b7d04dbd1
     </dependencies>
 
     <build>
@@ -133,7 +173,31 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-	   <plugin>
+
+	    <plugin>
+				
+		    <groupId>org.jacoco</groupId>
+		    <artifactId>jacoco-maven-plugin</artifactId>
+		    <version>0.8.11</version> <!-- version stable et récente -->
+			
+
+			<executions>
+				<execution>
+					<goals>
+						<goal>prepare-agent</goal>
+					</goals>
+				</execution>
+				<execution>
+					<id>report</id>
+					<phase>verify</phase>
+					<goals>
+						<goal>report</goal>
+					</goals>
+				</execution>
+			</executions>
+	    </plugin>
+
+	        <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
@@ -160,6 +224,25 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+            <plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>exec-maven-plugin</artifactId>
+	    <version>3.1.0</version>
+	    <executions>
+		<execution>
+		    <id>generate-index-html</id>
+		    <phase>verify</phase>
+		    <goals>
+		        <goal>java</goal>
+		    </goals>
+		    <configuration>
+		        <mainClass>ExtentReportsIndexGenerator.java</mainClass>
+		    </configuration>
+		</execution>
+	    </executions>
+	</plugin>
+
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
