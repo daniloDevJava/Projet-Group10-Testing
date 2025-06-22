@@ -1,5 +1,9 @@
 package com.projet.testing.vehicule.controller;
 
+import com.projet.testing.vehicule.dto.ImagesDto;
+import com.projet.testing.vehicule.exception.BusinessException;
+import com.projet.testing.vehicule.exception.ErrorModel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,22 +23,34 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
-
+/**
+ * The type Vehicule controller.
+ */
+@Slf4j
 @RestController
 @RequestMapping("/vehicule")
 @AllArgsConstructor
 public class VehiculeController {
 	
 	private final VehiculeService vehiculeService;
-	
-	
+
+
+	/**
+	 * Create vehicule response entity.
+	 *
+	 * @param vehiculeDto the vehicule dto
+	 * @return the response entity
+	 */
 	@PostMapping("/create")
 	@Operation(summary = "add an vehicule")
 	@ApiResponses(value = {
@@ -43,11 +59,26 @@ public class VehiculeController {
 			
 	})
 	public ResponseEntity<VehiculeDto> createVehicule(@Valid @RequestBody VehiculeDto vehiculeDto){
-	
-			VehiculeDto vehicule = vehiculeService.createVehicule(vehiculeDto);
-			return new ResponseEntity<>(vehicule ,HttpStatus.CREATED);
+		    try {
+				VehiculeDto vehicule = vehiculeService.createVehicule(vehiculeDto);
+				return new ResponseEntity<>(vehicule ,HttpStatus.CREATED);
+			}
+
+			catch (IllegalArgumentException e){
+				ErrorModel errorModel=new ErrorModel();
+				errorModel.setCode("UNAUTHORIZED_REQUEST");
+				errorModel.setMessage(e.getMessage());
+
+				throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);
+			}
+
 	}
-	
+
+	/**
+	 * Get all response entity.
+	 *
+	 * @return the response entity
+	 */
 	@GetMapping("/all")
 	@Operation(summary= "get all vehicules")
 	@ApiResponses(value = {
@@ -60,7 +91,13 @@ public class VehiculeController {
 		return new ResponseEntity<>(listVehicule ,HttpStatus.OK);
 		
 	}
-	
+
+	/**
+	 * Gets vehicule by id.
+	 *
+	 * @param id the id
+	 * @return the vehicule by id
+	 */
 	@GetMapping("/id/{id}")
 	@Operation(summary= "get an vehicule by id")
 	@ApiResponses(value = {
@@ -69,13 +106,26 @@ public class VehiculeController {
 			
 	})
 	public ResponseEntity<VehiculeDto> getVehiculeById(@Parameter(description = "id of vehicule") @PathVariable UUID id){
-		
-		VehiculeDto vehicule= vehiculeService.getVehiculeById(id);
-		if(vehicule!=null)
+		try {
+			VehiculeDto vehicule= vehiculeService.getVehiculeById(id);
 			return new ResponseEntity<>(vehicule ,HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		catch (RuntimeException e){
+			ErrorModel errorModel=new ErrorModel();
+			errorModel.setCode("BAD_ARGUMENTS");
+			errorModel.setMessage(e.getMessage());
+			throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);
+		}
+
+
 	}
+
+	/**
+	 * Gets vehicule by number.
+	 *
+	 * @param registerNum the register num
+	 * @return the vehicule by number
+	 */
 	@GetMapping("/number/{registerNum}")
 	@Operation(summary= "get an vehicule by number")
 	@ApiResponses(value = {
@@ -84,14 +134,26 @@ public class VehiculeController {
 			
 	})
 	public ResponseEntity<VehiculeDto> getVehiculeByNumber(@Parameter(description = "Number of vehicule") @PathVariable String registerNum){
-		
-		VehiculeDto vehicule= vehiculeService.getVehiculeByNumber(registerNum);
-		if(vehicule!=null) 
+		try {
+			VehiculeDto vehicule= vehiculeService.getVehiculeByNumber(registerNum);
 			return new ResponseEntity<>(vehicule ,HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		catch (RuntimeException e){
+			ErrorModel errorModel=new ErrorModel();
+			errorModel.setCode("BAD_ARGUMENTS");
+			errorModel.setMessage(e.getMessage());
+			throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);
+		}
+
 	}
-	
+
+	/**
+	 * Update vehicule response entity.
+	 *
+	 * @param vehicule the vehicule
+	 * @param id       the id
+	 * @return the response entity
+	 */
 	@PutMapping("/{id}")
 	@Operation(summary = "update vehicule")
 	@ApiResponses(value = {
@@ -100,15 +162,29 @@ public class VehiculeController {
 			@ApiResponse(responseCode = "400", description = "Bad entry of data .")
 	})
 	public ResponseEntity<VehiculeDto> updateVehicule(@Valid @RequestBody VehiculeDto vehicule, @Parameter(description = "id of vehicule") @PathVariable UUID id){
-		VehiculeDto vehiculeDto = vehiculeService.updateVehicule(vehicule, id);
-		
-		if (vehiculeDto != null) {
+		try {
+			VehiculeDto vehiculeDto = vehiculeService.updateVehicule(vehicule, id);
 			return new ResponseEntity<>(vehiculeDto , HttpStatus.OK);
 		}
-		else
-			return new ResponseEntity<>(vehiculeDto , HttpStatus.NOT_FOUND);
+		catch (RuntimeException e){
+			ErrorModel errorModel=new ErrorModel();
+			errorModel.setCode("BAD_ARGUMENTS");
+			errorModel.setMessage(e.getMessage());
+			throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);
+		}
+
+
+
+
+
 	}
-	
+
+	/**
+	 * Gets all byprice.
+	 *
+	 * @param rentalPrice the rental price
+	 * @return the all byprice
+	 */
 	@GetMapping("/search-by-price")
 	@Operation(summary= "get vehicules by price")
 	@ApiResponses(value = {
@@ -122,13 +198,38 @@ public class VehiculeController {
 		
 	}
 	
+	@PostMapping("/upload/images")
+	@Operation(summary = "add an vehicule")
+	@ApiResponses(value={
+		@ApiResponse(responseCode="201", description="images is uploaded"),
+		@ApiResponse(responseCode="500", description="Input or Output exceptions")
+	})
+	public ResponseEntity<ImagesDto> createImage(@RequestParam("file")MultipartFile file,@Parameter(description = "the id of product") @RequestParam("vehiculeId")UUID vehiculeId){
+            try{
+                ImagesDto imagesDto= vehiculeService.addImage(file,vehiculeId);
+                return new ResponseEntity<>(imagesDto,HttpStatus.CREATED);
+            }
+            catch (IOException e){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+            catch (IllegalArgumentException e){
+                System.err.println(e.getMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+	/**
+	 * Delete admin response entity.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@DeleteMapping("/{id}")
-	 @Operation(summary = "delete admin")
-    public ResponseEntity<String> deleteAdmin(@Parameter(description = "Id Of vehicule") @PathVariable UUID id){
+	 @Operation(summary = "delete vehicule")
+    public ResponseEntity<String> deleteVehicule(@Parameter(description = "Id Of vehicule") @PathVariable UUID id){
         if(vehiculeService.deleteVehicule(id))
-            return new ResponseEntity<>("{\"message\" : \"vehicule is deleted successfully\"}",HttpStatus.OK);
+            return new ResponseEntity<>("\"message\" : \"vehicule is deleted successfully\"",HttpStatus.OK);
         else
-            return new ResponseEntity<>("{\"message\" : \"vehicule doesn't exists\"}",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("\"message\" : \"vehicule doesn't exists\"",HttpStatus.NOT_FOUND);
     }
 	
 	

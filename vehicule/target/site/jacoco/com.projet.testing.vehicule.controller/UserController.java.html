@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">vehicule</a> &gt; <a href="index.source.html" class="el_package">com.projet.testing.vehicule.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package com.projet.testing.vehicule.controller;
+
+import com.projet.testing.vehicule.dto.UserDto;
+import com.projet.testing.vehicule.exception.BusinessException;
+import com.projet.testing.vehicule.exception.ErrorModel;
+import com.projet.testing.vehicule.service.JwtService;
+import com.projet.testing.vehicule.service.ToKens;
+import com.projet.testing.vehicule.service.UserService;
+import com.projet.testing.vehicule.dto.ChangePasswordRequest;
+import com.projet.testing.vehicule.util.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * The type User controller.
+ */
+@RestController
+@RequestMapping(&quot;/users&quot;)
+@AllArgsConstructor
+public class UserController {
+
+    private final UserService userService;
+    private final JwtService jwtService;
+
+    private final JwtUtil jwtUtil;
+
+    /**
+     * Create user response entity.
+     *
+     * @param userDto the user dto
+     * @return the response entity
+     * @throws BusinessException the business exception
+     */
+    @PostMapping(&quot;/add&quot;)
+    @Operation(summary = &quot;create User&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;201&quot;, description = &quot;enregistrer un utilisateur &quot;),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;mauvaise entree&quot;)
+    })
+    public ResponseEntity&lt;UserDto&gt; createUser(@Valid @RequestBody UserDto userDto){
+        try {
+
+<span class="fc" id="L52">            UserDto user=userService.createUser(userDto);</span>
+<span class="fc" id="L53">            return new ResponseEntity&lt;&gt;(user, HttpStatus.CREATED);</span>
+        }
+<span class="fc" id="L55">        catch (BusinessException e){</span>
+<span class="fc" id="L56">            throw new BusinessException(e.getErrorModels(),e.getStatus());</span>
+        }
+    }
+
+    /**
+     * Gets user.
+     *
+     * @param userDto the user dto
+     * @return the user
+     * @throws BusinessException the business exception
+     */
+    @PostMapping(&quot;/login&quot;)
+    @Operation(summary = &quot;get an user&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot; , description = &quot;get an user &quot;),
+            @ApiResponse(responseCode = &quot;404&quot;,description = &quot;les informations de connection sont incorrectes&quot;)
+    })
+    public ResponseEntity&lt;ToKens&gt; getUser(@RequestBody UserDto userDto) throws BusinessException{
+        try {
+<span class="fc" id="L75">            ToKens toKens =userService.login(userDto,15);</span>
+<span class="fc" id="L76">            return new ResponseEntity&lt;&gt;(toKens,HttpStatus.OK);</span>
+        }
+<span class="fc" id="L78">        catch (IllegalArgumentException e){</span>
+<span class="fc" id="L79">            ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L80">            errorModel.setCode(&quot;BAD_ARGUMENTS&quot;);</span>
+<span class="fc" id="L81">            errorModel.setMessage(e.getMessage());</span>
+<span class="fc" id="L82">            throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);</span>
+        }
+
+    }
+
+    /**
+     * Update user response entity.
+     *
+     * @param userDto the user dto
+     * @param id      the id
+     * @return the response entity
+     * @throws BusinessException the business exception
+     */
+    @PutMapping(&quot;/{id}&quot;)
+    @Operation(summary = &quot;change &quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot; , description = &quot;updating is successfully&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;the user not found&quot;)
+    })
+    public ResponseEntity&lt;UserDto&gt; updateUser(@Valid @RequestBody UserDto userDto,@PathVariable UUID id) throws BusinessException{
+            try {
+<span class="fc" id="L103">                UserDto user=userService.updateUser(userDto,id);</span>
+<span class="fc" id="L104">                return new ResponseEntity&lt;&gt;(user,HttpStatus.OK);</span>
+            }
+<span class="fc" id="L106">            catch (IllegalArgumentException e){</span>
+<span class="fc" id="L107">                ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L108">                errorModel.setCode(&quot;BAD_ARGUMENTS&quot;);</span>
+<span class="fc" id="L109">                errorModel.setMessage(e.getMessage());</span>
+<span class="fc" id="L110">                throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);</span>
+            }
+
+    }
+
+    /**
+     * Refresh tokens response entity.
+     *
+     * @param refreshToken the refresh token
+     * @return the response entity
+     * @throws BusinessException the business exception
+     */
+    @PostMapping(&quot;/refresh-tokens&quot;)
+    @Operation(summary = &quot;Trouver &quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;,description = &quot;&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;&quot;)
+    })
+    public ResponseEntity&lt;ToKens&gt; refreshTokens(@RequestParam String refreshToken) throws BusinessException{
+<span class="fc" id="L129">        ToKens toKens=jwtService.refreshTokens(refreshToken,15);</span>
+<span class="fc" id="L130">        return new ResponseEntity&lt;&gt;(toKens,HttpStatus.OK);</span>
+
+    }
+
+    /**
+     * Refresh access token response entity.
+     *
+     * @param refreshToken the refresh token
+     * @return the response entity
+     * @throws BusinessException the business exception
+     */
+    @PostMapping(&quot;/refresh-access-tokens&quot;)
+    @Operation(summary = &quot;&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;,description = &quot;successfully&quot;),
+            @ApiResponse(responseCode = &quot;400&quot;,description = &quot;bad entry&quot;)
+    })
+    public ResponseEntity&lt;String&gt; refreshAccessToken(@RequestParam(&quot;refreshToken&quot;) String refreshToken) throws BusinessException{
+
+<span class="fc bfc" id="L149" title="All 4 branches covered.">        if(jwtUtil.isTokenValid(refreshToken) &amp;&amp; !jwtUtil.isTokenExpired(refreshToken)) {</span>
+<span class="fc" id="L150">            String accessToken = jwtService.refreshAccessToken(refreshToken);</span>
+<span class="fc" id="L151">            return new ResponseEntity&lt;&gt;(&quot; \&quot;accessToken\&quot;:&quot; +&quot;\&quot;&quot;+ accessToken+&quot;\&quot;&quot;, HttpStatus.OK);</span>
+        }
+        else
+<span class="fc" id="L154">            return new ResponseEntity&lt;&gt;(&quot;\&quot;Error\&quot; : \&quot;refreshToken invalide ou expiré\&quot;&quot;,HttpStatus.FORBIDDEN);</span>
+    }
+
+    @GetMapping(&quot;/all&quot;)
+    @Operation(summary = &quot;get all users&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;the response&quot;)
+    })
+    public ResponseEntity&lt;List&lt;UserDto&gt;&gt; getUsers(){
+<span class="fc" id="L163">        return new ResponseEntity&lt;&gt;(userService.getAllUsers(),HttpStatus.OK);</span>
+    }
+
+
+    @PatchMapping(&quot;/change-password&quot;)
+    @Operation(summary = &quot;changer le mot de passe&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;,description = &quot;le mot de passe a ete change&quot;),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;le mot de passe est mal forme&quot;)
+    })
+    public ResponseEntity&lt;ChangePasswordRequest&gt; changePassword(@RequestParam String oldPassword , @RequestParam String newPassword, @Valid @RequestBody ChangePasswordRequest changePasswordRequest){
+        try {
+<span class="fc" id="L175">            ChangePasswordRequest request = userService.changePassword(oldPassword, newPassword, changePasswordRequest);</span>
+<span class="fc" id="L176">            return new ResponseEntity&lt;&gt;(request, HttpStatus.OK);</span>
+        }
+<span class="fc" id="L178">        catch (IllegalArgumentException e){</span>
+<span class="fc" id="L179">            ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L180">            errorModel.setCode(&quot;BAD_ARGUMENTS&quot;);</span>
+<span class="fc" id="L181">            errorModel.setMessage(e.getMessage());</span>
+<span class="fc" id="L182">            throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);</span>
+        }
+
+    }
+
+    @GetMapping(&quot;/get/{email}&quot;)
+    @Operation(summary = &quot;find an user by mail&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;,description = &quot;utilisateur trouve&quot;),
+            @ApiResponse(responseCode = &quot;404&quot;,description = &quot;utilisateur non trouvé&quot;)
+    })
+    public ResponseEntity&lt;UserDto&gt; getUserByMail(@PathVariable String email){
+        try {
+<span class="fc" id="L195">            UserDto user=userService.getUser(email);</span>
+<span class="fc" id="L196">            return new ResponseEntity&lt;&gt;(user,HttpStatus.OK);</span>
+        }
+<span class="fc" id="L198">        catch (IllegalArgumentException e){</span>
+<span class="fc" id="L199">            ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L200">            errorModel.setCode(&quot;BAD_ENTRY&quot;);</span>
+<span class="fc" id="L201">            errorModel.setMessage(e.getMessage());</span>
+<span class="fc" id="L202">            throw new BusinessException(List.of(errorModel),HttpStatus.NOT_FOUND);</span>
+        }
+    }
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

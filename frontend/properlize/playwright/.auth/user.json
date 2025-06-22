@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:5173",
+      "localStorage": [
+        {
+          "name": "authToken",
+          "value": "super-secret-access-token-for-setup"
+        },
+        {
+          "name": "refreshToken",
+          "value": "super-secret-refresh-token-for-setup"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+# Fichier : .github/workflows/ci.yml (Version Corrigée)
+
+name: Propelize Frontend CI
+
+on:
+  push:
+    branches: [ "main" ,"imelda" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # CORRECTION : On définit le répertoire de travail pour toutes les étapes 'run'
+    defaults:
+      run:
+        working-directory: ./frontend/properlize
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          # CORRECTION : Le chemin du cache doit être relatif au dossier du projet
+          cache-dependency-path: frontend/properlize/yarn.lock
+
+      # Les commandes 'run' s'exécuteront maintenant dans le bon dossier grâce au 'defaults'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test
+        
+      - name: Upload Playwright report on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          # Le chemin de l'artefact doit être relatif au dossier du projet
+          path: frontend/properlize/playwright-report/
+          retention-days: 7

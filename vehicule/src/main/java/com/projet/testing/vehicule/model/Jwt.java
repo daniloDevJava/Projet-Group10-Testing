@@ -1,4 +1,5 @@
-package com.projet.foodGo.model;
+package com.projet.testing.vehicule.model;
+
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,14 +7,14 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "jwt")
+@SequenceGenerator(name = "jwt_seq", sequenceName = "jwt_seq", allocationSize = 1)
 public class Jwt {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jwt_seq")
+
     private Long id;
 
     private String valeur;
@@ -25,5 +26,6 @@ public class Jwt {
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "utilisateur_id")
-    private Utilisateur utilisateur;
+    private User utilisateur;
+
 }

@@ -1,0 +1,150 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.homePage {
+  padding: 16px;
+    background-color: #f5f5f5;
+}
+
+.homeUser-header {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 10px 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.app-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notif-icon {
+  font-size: 20px;
+}
+
+.logout-btn {
+  background-color: #7c3aed;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.welcome {
+  margin-top: 20px;
+}
+
+.page-title {
+  margin-top: 10px;
+}
+
+.page-title h3 {
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.category-section {
+  margin: 20px 0;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.category-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.car-section, .popular-section {
+  margin-top: 20px;
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.car-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.car-card.highlighted {
+  background-color: orange;
+}
+
+.car-card img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  color: grey;
+  cursor: pointer;
+}
+
+.car-card h5 {
+  margin: 10px 0 4px;
+  font-size: 16px;
+}
+
+.car-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.price {
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.view-btn {
+  margin-top: 6px;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
