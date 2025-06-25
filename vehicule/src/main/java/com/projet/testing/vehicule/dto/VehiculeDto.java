@@ -36,7 +36,7 @@ public class VehiculeDto {
 	@NotBlank(message = "Le numéro d'immatriculation ne peut pas être vide")
 	private String registrationNumber;
 	
-	@NotNull(message = " make is mandatory")
+	@NotNull(message = "make is mandatory")
 
 
 	
