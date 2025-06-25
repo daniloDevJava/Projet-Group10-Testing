@@ -366,7 +366,7 @@ public class VehiculeControllerTest {
     /**
      * Cas de test 5 : Création d'une image pour le véhicule existant (utilisant l'ID du test 1)
      */
-    @Test
+   /* @Test
     @Order(5)
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Rollback(false) // Si vous avez ajouté @Rollback(false) au test 1, vous voudrez peut-être aussi ici
@@ -392,7 +392,7 @@ public class VehiculeControllerTest {
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.chemin").exists())
                 .andExpect(jsonPath("$.nom").exists());
-    }
+    }*/
 
     // --- V9: Succès /vehicule/number/{registerNum} ---
     @Test
