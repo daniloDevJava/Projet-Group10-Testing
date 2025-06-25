@@ -515,7 +515,7 @@ public class VehiculeControllerTest {
                         .with(csrf()))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.[0].code").value("make"))
-                .andExpect(jsonPath("$.[0].message").value(" make is mandatory"));
+                .andExpect(jsonPath("$.[0].message").value("make is mandatory"));
 
         // Vérifier que le véhicule existant n'a pas été modifié dans la BDD
         Optional<Vehicule> afterUpdate = vehiculeRepository.findById(savedVehicule.getId());
