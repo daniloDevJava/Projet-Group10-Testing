@@ -1,5 +1,4 @@
 /.metadata/
-node_modules/
 properlize/node_modules
 vehicule/target/
 *.log
