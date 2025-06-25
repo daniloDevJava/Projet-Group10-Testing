@@ -172,7 +172,7 @@ public class VehiculeControllerTest {
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$.length()").value(2))
                 .andExpect(jsonPath("$[0].code").value("make"))
-                .andExpect(jsonPath("$[0].message").value(" make is mandatory"));
+                .andExpect(jsonPath("$[0].message").value("make is mandatory"));
         //assertThat(vehiculeRepository.count()).isEqualTo(0);
     }
 
