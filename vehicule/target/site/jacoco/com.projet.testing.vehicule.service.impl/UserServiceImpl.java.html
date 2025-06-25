@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">vehicule</a> &gt; <a href="index.source.html" class="el_package">com.projet.testing.vehicule.service.impl</a> &gt; <span class="el_source">UserServiceImpl.java</span></div><h1>UserServiceImpl.java</h1><pre class="source lang-java linenums">package com.projet.testing.vehicule.service.impl;
+
+import com.projet.testing.vehicule.dto.UserDto;
+import com.projet.testing.vehicule.exception.BusinessException;
+import com.projet.testing.vehicule.exception.ErrorModel;
+import com.projet.testing.vehicule.mapper.UserMapper;
+import com.projet.testing.vehicule.model.User;
+import com.projet.testing.vehicule.repository.UserRepository;
+import com.projet.testing.vehicule.service.JwtService;
+import com.projet.testing.vehicule.service.ToKens;
+import com.projet.testing.vehicule.service.UserService;
+import com.projet.testing.vehicule.dto.ChangePasswordRequest;
+import com.projet.testing.vehicule.util.PasswordValidator;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+/**
+ * The type User service.
+ */
+@Service
+<span class="fc" id="L29">@AllArgsConstructor</span>
+public class UserServiceImpl implements UserService {
+
+    private final UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final PasswordValidator passwordValidator;
+
+
+    @Override
+    public UserDto createUser(UserDto userDto) throws BusinessException{
+<span class="fc" id="L41">        List&lt;ErrorModel&gt; errorModels= new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L42">        User user=userMapper.toEntity(userDto);</span>
+
+<span class="fc" id="L44">        Optional&lt;User&gt; optionalUser=userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());</span>
+
+<span class="pc bpc" id="L46" title="1 of 4 branches missed.">        if(optionalUser.isEmpty() &amp;&amp; verificateGoodEmail(user.getEmail())){</span>
+
+<span class="fc" id="L48">                user.setUsername(userDto.getName().toUpperCase());</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">                if(passwordValidator.isPasswordValid(user.getPassword())){</span>
+<span class="fc" id="L50">                    user.setMdp(passwordEncoder.encode(user.getMdp()));</span>
+<span class="fc" id="L51">                    return userMapper.toDto(userRepository.save(user));</span>
+                }
+                else
+                {
+<span class="fc" id="L55">                    ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L56">                    errorModel.setCode(&quot;BAD_ENTRY&quot;);</span>
+<span class="fc" id="L57">                    errorModel.setMessage(&quot;Le mot de passe est faible&quot;);</span>
+<span class="fc" id="L58">                    errorModels.add(errorModel);</span>
+<span class="fc" id="L59">                    throw new BusinessException(errorModels, HttpStatus.BAD_REQUEST);</span>
+                }
+
+        }
+        else{
+<span class="fc" id="L64">            ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L65">            errorModel.setCode(&quot;AUTHORIZATION_FAILED&quot;);</span>
+<span class="fc" id="L66">            errorModel.setMessage(&quot;il existe deja un user avec cet adresse mail&quot;);</span>
+<span class="fc" id="L67">            errorModels.add(errorModel);</span>
+<span class="fc" id="L68">            throw new BusinessException(errorModels, HttpStatus.FORBIDDEN);</span>
+        }
+
+    }
+
+    @Override
+    public UserDto updateUser(UserDto userDto, UUID id) throws BusinessException{
+
+<span class="fc" id="L76">        Optional&lt;User&gt; optionalUser=userRepository.findByIdAndDeleteAtIsNull(id);</span>
+<span class="fc" id="L77">        List&lt;ErrorModel&gt; errorModels= new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if(optionalUser.isPresent()){</span>
+<span class="fc" id="L80">            User user= optionalUser.get();</span>
+<span class="fc" id="L81">            user.setMdp(passwordEncoder.encode(userDto.getMdp()));</span>
+<span class="fc" id="L82">            user.setUsername(userDto.getName().toUpperCase());</span>
+<span class="fc" id="L83">            Optional&lt;User&gt; optionalUserE=userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());</span>
+
+<span class="pc bpc" id="L85" title="1 of 6 branches missed.">            if((optionalUserE.isEmpty() || userDto.getEmail().equals(user.getEmail())) &amp;&amp; verificateGoodEmail(userDto.getEmail()) ) {</span>
+<span class="fc" id="L86">                user.setEmail(userDto.getEmail());</span>
+<span class="fc" id="L87">                return userMapper.toDto(userRepository.save(user));</span>
+            }
+            else{
+<span class="fc" id="L90">                ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L91">                errorModel.setCode(&quot;AUTHORIZATION_FAILED&quot;);</span>
+<span class="fc" id="L92">                errorModel.setMessage(&quot;il existe deja un user avec cet adresse mail&quot;);</span>
+<span class="fc" id="L93">                errorModels.add(errorModel);</span>
+<span class="fc" id="L94">                throw new BusinessException(errorModels,HttpStatus.UNAUTHORIZED);</span>
+            }
+
+        }
+        else{
+<span class="fc" id="L99">           throw new IllegalArgumentException(&quot;Utilisateur non trouve&quot;);</span>
+        }
+        }
+
+        private static boolean verificateGoodEmail(String mail) throws BusinessException{
+<span class="pc bpc" id="L104" title="1 of 4 branches missed.">            if(!mail.contains(&quot;@&quot;) || !mail.contains(&quot;.&quot;)){</span>
+<span class="fc" id="L105">                List&lt;ErrorModel&gt; errorModels= new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L106">                ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L107">                errorModel.setCode(&quot;BAD_ENTRY&quot;);</span>
+<span class="fc" id="L108">                errorModel.setMessage(&quot;L'adresse mail est mal formée&quot;);</span>
+<span class="fc" id="L109">                errorModels.add(errorModel);</span>
+<span class="fc" id="L110">                throw new BusinessException(errorModels,HttpStatus.BAD_REQUEST);</span>
+            }
+            else
+<span class="fc" id="L113">                return true;</span>
+        }
+
+        @Override
+        public ToKens login(UserDto userDto,long time) throws BusinessException{
+<span class="fc" id="L118">            Optional&lt;User&gt; optionalUser = userRepository.findByEmailAndDeleteAtIsNull(userDto.getEmail());</span>
+
+<span class="fc bfc" id="L120" title="All 2 branches covered.">            if (optionalUser.isPresent()) {</span>
+<span class="fc" id="L121">                User utilisateur = optionalUser.get();</span>
+
+                // Vérification du mot de passe
+<span class="fc bfc" id="L124" title="All 2 branches covered.">                if (!passwordEncoder.matches(userDto.getMdp(), utilisateur.getPassword())) {</span>
+<span class="fc" id="L125">                    ErrorModel errorModel = new ErrorModel();</span>
+<span class="fc" id="L126">                    errorModel.setCode(&quot;BAD_CREDENTIALS&quot;);</span>
+<span class="fc" id="L127">                    errorModel.setMessage(&quot;Identifiants invalides&quot;);</span>
+<span class="fc" id="L128">                    throw new BusinessException(List.of(errorModel),HttpStatus.FORBIDDEN);</span>
+                }
+
+                // Générer les tokens si tout est valide
+<span class="fc" id="L132">                return jwtService.generateTokens(utilisateur,time);</span>
+            } else {
+<span class="fc" id="L134">                throw new IllegalArgumentException(&quot;Utilisateur non trouvé&quot;);</span>
+            }
+
+        }
+
+    @Override
+    public List&lt;UserDto&gt; getAllUsers() {
+<span class="fc" id="L141">        List&lt;User&gt; list=userRepository.findByDeleteAtIsNull();</span>
+<span class="fc" id="L142">        return list.stream().map(userMapper::toDto).collect(Collectors.toList());</span>
+    }
+
+    @Override
+    public ChangePasswordRequest changePassword(String oldPassword, String newPassword, ChangePasswordRequest changePasswordRequest) {
+
+<span class="fc" id="L148">            Optional&lt;User&gt; optionalUser=userRepository.findByEmailAndDeleteAtIsNull(changePasswordRequest.getEmail());</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">            if(optionalUser.isPresent()) {</span>
+<span class="fc" id="L150">                User user= optionalUser.get();</span>
+<span class="fc" id="L151">                UserDto userDto = new UserDto();</span>
+<span class="fc" id="L152">                userDto.setMdp(oldPassword);</span>
+<span class="fc" id="L153">                userDto.setEmail(changePasswordRequest.getEmail());</span>
+<span class="fc" id="L154">                login(userDto,15);</span>
+<span class="pc bpc" id="L155" title="1 of 4 branches missed.">                if(!oldPassword.equals(newPassword) &amp;&amp; passwordValidator.isPasswordValid(newPassword)) {</span>
+<span class="fc" id="L156">                    user.setMdp(passwordEncoder.encode(newPassword));</span>
+<span class="fc" id="L157">                    userRepository.save(user);</span>
+<span class="fc" id="L158">                    changePasswordRequest.setPassword(newPassword);</span>
+<span class="fc" id="L159">                    return changePasswordRequest;</span>
+                }
+                else{
+<span class="fc" id="L162">                    ErrorModel errorModel=new ErrorModel();</span>
+<span class="fc" id="L163">                    errorModel.setMessage(&quot;Le nouveau mot de passe ne peut etre egal a l'ancien et doit etre fort&quot;);</span>
+<span class="fc" id="L164">                    errorModel.setCode(&quot;BAD_ENTRY&quot;);</span>
+<span class="fc" id="L165">                    throw new BusinessException(List.of(errorModel),HttpStatus.BAD_REQUEST);</span>
+                }
+            }
+            else
+<span class="fc" id="L169">                throw new IllegalArgumentException(&quot;Utilisateur non trouvé pour cette adresse mail&quot;);</span>
+
+    }
+
+    @Override
+    public UserDto getUser(String email) {
+<span class="fc" id="L175">        Optional&lt;User&gt; optionalUser=userRepository.findByEmailAndDeleteAtIsNull(email);</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">        if(optionalUser.isPresent()) {</span>
+<span class="fc" id="L177">            User user= optionalUser.get();</span>
+<span class="fc" id="L178">            return userMapper.toDto(user);</span>
+        }
+<span class="fc" id="L180">        throw new IllegalArgumentException(&quot;Utilisateur non trouvé&quot;);</span>
+    }
+
+}
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

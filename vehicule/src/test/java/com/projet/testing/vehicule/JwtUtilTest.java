@@ -6,6 +6,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.projet.testing.vehicule.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class JwtUtilTest {
 
 
+    @Autowired
     private  JwtUtil jwtUtil;
 
     private final String email = "test@example.com";

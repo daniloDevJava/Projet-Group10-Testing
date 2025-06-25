@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.projet.testing.vehicule.UserControllerTest" time="1.332" tests="1" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.projet.testing.vehicule.UserControllerTest" time="12.206" tests="22" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/danilo/INF352/projet/vehicule/target/test-classes:/home/danilo/INF352/projet/vehicule/target/classes:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.4/spring-boot-starter-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.4/spring-boot-starter-aop-3.3.4.jar:/home/danilo/.m2/repository/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.4/spring-boot-starter-jdbc-3.3.4.jar:/home/danilo/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/danilo/.m2/repository/org/springframework/spring-jdbc/6.1.13/spring-jdbc-6.1.13.jar:/home/danilo/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/home/danilo/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/danilo/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/danilo/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/danilo/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/home/danilo/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/home/danilo/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/home/danilo/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/home/danilo/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/danilo/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/danilo/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-jpa/3.3.4/spring-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-commons/3.3.4/spring-data-commons-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/spring-orm/6.1.13/spring-orm-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-context/6.1.13/spring-context-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-tx/6.1.13/spring-tx-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-beans/6.1.13/spring-beans-6.1.13.jar:/home/danilo/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/danilo/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/home/danilo/.m2/repository/org/springframework/spring-aspects/6.1.13/spring-aspects-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.4/spring-boot-starter-security-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.4/spring-boot-starter-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.4/spring-boot-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.4/spring-boot-starter-logging-3.3.4.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-classic/1.5.8/logback-classic-1.5.8.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-core/1.5.8/logback-core-1.5.8.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/danilo/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/home/danilo/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/danilo/.m2/repository/org/springframework/spring-aop/6.1.13/spring-aop-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-config/6.3.3/spring-security-config-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-web/6.3.3/spring-security-web-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/spring-expression/6.1.13/spring-expression-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-docker-compose/3.3.4/spring-boot-docker-compose-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-api/0.11.5/jjwt-api-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-impl/0.11.5/jjwt-impl-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.11.5/jjwt-jackson-0.11.5.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/danilo/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/danilo/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/home/danilo/.m2/repository/com/aventstack/extentreports/5.1.1/extentreports-5.1.1.jar:/home/danilo/.m2/repository/io/reactivex/rxjava3/rxjava/3.1.9/rxjava-3.1.9.jar:/home/danilo/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/home/danilo/.m2/repository/org/freemarker/freemarker/2.3.33/freemarker-2.3.33.jar:/home/danilo/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.4/spring-boot-starter-web-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.4/spring-boot-starter-json-3.3.4.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.4/spring-boot-starter-tomcat-3.3.4.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.30/tomcat-embed-core-10.1.30.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.30/tomcat-embed-el-10.1.30.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.30/tomcat-embed-websocket-10.1.30.jar:/home/danilo/.m2/repository/org/springframework/spring-web/6.1.13/spring-web-6.1.13.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-observation/1.13.4/micrometer-observation-1.13.4.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-commons/1.13.4/micrometer-commons-1.13.4.jar:/home/danilo/.m2/repository/org/springframework/spring-webmvc/6.1.13/spring-webmvc-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-test/6.3.3/spring-security-test-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-core/6.3.3/spring-security-core-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-crypto/6.3.3/spring-security-crypto-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/spring-core/6.1.13/spring-core-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-jcl/6.1.13/spring-jcl-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-test/6.1.13/spring-test-6.1.13.jar:/home/danilo/.m2/repository/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar:/home/danilo/.m2/repository/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/home/danilo/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/home/danilo/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/home/danilo/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/home/danilo/.m2/repository/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.4/spring-boot-starter-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test/3.3.4/spring-boot-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.4/spring-boot-test-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/danilo/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/danilo/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/danilo/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/danilo/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/danilo/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/danilo/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/danilo/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/danilo/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/danilo/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/home/danilo/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/danilo/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/danilo/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/danilo/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/danilo/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/home/danilo/.m2/repository/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar:"/>
+    <property name="java.class.path" value="/home/danilo/INF352/projet/vehicule/target/test-classes:/home/danilo/INF352/projet/vehicule/target/classes:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.4/spring-boot-starter-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.4/spring-boot-starter-aop-3.3.4.jar:/home/danilo/.m2/repository/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.4/spring-boot-starter-jdbc-3.3.4.jar:/home/danilo/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/danilo/.m2/repository/org/springframework/spring-jdbc/6.1.13/spring-jdbc-6.1.13.jar:/home/danilo/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/home/danilo/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/danilo/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/danilo/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/danilo/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/home/danilo/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/home/danilo/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/home/danilo/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/home/danilo/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/danilo/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/danilo/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-jpa/3.3.4/spring-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-commons/3.3.4/spring-data-commons-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/spring-orm/6.1.13/spring-orm-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-context/6.1.13/spring-context-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-tx/6.1.13/spring-tx-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-beans/6.1.13/spring-beans-6.1.13.jar:/home/danilo/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/danilo/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/home/danilo/.m2/repository/org/springframework/spring-aspects/6.1.13/spring-aspects-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.4/spring-boot-starter-validation-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.4/spring-boot-starter-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.4/spring-boot-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.4/spring-boot-starter-logging-3.3.4.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-classic/1.5.8/logback-classic-1.5.8.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-core/1.5.8/logback-core-1.5.8.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/danilo/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/home/danilo/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.30/tomcat-embed-el-10.1.30.jar:/home/danilo/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/home/danilo/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-api/0.11.5/jjwt-api-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-impl/0.11.5/jjwt-impl-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.11.5/jjwt-jackson-0.11.5.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/danilo/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/danilo/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/home/danilo/.m2/repository/com/aventstack/extentreports/5.1.1/extentreports-5.1.1.jar:/home/danilo/.m2/repository/io/reactivex/rxjava3/rxjava/3.1.9/rxjava-3.1.9.jar:/home/danilo/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/home/danilo/.m2/repository/org/freemarker/freemarker/2.3.33/freemarker-2.3.33.jar:/home/danilo/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.4/spring-boot-starter-web-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.4/spring-boot-starter-json-3.3.4.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.4/spring-boot-starter-tomcat-3.3.4.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.30/tomcat-embed-core-10.1.30.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.30/tomcat-embed-websocket-10.1.30.jar:/home/danilo/.m2/repository/org/springframework/spring-web/6.1.13/spring-web-6.1.13.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-observation/1.13.4/micrometer-observation-1.13.4.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-commons/1.13.4/micrometer-commons-1.13.4.jar:/home/danilo/.m2/repository/org/springframework/spring-webmvc/6.1.13/spring-webmvc-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-expression/6.1.13/spring-expression-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.4/spring-boot-starter-security-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/spring-aop/6.1.13/spring-aop-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-config/6.3.3/spring-security-config-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-web/6.3.3/spring-security-web-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-test/6.3.3/spring-security-test-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-core/6.3.3/spring-security-core-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-crypto/6.3.3/spring-security-crypto-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/spring-core/6.1.13/spring-core-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-jcl/6.1.13/spring-jcl-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-test/6.1.13/spring-test-6.1.13.jar:/home/danilo/.m2/repository/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar:/home/danilo/.m2/repository/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/home/danilo/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/home/danilo/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/home/danilo/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/home/danilo/.m2/repository/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.4/spring-boot-starter-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test/3.3.4/spring-boot-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.4/spring-boot-test-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/danilo/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/danilo/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/danilo/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/danilo/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/danilo/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/danilo/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/danilo/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/danilo/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/danilo/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/home/danilo/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/danilo/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/danilo/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/danilo/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/danilo/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -14,9 +14,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/danilo/INF352/projet/vehicule/target/surefire/surefirebooter-20250625091629129_3.jar /home/danilo/INF352/projet/vehicule/target/surefire 2025-06-25T09-16-28_229-jvmRun1 surefire-20250625091629129_1tmp surefire_0-20250625091629129_2tmp"/>
+    <property name="sun.java.command" value="/home/danilo/INF352/projet/vehicule/target/surefire/surefirebooter-20250625093913690_3.jar /home/danilo/INF352/projet/vehicule/target/surefire 2025-06-25T09-39-13_526-jvmRun1 surefire-20250625093913690_1tmp surefire_0-20250625093913690_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/danilo/INF352/projet/vehicule/target/test-classes:/home/danilo/INF352/projet/vehicule/target/classes:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.4/spring-boot-starter-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.4/spring-boot-starter-aop-3.3.4.jar:/home/danilo/.m2/repository/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.4/spring-boot-starter-jdbc-3.3.4.jar:/home/danilo/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/danilo/.m2/repository/org/springframework/spring-jdbc/6.1.13/spring-jdbc-6.1.13.jar:/home/danilo/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/home/danilo/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/danilo/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/danilo/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/danilo/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/home/danilo/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/home/danilo/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/home/danilo/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/home/danilo/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/danilo/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/danilo/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-jpa/3.3.4/spring-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-commons/3.3.4/spring-data-commons-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/spring-orm/6.1.13/spring-orm-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-context/6.1.13/spring-context-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-tx/6.1.13/spring-tx-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-beans/6.1.13/spring-beans-6.1.13.jar:/home/danilo/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/danilo/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/home/danilo/.m2/repository/org/springframework/spring-aspects/6.1.13/spring-aspects-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.4/spring-boot-starter-security-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.4/spring-boot-starter-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.4/spring-boot-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.4/spring-boot-starter-logging-3.3.4.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-classic/1.5.8/logback-classic-1.5.8.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-core/1.5.8/logback-core-1.5.8.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/danilo/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/home/danilo/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/danilo/.m2/repository/org/springframework/spring-aop/6.1.13/spring-aop-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-config/6.3.3/spring-security-config-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-web/6.3.3/spring-security-web-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/spring-expression/6.1.13/spring-expression-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-docker-compose/3.3.4/spring-boot-docker-compose-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-api/0.11.5/jjwt-api-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-impl/0.11.5/jjwt-impl-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.11.5/jjwt-jackson-0.11.5.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/danilo/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/danilo/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/home/danilo/.m2/repository/com/aventstack/extentreports/5.1.1/extentreports-5.1.1.jar:/home/danilo/.m2/repository/io/reactivex/rxjava3/rxjava/3.1.9/rxjava-3.1.9.jar:/home/danilo/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/home/danilo/.m2/repository/org/freemarker/freemarker/2.3.33/freemarker-2.3.33.jar:/home/danilo/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.4/spring-boot-starter-web-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.4/spring-boot-starter-json-3.3.4.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.4/spring-boot-starter-tomcat-3.3.4.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.30/tomcat-embed-core-10.1.30.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.30/tomcat-embed-el-10.1.30.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.30/tomcat-embed-websocket-10.1.30.jar:/home/danilo/.m2/repository/org/springframework/spring-web/6.1.13/spring-web-6.1.13.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-observation/1.13.4/micrometer-observation-1.13.4.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-commons/1.13.4/micrometer-commons-1.13.4.jar:/home/danilo/.m2/repository/org/springframework/spring-webmvc/6.1.13/spring-webmvc-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-test/6.3.3/spring-security-test-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-core/6.3.3/spring-security-core-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-crypto/6.3.3/spring-security-crypto-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/spring-core/6.1.13/spring-core-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-jcl/6.1.13/spring-jcl-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-test/6.1.13/spring-test-6.1.13.jar:/home/danilo/.m2/repository/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar:/home/danilo/.m2/repository/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/home/danilo/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/home/danilo/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/home/danilo/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/home/danilo/.m2/repository/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.4/spring-boot-starter-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test/3.3.4/spring-boot-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.4/spring-boot-test-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/danilo/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/danilo/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/danilo/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/danilo/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/danilo/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/danilo/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/danilo/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/danilo/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/danilo/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/home/danilo/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/danilo/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/danilo/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/danilo/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/danilo/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/home/danilo/.m2/repository/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar:"/>
+    <property name="surefire.test.class.path" value="/home/danilo/INF352/projet/vehicule/target/test-classes:/home/danilo/INF352/projet/vehicule/target/classes:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.4/spring-boot-starter-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.4/spring-boot-starter-aop-3.3.4.jar:/home/danilo/.m2/repository/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.4/spring-boot-starter-jdbc-3.3.4.jar:/home/danilo/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/danilo/.m2/repository/org/springframework/spring-jdbc/6.1.13/spring-jdbc-6.1.13.jar:/home/danilo/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/home/danilo/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/danilo/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/danilo/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/danilo/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/home/danilo/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/home/danilo/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/home/danilo/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/home/danilo/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/home/danilo/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/danilo/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/danilo/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-jpa/3.3.4/spring-data-jpa-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/data/spring-data-commons/3.3.4/spring-data-commons-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/spring-orm/6.1.13/spring-orm-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-context/6.1.13/spring-context-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-tx/6.1.13/spring-tx-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-beans/6.1.13/spring-beans-6.1.13.jar:/home/danilo/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/danilo/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/home/danilo/.m2/repository/org/springframework/spring-aspects/6.1.13/spring-aspects-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.4/spring-boot-starter-validation-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.4/spring-boot-starter-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.4/spring-boot-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.4/spring-boot-starter-logging-3.3.4.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-classic/1.5.8/logback-classic-1.5.8.jar:/home/danilo/.m2/repository/ch/qos/logback/logback-core/1.5.8/logback-core-1.5.8.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/danilo/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/danilo/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/home/danilo/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.30/tomcat-embed-el-10.1.30.jar:/home/danilo/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/home/danilo/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-api/0.11.5/jjwt-api-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-impl/0.11.5/jjwt-impl-0.11.5.jar:/home/danilo/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.11.5/jjwt-jackson-0.11.5.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/danilo/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/danilo/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/home/danilo/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/home/danilo/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/home/danilo/.m2/repository/com/aventstack/extentreports/5.1.1/extentreports-5.1.1.jar:/home/danilo/.m2/repository/io/reactivex/rxjava3/rxjava/3.1.9/rxjava-3.1.9.jar:/home/danilo/.m2/repository/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar:/home/danilo/.m2/repository/org/freemarker/freemarker/2.3.33/freemarker-2.3.33.jar:/home/danilo/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.4/spring-boot-starter-web-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.4/spring-boot-starter-json-3.3.4.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.4/spring-boot-starter-tomcat-3.3.4.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.30/tomcat-embed-core-10.1.30.jar:/home/danilo/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.30/tomcat-embed-websocket-10.1.30.jar:/home/danilo/.m2/repository/org/springframework/spring-web/6.1.13/spring-web-6.1.13.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-observation/1.13.4/micrometer-observation-1.13.4.jar:/home/danilo/.m2/repository/io/micrometer/micrometer-commons/1.13.4/micrometer-commons-1.13.4.jar:/home/danilo/.m2/repository/org/springframework/spring-webmvc/6.1.13/spring-webmvc-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-expression/6.1.13/spring-expression-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.4/spring-boot-starter-security-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/spring-aop/6.1.13/spring-aop-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-config/6.3.3/spring-security-config-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-web/6.3.3/spring-security-web-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-test/6.3.3/spring-security-test-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-core/6.3.3/spring-security-core-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/security/spring-security-crypto/6.3.3/spring-security-crypto-6.3.3.jar:/home/danilo/.m2/repository/org/springframework/spring-core/6.1.13/spring-core-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-jcl/6.1.13/spring-jcl-6.1.13.jar:/home/danilo/.m2/repository/org/springframework/spring-test/6.1.13/spring-test-6.1.13.jar:/home/danilo/.m2/repository/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar:/home/danilo/.m2/repository/org/checkerframework/checker-qual/3.42.0/checker-qual-3.42.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/home/danilo/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/home/danilo/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/home/danilo/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/home/danilo/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.2/jackson-dataformat-yaml-2.17.2.jar:/home/danilo/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/home/danilo/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/home/danilo/.m2/repository/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.4/spring-boot-starter-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test/3.3.4/spring-boot-test-3.3.4.jar:/home/danilo/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.4/spring-boot-test-autoconfigure-3.3.4.jar:/home/danilo/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/danilo/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/danilo/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/danilo/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/danilo/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/danilo/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/danilo/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/danilo/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/danilo/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/danilo/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/danilo/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/home/danilo/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/danilo/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/danilo/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/danilo/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/danilo/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/danilo"/>
     <property name="user.language" value="fr"/>
@@ -31,7 +31,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="/home/danilo/INF352/projet/vehicule/target/surefire/surefirebooter-20250625091629129_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/danilo/INF352/projet/vehicule/target/surefire/surefirebooter-20250625093913690_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+7-Ubuntu-122.04.1"/>
     <property name="user.name" value="danilo"/>
@@ -44,11 +44,12 @@
     <property name="localRepository" value="/home/danilo/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-21"/>
     <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="com.zaxxer.hikari.pool_number" value="3"/>
     <property name="java.version" value="21.0.6"/>
     <property name="user.dir" value="/home/danilo/INF352/projet/vehicule"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="5325"/>
+    <property name="PID" value="7182"/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
@@ -58,89 +59,11 @@
     <property name="java.vm.version" value="21.0.6+7-Ubuntu-122.04.1"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[vehicule] "/>
   </properties>
-  <testcase name="" classname="com.projet.testing.vehicule.UserControllerTest" time="1.332">
-    <error message="Failed to load ApplicationContext for [WebMergedContextConfiguration@32fa956b testClass = com.projet.testing.vehicule.UserControllerTest, locations = [], classes = [com.projet.testing.vehicule.VehiculeApplication], contextInitializerClasses = [], activeProfiles = [&quot;test&quot;], propertySourceDescriptors = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [[ImportsContextCustomizer@667713c4 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@629f066f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@989da1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@d1e52510, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@660591fb, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@2227a6c1, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@40d10481, org.springframework.boot.test.context.SpringBootTestAnnotation@3ef13b46], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]" type="java.lang.IllegalStateException"><![CDATA[java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@32fa956b testClass = com.projet.testing.vehicule.UserControllerTest, locations = [], classes = [com.projet.testing.vehicule.VehiculeApplication], contextInitializerClasses = [], activeProfiles = ["test"], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [[ImportsContextCustomizer@667713c4 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@629f066f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@989da1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@d1e52510, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@660591fb, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@2227a6c1, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@40d10481, org.springframework.boot.test.context.SpringBootTestAnnotation@3ef13b46], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
-	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'dataSourceScriptDatabaseInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1463)
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
-	... 15 more
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
-	... 30 more
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
-	... 40 more
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:178)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
-	... 54 more
-Caused by: java.lang.IllegalStateException: Cannot load driver class: org.h2.Driver
-	at org.springframework.util.Assert.state(Assert.java:97)
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.determineDriverClassName(DataSourceProperties.java:175)
-	at org.springframework.boot.autoconfigure.jdbc.PropertiesJdbcConnectionDetails.getDriverClassName(PropertiesJdbcConnectionDetails.java:49)
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource(DataSourceConfiguration.java:55)
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Hikari.dataSource(DataSourceConfiguration.java:117)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:146)
-	... 55 more
-]]></error>
-    <system-out><![CDATA[2025-06-25T09:16:54.730+01:00  INFO 5325 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.projet.testing.vehicule.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-06-25T09:16:54.767+01:00  INFO 5325 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.projet.testing.vehicule.VehiculeApplication for test class com.projet.testing.vehicule.UserControllerTest
+  <testcase name="testGetUserByMail" classname="com.projet.testing.vehicule.UserControllerTest" time="3.91">
+    <system-out><![CDATA[2025-06-25T09:42:17.786+01:00  INFO 7182 --- [vehicule] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.projet.testing.vehicule.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-06-25T09:42:17.937+01:00  INFO 7182 --- [vehicule] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.projet.testing.vehicule.VehiculeApplication for test class com.projet.testing.vehicule.UserControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -151,433 +74,298 @@ Caused by: java.lang.IllegalStateException: Cannot load driver class: org.h2.Dri
 
  :: Spring Boot ::                (v3.3.4)
 
-2025-06-25T09:16:54.883+01:00  INFO 5325 --- [           main] c.p.testing.vehicule.UserControllerTest  : Starting UserControllerTest using Java 21.0.6 with PID 5325 (started by danilo in /home/danilo/INF352/projet/vehicule)
-2025-06-25T09:16:54.883+01:00  INFO 5325 --- [           main] c.p.testing.vehicule.UserControllerTest  : The following 1 profile is active: "test"
-2025-06-25T09:16:55.628+01:00  INFO 5325 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-25T09:16:55.663+01:00  INFO 5325 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 6 JPA repository interfaces.
-2025-06-25T09:16:56.030+01:00  WARN 5325 --- [           main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'dataSourceScriptDatabaseInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-2025-06-25T09:16:56.039+01:00  INFO 5325 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2025-06-25T09:42:18.024+01:00  INFO 7182 --- [vehicule] [           main] c.p.testing.vehicule.UserControllerTest  : Starting UserControllerTest using Java 21.0.6 with PID 7182 (started by danilo in /home/danilo/INF352/projet/vehicule)
+2025-06-25T09:42:18.025+01:00  INFO 7182 --- [vehicule] [           main] c.p.testing.vehicule.UserControllerTest  : The following 1 profile is active: "test"
+2025-06-25T09:42:18.824+01:00  INFO 7182 --- [vehicule] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-25T09:42:18.844+01:00  INFO 7182 --- [vehicule] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 6 JPA repository interfaces.
+2025-06-25T09:42:19.160+01:00  INFO 7182 --- [vehicule] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-25T09:42:19.163+01:00  INFO 7182 --- [vehicule] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-25T09:42:19.174+01:00  INFO 7182 --- [vehicule] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-25T09:42:19.175+01:00  INFO 7182 --- [vehicule] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-06-25T09:42:19.177+01:00  INFO 7182 --- [vehicule] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn10: url=jdbc:h2:mem:testdb user=SA
+2025-06-25T09:42:19.177+01:00  INFO 7182 --- [vehicule] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-06-25T09:42:19.178+01:00  WARN 7182 --- [vehicule] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-25T09:42:19.550+01:00  INFO 7182 --- [vehicule] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-25T09:42:19.551+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop table if exists images cascade 
+Hibernate: drop table if exists images cascade 
+2025-06-25T09:42:19.556+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop table if exists jwt cascade 
+Hibernate: drop table if exists jwt cascade 
+2025-06-25T09:42:19.559+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop table if exists refresh_token cascade 
+Hibernate: drop table if exists refresh_token cascade 
+2025-06-25T09:42:19.561+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop table if exists users cascade 
+Hibernate: drop table if exists users cascade 
+2025-06-25T09:42:19.562+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop table if exists vehicule cascade 
+Hibernate: drop table if exists vehicule cascade 
+2025-06-25T09:42:19.566+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop table if exists vehicule_images cascade 
+Hibernate: drop table if exists vehicule_images cascade 
+2025-06-25T09:42:19.569+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop sequence if exists jwt_seq
+Hibernate: drop sequence if exists jwt_seq
+2025-06-25T09:42:19.570+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : drop sequence if exists refresh_token_seq
+Hibernate: drop sequence if exists refresh_token_seq
+2025-06-25T09:42:19.571+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create sequence jwt_seq start with 1 increment by 1
+Hibernate: create sequence jwt_seq start with 1 increment by 1
+2025-06-25T09:42:19.572+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create sequence refresh_token_seq start with 1 increment by 1
+Hibernate: create sequence refresh_token_seq start with 1 increment by 1
+2025-06-25T09:42:19.574+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create table images (id bigint generated by default as identity, vehicule_id uuid not null, chemin varchar(255), nom varchar(255), primary key (id))
+Hibernate: create table images (id bigint generated by default as identity, vehicule_id uuid not null, chemin varchar(255), nom varchar(255), primary key (id))
+2025-06-25T09:42:19.577+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create table jwt (desactive boolean not null, expire boolean not null, id bigint not null, refresh_token_id bigint unique, utilisateur_id uuid, valeur varchar(255), primary key (id))
+Hibernate: create table jwt (desactive boolean not null, expire boolean not null, id bigint not null, refresh_token_id bigint unique, utilisateur_id uuid, valeur varchar(255), primary key (id))
+2025-06-25T09:42:19.581+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create table refresh_token (expire boolean not null, create_at timestamp(6) not null, creation timestamp(6) with time zone, expiration timestamp(6) with time zone, id bigint not null, update_at timestamp(6), valeur varchar(255), primary key (id))
+Hibernate: create table refresh_token (expire boolean not null, create_at timestamp(6) not null, creation timestamp(6) with time zone, expiration timestamp(6) with time zone, id bigint not null, update_at timestamp(6), valeur varchar(255), primary key (id))
+2025-06-25T09:42:19.584+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create table users (actif boolean not null, create_at timestamp(6) not null, delete_at timestamp(6), update_at timestamp(6), id uuid not null, email varchar(255), password varchar(255) not null, username varchar(255) not null, primary key (id))
+Hibernate: create table users (actif boolean not null, create_at timestamp(6) not null, delete_at timestamp(6), update_at timestamp(6), id uuid not null, email varchar(255), password varchar(255) not null, username varchar(255) not null, primary key (id))
+2025-06-25T09:42:19.587+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create table vehicule (anee integer, rental_price float(53) not null, id uuid not null, chemin_vers_image varchar(255), make varchar(255), model varchar(255), registration_number varchar(255) not null unique, primary key (id))
+Hibernate: create table vehicule (anee integer, rental_price float(53) not null, id uuid not null, chemin_vers_image varchar(255), make varchar(255), model varchar(255), registration_number varchar(255) not null unique, primary key (id))
+2025-06-25T09:42:19.592+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : create table vehicule_images (images_id bigint not null unique, vehicule_id uuid not null)
+Hibernate: create table vehicule_images (images_id bigint not null unique, vehicule_id uuid not null)
+2025-06-25T09:42:19.594+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : alter table if exists images add constraint FKq4uoyualnh7w3e2smtqxyusbd foreign key (vehicule_id) references vehicule
+Hibernate: alter table if exists images add constraint FKq4uoyualnh7w3e2smtqxyusbd foreign key (vehicule_id) references vehicule
+2025-06-25T09:42:19.599+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : alter table if exists jwt add constraint FK5x5slihm7dnfvkhsuw4o3c94o foreign key (refresh_token_id) references refresh_token
+Hibernate: alter table if exists jwt add constraint FK5x5slihm7dnfvkhsuw4o3c94o foreign key (refresh_token_id) references refresh_token
+2025-06-25T09:42:19.602+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : alter table if exists jwt add constraint FKowcjt2bsvexgfk617r9viwrha foreign key (utilisateur_id) references users
+Hibernate: alter table if exists jwt add constraint FKowcjt2bsvexgfk617r9viwrha foreign key (utilisateur_id) references users
+2025-06-25T09:42:19.606+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : alter table if exists vehicule_images add constraint FK1rpj7t1lxkrafpwd3lvdve3b7 foreign key (images_id) references images
+Hibernate: alter table if exists vehicule_images add constraint FK1rpj7t1lxkrafpwd3lvdve3b7 foreign key (images_id) references images
+2025-06-25T09:42:19.610+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : alter table if exists vehicule_images add constraint FKo3400ac44xbsi74nhvv7kvwkj foreign key (vehicule_id) references vehicule
+Hibernate: alter table if exists vehicule_images add constraint FKo3400ac44xbsi74nhvv7kvwkj foreign key (vehicule_id) references vehicule
+2025-06-25T09:42:19.614+01:00  INFO 7182 --- [vehicule] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-25T09:42:21.110+01:00  WARN 7182 --- [vehicule] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-25T09:42:21.188+01:00  WARN 7182 --- [vehicule] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-06-25T09:16:56.046+01:00 ERROR 5325 --- [           main] o.s.boot.SpringApplication               : Application run failed
+Using generated security password: 9af6c86d-3be4-4b63-b375-f5c7b131fb08
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'dataSourceScriptDatabaseInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:326) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.13.jar:6.1.13]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.13.jar:6.1.13]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.1.13.jar:6.1.13]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.1.13.jar:6.1.13]
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1463) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[na:na]
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$before$2(ClassBasedTestDescriptor.java:204) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:203) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:85) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:148) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.5.jar:3.2.5]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 81 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 91 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:178) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 105 common frames omitted
-Caused by: java.lang.IllegalStateException: Cannot load driver class: org.h2.Driver
-	at org.springframework.util.Assert.state(Assert.java:97) ~[spring-core-6.1.13.jar:6.1.13]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.determineDriverClassName(DataSourceProperties.java:175) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at org.springframework.boot.autoconfigure.jdbc.PropertiesJdbcConnectionDetails.getDriverClassName(PropertiesJdbcConnectionDetails.java:49) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource(DataSourceConfiguration.java:55) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Hikari.dataSource(DataSourceConfiguration.java:117) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:146) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 106 common frames omitted
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2025-06-25T09:16:56.051+01:00  WARN 5325 --- [           main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.projet.testing.vehicule.UserControllerTest@6f67312d]
-
-java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@32fa956b testClass = com.projet.testing.vehicule.UserControllerTest, locations = [], classes = [com.projet.testing.vehicule.VehiculeApplication], contextInitializerClasses = [], activeProfiles = ["test"], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [[ImportsContextCustomizer@667713c4 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@629f066f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@989da1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@d1e52510, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@660591fb, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@2227a6c1, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@40d10481, org.springframework.boot.test.context.SpringBootTestAnnotation@3ef13b46], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[na:na]
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$before$2(ClassBasedTestDescriptor.java:204) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:203) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:85) ~[junit-jupiter-engine-5.10.3.jar:5.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:148) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.3.jar:1.10.3]
-	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.5.jar:3.2.5]
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.5.jar:3.2.5]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'dataSourceScriptDatabaseInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:326) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.13.jar:6.1.13]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.13.jar:6.1.13]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.1.13.jar:6.1.13]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.1.13.jar:6.1.13]
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1463) ~[spring-boot-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108) ~[spring-boot-test-3.3.4.jar:3.3.4]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.1.13.jar:6.1.13]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.1.13.jar:6.1.13]
-	... 66 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 81 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 91 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Cannot load driver class: org.h2.Driver
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:178) ~[spring-beans-6.1.13.jar:6.1.13]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 105 common frames omitted
-Caused by: java.lang.IllegalStateException: Cannot load driver class: org.h2.Driver
-	at org.springframework.util.Assert.state(Assert.java:97) ~[spring-core-6.1.13.jar:6.1.13]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.determineDriverClassName(DataSourceProperties.java:175) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at org.springframework.boot.autoconfigure.jdbc.PropertiesJdbcConnectionDetails.getDriverClassName(PropertiesJdbcConnectionDetails.java:49) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource(DataSourceConfiguration.java:55) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Hikari.dataSource(DataSourceConfiguration.java:117) ~[spring-boot-autoconfigure-3.3.4.jar:3.3.4]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:146) ~[spring-beans-6.1.13.jar:6.1.13]
-	... 106 common frames omitted
-
+2025-06-25T09:42:21.192+01:00  INFO 7182 --- [vehicule] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-06-25T09:42:22.107+01:00  INFO 7182 --- [vehicule] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-06-25T09:42:22.635+01:00  INFO 7182 --- [vehicule] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-06-25T09:42:22.636+01:00  INFO 7182 --- [vehicule] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-06-25T09:42:22.641+01:00  INFO 7182 --- [vehicule] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2025-06-25T09:42:22.687+01:00  INFO 7182 --- [vehicule] [           main] c.p.testing.vehicule.UserControllerTest  : Started UserControllerTest in 4.745 seconds (process running for 188.887)
+2025-06-25T09:42:25.092+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:25.240+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+2025-06-25T09:42:25.940+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
 ]]></system-out>
-    <system-err><![CDATA[java.lang.ClassNotFoundException: org.h2.Driver
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:534)
-	at java.base/java.lang.Class.forName(Class.java:513)
-	at org.springframework.util.ClassUtils.forName(ClassUtils.java:304)
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.driverClassIsLoadable(DataSourceProperties.java:194)
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.determineDriverClassName(DataSourceProperties.java:175)
-	at org.springframework.boot.autoconfigure.jdbc.PropertiesJdbcConnectionDetails.getDriverClassName(PropertiesJdbcConnectionDetails.java:49)
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource(DataSourceConfiguration.java:55)
-	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Hikari.dataSource(DataSourceConfiguration.java:117)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:146)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1463)
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
-	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$before$2(ClassBasedTestDescriptor.java:204)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:203)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:85)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:148)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
-	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-
-
-
-============================
-CONDITIONS EVALUATION REPORT
-============================
-
-
-Positive matches:
------------------
-
-    None
-
-
-Negative matches:
------------------
-
-    None
-
-
-Exclusions:
------------
-
-    None
-
-
-Unconditional classes:
-----------------------
-
-    None
-
-
-
+  </testcase>
+  <testcase name="testChangePassword_Success" classname="com.projet.testing.vehicule.UserControllerTest" time="0.581">
+    <system-out><![CDATA[2025-06-25T09:42:26.657+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:26.772+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+2025-06-25T09:42:26.815+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:26.821+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.067+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for refresh_token_seq
+Hibernate: select next value for refresh_token_seq
+2025-06-25T09:42:27.071+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+Hibernate: insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+2025-06-25T09:42:27.079+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for jwt_seq
+Hibernate: select next value for jwt_seq
+2025-06-25T09:42:27.085+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+Hibernate: insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+2025-06-25T09:42:27.202+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : update users set actif=?,delete_at=?,email=?,password=?,update_at=?,username=? where id=?
+Hibernate: update users set actif=?,delete_at=?,email=?,password=?,update_at=?,username=? where id=?
+]]></system-out>
+  </testcase>
+  <testcase name="testChangePassword_FailedWithEmailNotFound" classname="com.projet.testing.vehicule.UserControllerTest" time="0.042">
+    <system-out><![CDATA[2025-06-25T09:42:27.238+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testUpdateUser_Success" classname="com.projet.testing.vehicule.UserControllerTest" time="0.293">
+    <system-out><![CDATA[2025-06-25T09:42:27.281+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.402+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+2025-06-25T09:42:27.413+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.425+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.id=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.id=? and u1_0.delete_at is null
+2025-06-25T09:42:27.546+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.548+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : update users set actif=?,delete_at=?,email=?,password=?,update_at=?,username=? where id=?
+Hibernate: update users set actif=?,delete_at=?,email=?,password=?,update_at=?,username=? where id=?
+]]></system-out>
+  </testcase>
+  <testcase name="testLogin_Success" classname="com.projet.testing.vehicule.UserControllerTest" time="0.276">
+    <system-out><![CDATA[2025-06-25T09:42:27.570+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.685+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+2025-06-25T09:42:27.695+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.812+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for refresh_token_seq
+Hibernate: select next value for refresh_token_seq
+2025-06-25T09:42:27.814+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+Hibernate: insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+2025-06-25T09:42:27.817+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for jwt_seq
+Hibernate: select next value for jwt_seq
+2025-06-25T09:42:27.819+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+Hibernate: insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+]]></system-out>
+  </testcase>
+  <testcase name="testRefreshTokens_Success" classname="com.projet.testing.vehicule.UserControllerTest" time="0.371">
+    <system-out><![CDATA[2025-06-25T09:42:27.850+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.969+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+2025-06-25T09:42:27.971+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:27.980+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for refresh_token_seq
+Hibernate: select next value for refresh_token_seq
+2025-06-25T09:42:27.981+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for jwt_seq
+Hibernate: select next value for jwt_seq
+2025-06-25T09:42:28.070+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+Hibernate: insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+2025-06-25T09:42:28.072+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+Hibernate: insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+2025-06-25T09:42:28.074+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+Hibernate: select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+2025-06-25T09:42:28.184+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select j1_0.id,j1_0.desactive,j1_0.expire,j1_0.refresh_token_id,j1_0.utilisateur_id,j1_0.valeur from jwt j1_0 where j1_0.refresh_token_id=?
+Hibernate: select j1_0.id,j1_0.desactive,j1_0.expire,j1_0.refresh_token_id,j1_0.utilisateur_id,j1_0.valeur from jwt j1_0 where j1_0.refresh_token_id=?
+2025-06-25T09:42:28.196+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for refresh_token_seq
+Hibernate: select next value for refresh_token_seq
+2025-06-25T09:42:28.197+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for jwt_seq
+Hibernate: select next value for jwt_seq
+]]></system-out>
+    <system-err><![CDATA[Echec du test du a un user inexistant pour l'email de test
+]]></system-err>
+  </testcase>
+  <testcase name="testAddUser_Success" classname="com.projet.testing.vehicule.UserControllerTest" time="0.137">
+    <system-out><![CDATA[2025-06-25T09:42:28.221+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:28.335+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+Hibernate: insert into users (actif,create_at,delete_at,email,password,update_at,username,id) values (?,?,?,?,?,?,?,?)
+]]></system-out>
+  </testcase>
+  <testcase name="testRefreshAccessToken_InvalidToken" classname="com.projet.testing.vehicule.UserControllerTest" time="0.292"/>
+  <testcase name="testLogin_InvalidCredentials" classname="com.projet.testing.vehicule.UserControllerTest" time="0.142">
+    <system-out><![CDATA[2025-06-25T09:42:28.651+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:28.774+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testRefreshAccessToken_WithRefreshTokenNotFound" classname="com.projet.testing.vehicule.UserControllerTest" time="0.031">
+    <system-out><![CDATA[2025-06-25T09:42:28.805+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+Hibernate: select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testUpdateUser_NotFound" classname="com.projet.testing.vehicule.UserControllerTest" time="0.021">
+    <system-out><![CDATA[2025-06-25T09:42:28.827+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.id=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.id=? and u1_0.delete_at is null
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testUpdateUser_InvalidEmail" classname="com.projet.testing.vehicule.UserControllerTest" time="0.143">
+    <system-out><![CDATA[2025-06-25T09:42:28.846+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:28.855+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.id=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.id=? and u1_0.delete_at is null
+2025-06-25T09:42:28.972+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testRefreshAccessToken_ExpiredToken" classname="com.projet.testing.vehicule.UserControllerTest" time="0.027"/>
+  <testcase name="testChangePassword_WeakPassword" classname="com.projet.testing.vehicule.UserControllerTest" time="0.153">
+    <system-out><![CDATA[2025-06-25T09:42:29.020+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:29.025+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:29.143+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for refresh_token_seq
+Hibernate: select next value for refresh_token_seq
+2025-06-25T09:42:29.146+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+Hibernate: insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+2025-06-25T09:42:29.149+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for jwt_seq
+Hibernate: select next value for jwt_seq
+2025-06-25T09:42:29.152+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+Hibernate: insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testRefreshTokens_WithRefreshTokenNotFound" classname="com.projet.testing.vehicule.UserControllerTest" time="0.022">
+    <system-out><![CDATA[2025-06-25T09:42:29.176+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+Hibernate: select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testChangePassword_WrongOldPassword" classname="com.projet.testing.vehicule.UserControllerTest" time="0.134">
+    <system-out><![CDATA[2025-06-25T09:42:29.198+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:29.202+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testGetAllUsers_Success" classname="com.projet.testing.vehicule.UserControllerTest" time="0.023">
+    <system-out><![CDATA[2025-06-25T09:42:29.331+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.delete_at is null
+]]></system-out>
+  </testcase>
+  <testcase name="testRefreshTokens_With_RefreshToken_Not_Expired" classname="com.projet.testing.vehicule.UserControllerTest" time="0.152">
+    <system-out><![CDATA[2025-06-25T09:42:29.354+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:29.473+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for refresh_token_seq
+Hibernate: select next value for refresh_token_seq
+2025-06-25T09:42:29.474+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for jwt_seq
+Hibernate: select next value for jwt_seq
+2025-06-25T09:42:29.480+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+Hibernate: insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+2025-06-25T09:42:29.482+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+Hibernate: insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+2025-06-25T09:42:29.484+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+Hibernate: select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testAddUser_InvalidEmail" classname="com.projet.testing.vehicule.UserControllerTest" time="0.139">
+    <system-out><![CDATA[2025-06-25T09:42:29.508+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
+]]></system-err>
+  </testcase>
+  <testcase name="testAddUser_WeakPassword" classname="com.projet.testing.vehicule.UserControllerTest" time="0.012"/>
+  <testcase name="testRefreshAccessToken_Success" classname="com.projet.testing.vehicule.UserControllerTest" time="0.161">
+    <system-out><![CDATA[2025-06-25T09:42:29.659+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+2025-06-25T09:42:29.777+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for refresh_token_seq
+Hibernate: select next value for refresh_token_seq
+2025-06-25T09:42:29.779+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select next value for jwt_seq
+Hibernate: select next value for jwt_seq
+2025-06-25T09:42:29.791+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+Hibernate: insert into refresh_token (create_at,creation,expiration,expire,update_at,valeur,id) values (?,?,?,?,?,?,?)
+2025-06-25T09:42:29.792+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+Hibernate: insert into jwt (desactive,expire,refresh_token_id,utilisateur_id,valeur,id) values (?,?,?,?,?,?)
+2025-06-25T09:42:29.793+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+Hibernate: select rt1_0.id,rt1_0.create_at,rt1_0.creation,rt1_0.expiration,rt1_0.expire,rt1_0.update_at,rt1_0.valeur from refresh_token rt1_0 where rt1_0.valeur=? and not(rt1_0.expire)
+2025-06-25T09:42:29.797+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select j1_0.id,j1_0.desactive,j1_0.expire,j1_0.refresh_token_id,j1_0.utilisateur_id,j1_0.valeur from jwt j1_0 where j1_0.refresh_token_id=?
+Hibernate: select j1_0.id,j1_0.desactive,j1_0.expire,j1_0.refresh_token_id,j1_0.utilisateur_id,j1_0.valeur from jwt j1_0 where j1_0.refresh_token_id=?
+]]></system-out>
+  </testcase>
+  <testcase name="testGetUser_FailedWithNotFoundEmail" classname="com.projet.testing.vehicule.UserControllerTest" time="0.013">
+    <system-out><![CDATA[2025-06-25T09:42:29.820+01:00 DEBUG 7182 --- [vehicule] [           main] org.hibernate.SQL                        : select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+Hibernate: select u1_0.id,u1_0.actif,u1_0.create_at,u1_0.delete_at,u1_0.email,u1_0.password,u1_0.update_at,u1_0.username from users u1_0 where u1_0.email=? and u1_0.delete_at is null
+]]></system-out>
+    <system-err><![CDATA[Une Exception coté client a été levée
 ]]></system-err>
   </testcase>
 </testsuite>
