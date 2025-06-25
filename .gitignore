@@ -1,1 +1,9 @@
 /.metadata/
+node_modules/
+properlize/node_modules
+vehicule/target/
+*.log
+*.class
+.idea/
+.DS_Store
+

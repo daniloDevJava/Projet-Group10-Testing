@@ -1,0 +1,184 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{longtable}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+\title{\textbf{Plan de Test - Application Web}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Introduction}
+Ce document décrit le plan de test pour une application web composée d'une partie frontend (testée avec Playwright) et d'une partie backend (API REST testée avec JUnit). L'objectif est d'assurer la qualité fonctionnelle et technique de l'application à travers des cas de tests bien définis.
+
+\section*{2. Objectifs des tests}
+\begin{itemize}
+    \item Vérifier le bon fonctionnement des fonctionnalités critiques du frontend (authentification, gestion des véhicules, gestion des utilisateurs).
+    \item Garantir la robustesse des endpoints du backend.
+    \item Détecter les erreurs d'entrée et les mauvaises pratiques utilisateur.
+\end{itemize}
+
+\section*{3. Approche de test}
+
+L’approche de test adoptée repose sur trois niveaux complémentaires :
+
+\begin{itemize}
+    \item \textbf{Tests unitaires (Backend)} : réalisés avec \textbf{JUnit 5}. Ces tests portent sur des composants isolés (méthodes de contrôleurs et services). Les dépendances sont simulées à l’aide de \textbf{doublures de test} (\texttt{@MockBean} avec \textbf{Mockito}).
+    
+    \begin{itemize}
+        \item La suite de tests \texttt{UserControllerTest} \textbf{par daniloDevJava} est une suite de tests unitaires qui utilise une doublure du composant \texttt{UserService}.
+        \item La suite de tests \texttt{VehiculeControllerTest} \textbf{par chenjoProsper}est une suite de tests unitaires qui utilise une doublure du composant \texttt{VehiculeService}.
+    \end{itemize}
+    
+    \item \textbf{Tests d'intégration (Backend)} : réalisés avec \textbf{Spring Boot Test} et une base de données \textbf{H2} en mémoire. Ces tests permettent de vérifier la collaboration entre plusieurs couches de l'application (service, repository).
+
+    \item \textbf{Tests end-to-end (Frontend)} : automatisés avec \textbf{Playwright}. Ces tests simulent des scénarios utilisateurs réels dans un navigateur (par exemple : connexion, affichage des véhicules, ajout d’un utilisateur).
+
+\end{itemize}
+
+Tous les tests sont automatisés et peuvent être intégrés dans le pipeline d’intégration continue (CI).
+
+
+\section*{4. Environnement de test}
+\begin{itemize}
+    \item \textbf{Frontend} : Playwright, navigateur Chrome/Chromium.
+    \item \textbf{Backend} : JUnit 5, Mockito, Spring Boot.
+    \item Base de données H2 (en mémoire pour les tests).
+\end{itemize}
+
+\section*{5. Données de test}
+Les jeux de données incluent :
+\begin{itemize}
+    \item Utilisateurs avec différents niveaux de validité (email correct/incorrect, mot de passe fort/faible).
+    \item Véhicules avec des prix, immatriculations et modèles variés.
+\end{itemize}
+
+\section*{6. Cas de test Frontend (Playwright)}
+\begin{longtable}{|p{0.1\textwidth}|p{0.8\textwidth}|}
+\hline
+\textbf{ID} & \textbf{Description du test} \\
+\hline
+F1 & Connexion : vérifier qu’un utilisateur peut se connecter avec des identifiants valides. \\
+\hline
+F2 & Véhicules : vérifier que la liste des véhicules s’affiche après authentification. \\
+\hline
+F3 & Utilisateurs : vérifier que l’ajout d’un utilisateur fonctionne et que celui-ci apparaît dans la liste. \\
+\hline
+\end{longtable}
+
+\section*{7. Cas de test Backend - \texttt{UserControllerTests}}
+\begin{longtable}{|p{0.1\textwidth}|p{0.8\textwidth}|}
+\hline
+\textbf{ID} & \textbf{Description du test} \\
+\hline
+U1 & Succès \texttt{/users/add} : statut 201, JSON contenant \texttt{id}, \texttt{email}, \texttt{name (en majuscules)}. \\
+\hline
+U2 & Échec \texttt{/users/add} : email mal formé $\Rightarrow$ 400, JSON erreur. \\
+\hline
+U3 & Échec \texttt{/users/add} : mot de passe faible $\Rightarrow$ 400, JSON erreur. \\
+\hline
+U4 & Succès \texttt{/login} : statut 200, JSON avec \texttt{accessToken} et \texttt{refreshToken}. \\
+\hline
+U5 & Échec \texttt{/login} : identifiants invalides $\Rightarrow$ 404. \\
+\hline
+U6 & Succès \texttt{/refresh-access-tokens} : token valide $\Rightarrow$ 200, réponse $>$ 50 caractères. \\
+\hline
+U7 & Échec token invalide $\Rightarrow$ 403, message : \textit{Le refresh token est invalide}. \\
+\hline
+U8 & Échec token expiré $\Rightarrow$ 403, message : \textit{Le refresh token est expiré}. \\
+\hline
+U9 & Succès \texttt{/refresh-tokens} $\Rightarrow$ 200, JSON avec nouveaux tokens. \\
+\hline
+U10 & Échec \texttt{/refresh-tokens} avec token expiré $\Rightarrow$ 403, JSON erreur. \\
+\hline
+U11 & Échec \texttt{/refresh-tokens} avec token invalide $\Rightarrow$ 403, JSON erreur. \\
+\hline
+U12 & Succès \texttt{/users/\{id\}} (PUT) : mise à jour, statut 200, JSON mis à jour. \\
+\hline
+U13 & Échec mise à jour : email invalide $\Rightarrow$ 400, JSON erreur. \\
+\hline
+U14 & Échec mise à jour : utilisateur inexistant $\Rightarrow$ 404. \\
+\hline
+U15 & Succès \texttt{/users/all} : liste utilisateurs, statut 200, tableau JSON. \\
+\hline
+U16 & Succès \texttt{/change-password} $\Rightarrow$ 200, message : ``mot de passe modifié''. \\
+\hline
+U17 & Échec \texttt{/change-password} : nouveau mot de passe faible $\Rightarrow$ 400, JSON erreur. \\
+\hline
+U18 & Échec \texttt{/change-password} : ancien mot de passe incorrect $\Rightarrow$ 400, JSON erreur. \\
+\hline
+\end{longtable}
+
+
+
+
+
+
+\section*{8. Cas de test Backend - \texttt{VehiculeControllerTests} }
+\begin{longtable}{|p{0.1\textwidth}|p{0.8\textwidth}|}
+\hline
+\textbf{ID} & \textbf{Description du test} \\
+\hline
+V1 & Succès \texttt{/vehicules/create} : statut 201, JSON avec données du véhicule. \\
+\hline
+V2 & Échec création : champs vides ou prix négatif $\Rightarrow$ 400, tableau d'objets JSON d'erreurs. \\
+\hline
+V3 & Échec création doublon registerNumber : premier succès, second rejeté avec erreur structurée. \\
+\hline
+V4 & Succès \texttt{/vehicule/\{id\}} (GET) : statut 200, JSON véhicule. \\
+\hline
+V5 & Succès suppression \texttt{/vehicule/\{id\}} : statut 200, message : ``vehicule is deleted successfully''. \\
+\hline
+V6 & Échec suppression : id inconnu $\Rightarrow$ 404. \\
+\hline
+V7 & Échec récupération par ID inconnu $\Rightarrow$ 404. \\
+\hline
+V8 & Succès \texttt{/vehicule/search-by-price} : statut 200, tableau JSON filtré. \\
+\hline
+V9 & Succès \texttt{/vehicule/number/\{registerNum\}} : statut 200, JSON véhicule. \\
+\hline
+V10 & Échec \texttt{/vehicule/number/\{registerNum\}} : registre inconnu $\Rightarrow$ 404. \\
+\hline
+V11 & Succès update \texttt{/vehicule/\{id\}} : statut 200, JSON véhicule mis à jour. \\
+\hline
+\end{longtable}
+
+\section{9. Cas de test Backend - \texttt{UserServiceTest} }
+\begin{longtable}{|p{0.1\textwidth}|p{0.8\textwidth}|}
+\hline
+\textbf{ID} &  \textbf{statut} & \textbf{MUT} & \textbf{Description du test} & \textbf{assertion(s)}  \\
+\hline
+Us1 & Succès & \textbf{userService.createUser(user)} & \texttt{Test d'ajout succès d'user dans la bd} & \texttt{L'objet created doit etre non nul} \\
+\hline
+Us2 & Succès & \textbf{userService.updateUser(userDto,id)} & \texttt{Test de mise a jour reussie d'un utilisateur} & 
+\hline
+\end{longtable}
+\section*{10. Risques et problèmes potentiels}
+\begin{itemize}
+    \item Mauvaise gestion des tokens expirés.
+    \item Incohérences entre les formats JSON du frontend et du backend.
+    \item Erreurs silencieuses non détectées sans journalisation explicite.
+\end{itemize}
+ 
+\section*{11. Reporting et communication}
+\begin{itemize}
+    \item Les résultats des tests seront analysés et communiqués après chaque exécution.
+    \item Formats de rapport : HTML et JSON.
+    \item Outils utilisés : CI/CD avec GitHub Actions.
+\end{itemize}
+
+\section*{12. Conclusion}
+Ce plan de test couvre les scénarios principaux de l'application. Il est destiné à être enrichi progressivement, au fur et à mesure de l'ajout de nouvelles fonctionnalités ou de la détection de bugs.
+
+\end{document}
+

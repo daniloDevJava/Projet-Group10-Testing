@@ -2,6 +2,7 @@ services:
   vehicule-app:
     image: vehicule-app
     container_name: vehicule-backend
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
