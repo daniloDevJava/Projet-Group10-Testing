@@ -63,12 +63,12 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
 
       - name: Run backend tests and generate JaCoCo report
-        working-directory: ./backend
+        working-directory: ./vehicule
         run: mvn clean verify
 
       - name: Upload JaCoCo report
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
-          path: backend/target/site/jacoco/
+          path: vehicule/target/site/jacoco/
           retention-days: 7
