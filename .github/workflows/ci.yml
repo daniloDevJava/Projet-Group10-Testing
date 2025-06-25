@@ -10,21 +10,6 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test
-          POSTGRES_DB: propelize
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -68,7 +53,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '21'  # ajuste si besoin
 
       - name: Cache Maven packages
         uses: actions/cache@v4
@@ -78,12 +63,12 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
 
       - name: Run backend tests and generate JaCoCo report
-        working-directory: ./vehicule
+        working-directory: ./backend
         run: mvn clean verify
 
       - name: Upload JaCoCo report
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
-          path: vehicule/target/site/jacoco/
+          path: backend/target/site/jacoco/
           retention-days: 7
