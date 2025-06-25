@@ -3,29 +3,22 @@ package com.projet.testing.vehicule;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.projet.testing.vehicule.util.JwtUtil;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
 import org.junit.jupiter.api.*;
-import org.mockito.InjectMocks;
-import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.nio.file.Paths;
-import java.util.Date;
+
+
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class JwtUtilTest {
 
-    @Spy
-    @InjectMocks
-    private JwtUtil jwtUtil;
+
+    private  JwtUtil jwtUtil;
 
     private final String email = "test@example.com";
 

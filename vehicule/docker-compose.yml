@@ -25,4 +25,4 @@ services:
       POSTGRES_USER: group10
       POSTGRES_PASSWORD: 10-sftw-testing-java
     ports:
-      - "5432:5432"
+      - "5433:5432"

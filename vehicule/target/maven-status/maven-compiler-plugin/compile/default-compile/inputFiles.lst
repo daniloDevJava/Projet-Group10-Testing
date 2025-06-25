@@ -16,9 +16,10 @@
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/mapper/VehiculeMapper.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/controller/UserController.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/exception/BusinessException.java
-/home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/model/Utilisateur.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/mapper/ImageMapper.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/service/impl/JwtServiceImpl.java
+/home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/exception/DuplicateRegistrationNumberException.java
+/home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/dto/ChangePasswordRequest.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/dto/VehiculeDto.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/model/Images.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/util/JwtUtil.java
@@ -32,5 +33,4 @@
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/dto/UserDto.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/controller/VehiculeController.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/repository/VehiculeRepository.java
-/home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/util/ChangePasswordRequest.java
 /home/danilo/INF352/projet/vehicule/src/main/java/com/projet/testing/vehicule/model/RefreshToken.java
