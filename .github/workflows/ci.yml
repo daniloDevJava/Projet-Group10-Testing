@@ -1,10 +1,8 @@
-# Fichier : .github/workflows/ci.yml (Version Corrigée)
-
-name: Propelize Frontend CI
+name: Propelize Full CI
 
 on:
   push:
-    branches: [ "main" ,"imelda" ]
+    branches: [ "main", "imelda" ]
   pull_request:
     branches: [ "main" ]
 
@@ -12,38 +10,80 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    # CORRECTION : On définit le répertoire de travail pour toutes les étapes 'run'
-    defaults:
-      run:
-        working-directory: ./frontend/properlize
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: propelize
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      ####################################
+      ## FRONTEND TESTS (Playwright)
+      ####################################
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
-          # CORRECTION : Le chemin du cache doit être relatif au dossier du projet
           cache-dependency-path: frontend/properlize/yarn.lock
 
-      # Les commandes 'run' s'exécuteront maintenant dans le bon dossier grâce au 'defaults'
-      - name: Install dependencies
+      - name: Install frontend dependencies
+        working-directory: ./frontend/properlize
         run: yarn install --frozen-lockfile
 
-      - name: Install Playwright Browsers
+      - name: Install Playwright browsers
+        working-directory: ./frontend/properlize
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
+        working-directory: ./frontend/properlize
         run: npx playwright test
-        
+
       - name: Upload Playwright report on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: playwright-report
-          # Le chemin de l'artefact doit être relatif au dossier du projet
           path: frontend/properlize/playwright-report/
+          retention-days: 7
+
+      ####################################
+      ## BACKEND TESTS (Maven + JaCoCo)
+      ####################################
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+      - name: Run backend tests and generate JaCoCo report
+        working-directory: ./vehicule
+        run: mvn clean verify
+
+      - name: Upload JaCoCo report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: vehicule/target/site/jacoco/
           retention-days: 7
