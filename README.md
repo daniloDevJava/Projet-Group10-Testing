@@ -81,3 +81,14 @@ mvn spring-boot:run
 cd frontend/properlize
 npm install
 npm run dev
+
+
+## Lancement des Tests 
+
+# Backend
+cd vehicule
+mvn clean install
+
+pour la couverture allez sur `Projet-Group10-Testing/vehicule/target/site/jacoco/index.html`
+
+
