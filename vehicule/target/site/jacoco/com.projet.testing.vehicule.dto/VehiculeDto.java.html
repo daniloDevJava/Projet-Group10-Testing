@@ -21,22 +21,22 @@ import lombok.Setter;
  */
 
 @Getter
-<span class="fc" id="L24">@Setter</span>
+@Setter
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 <span class="fc" id="L28">public class VehiculeDto {</span>
 	
 	
-<span class="fc" id="L31">	private UUID id;</span>
+	private UUID id;
 	
 
 	
 
 	@NotBlank(message = &quot;Le numéro d'immatriculation ne peut pas être vide&quot;)
-<span class="fc" id="L37">	private String registrationNumber;</span>
+	private String registrationNumber;
 	
-	@NotNull(message = &quot; make is mandatory&quot;)
+	@NotNull(message = &quot;make is mandatory&quot;)
 
 
 	
@@ -47,17 +47,17 @@ import lombok.Setter;
 	
 
 	@NotNull(message = &quot;make is mandatory&quot;)
-<span class="fc" id="L50">	private String make;</span>
-<span class="fc" id="L51">    private String cheminVersImage;</span>
-<span class="fc" id="L52">	private String model;</span>
+	private String make;
+    private String cheminVersImage;
+	private String model;
 
 	@Positive(message=&quot;L'année ne peut etre negative&quot;)
 	// l'année de création du véhicule
-<span class="fc" id="L56">	private int year;</span>
+	private int year;
 
 	@PositiveOrZero(message = &quot;le prix d'achat ne peut etre negatif&quot;)
 
-<span class="fc" id="L60">	private double rentalPrice;</span>
+	private double rentalPrice;
 	
 	
 

@@ -21,21 +21,21 @@ import java.util.UUID;
  * The type User.
  */
 @Getter
-<span class="pc" id="L24">@Setter</span>
+@Setter
 @Entity(name = &quot;users&quot;)
 <span class="fc" id="L26">public class User implements UserDetails {</span>
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = &quot;id&quot;, nullable = false, unique = true)
-<span class="fc" id="L31">    private UUID id;</span>
-<span class="fc" id="L32">    private String email;</span>
+    private UUID id;
+    private String email;
 
     @Column(name = &quot;username&quot;, nullable = false)
-<span class="fc" id="L35">    private String username;</span>
-<span class="pc" id="L36">    private boolean actif = false;</span>
+    private String username;
+<span class="fc" id="L36">    private boolean actif = false;</span>
     @Column(name = &quot;password&quot;, nullable = false)
-<span class="fc" id="L38">    private String mdp;</span>
+    private String mdp;
 
     @Override
     public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() {
@@ -46,10 +46,10 @@ import java.util.UUID;
 
     @CreationTimestamp
     @Column(nullable = false,updatable = false)
-<span class="nc" id="L49">    private LocalDateTime createAt;</span>
+    private LocalDateTime createAt;
     @UpdateTimestamp
-<span class="nc" id="L51">    private LocalDateTime updateAt;</span>
-<span class="nc" id="L52">    private LocalDateTime deleteAt;</span>
+    private LocalDateTime updateAt;
+    private LocalDateTime deleteAt;
 
 
     @Override

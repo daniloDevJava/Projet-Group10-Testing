@@ -7,14 +7,14 @@ import lombok.Setter;
 
 
 @Getter
-<span class="fc" id="L10">@Setter</span>
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 <span class="fc" id="L13">public class ImagesDto {</span>
 
-<span class="fc" id="L15">    private Long id;</span>
-<span class="fc" id="L16">    private String chemin;</span>
-<span class="fc" id="L17">    private String nom;</span>
+    private Long id;
+    private String chemin;
+    private String nom;
 
     public void makeName(){
 <span class="nc" id="L20">        this.nom=&quot;IMG&quot;+ 0 +id;</span>

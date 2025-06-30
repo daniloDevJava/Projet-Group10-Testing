@@ -10,18 +10,18 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-<span class="pc" id="L13">@Setter</span>
+@Setter
 <span class="fc" id="L14">public class Images {</span>
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L17">    private Long id;</span>
-<span class="fc" id="L18">    private String chemin;</span>
-<span class="fc" id="L19">    private String nom;</span>
+    private Long id;
+    private String chemin;
+    private String nom;
 
 
     @ManyToOne
     @JoinColumn(name = &quot;vehicule_id&quot;,nullable = false)
-<span class="nc" id="L24">    private Vehicule vehicule;</span>
+    private Vehicule vehicule;
 
     public void makeName(){
 <span class="fc" id="L27">        this.nom=&quot;IMG&quot;+ 0 +id;</span>

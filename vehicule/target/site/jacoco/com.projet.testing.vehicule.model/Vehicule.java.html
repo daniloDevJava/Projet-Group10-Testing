@@ -13,28 +13,28 @@ import lombok.Setter;
  */
 @Entity
 @Getter
-<span class="pc" id="L16">@Setter</span>
+@Setter
 <span class="fc" id="L17">public class Vehicule {</span>
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.UUID)
-<span class="fc" id="L21">	private UUID id;</span>
+	private UUID id;
 
 	@Column(nullable=false ,unique=true)
-<span class="fc" id="L24">	private String registrationNumber;</span>
+	private String registrationNumber;
 	
 <span class="fc" id="L26">	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)</span>
-<span class="nc" id="L27">	private List&lt;Images&gt; images=new ArrayList&lt;&gt;();</span>
+	private List&lt;Images&gt; images=new ArrayList&lt;&gt;();
 	
-<span class="fc" id="L29">	private String make;</span>
+	private String make;
 	
-<span class="fc" id="L31">	private String model;</span>
-<span class="fc" id="L32">	private String cheminVersImage;</span>
+	private String model;
+	private String cheminVersImage;
 	@Column(name = &quot;anee&quot;)
 	//l'annee de creation du vehicule
-<span class="fc" id="L35">	private int year;</span>
+	private int year;
 	
-<span class="fc" id="L37">	private double rentalPrice;</span>
+	private double rentalPrice;
 
 }
 

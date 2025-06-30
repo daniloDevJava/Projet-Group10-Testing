@@ -73,8 +73,9 @@ Une stratégie de test en trois niveaux a été mise en place pour garantir la q
 git clone https://github.com/daniloDevJava/Projet-Group10-Testing
 
 # Backend
-cd backend 
-./mvnw spring-boot:run
+cd vehicule
+sudo apt install maven
+mvn spring-boot:run
 
 # Frontend
 cd frontend/properlize

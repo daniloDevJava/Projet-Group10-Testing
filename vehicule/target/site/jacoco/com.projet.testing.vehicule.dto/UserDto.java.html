@@ -14,19 +14,19 @@ import java.util.UUID;
  * The type User dto.
  */
 @Getter
-<span class="fc" id="L17">@Setter</span>
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-<span class="nc" id="L20">@ToString</span>
+@ToString
 <span class="fc" id="L21">public class UserDto {</span>
-<span class="fc" id="L22">    private UUID id;</span>
+    private UUID id;
 
     @NotNull(message = &quot;email is mandatory&quot;)
     @Size(min = 1,max = 50,message = &quot;la taille du mail doit etre entre 1 et 50 caracteres&quot;)
-<span class="fc" id="L26">    private String email;</span>
+    private String email;
     @NotNull(message = &quot;name is mandatory&quot;)
-<span class="fc" id="L28">    private String name;</span>
+    private String name;
     @Size(min = 8, message = &quot;le mot de passe est court&quot;)
-<span class="fc" id="L30">    private String mdp;</span>
+    private String mdp;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
