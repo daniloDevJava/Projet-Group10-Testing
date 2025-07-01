@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.projet.testing.vehicule.UserServiceTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.46 s -- in com.projet.testing.vehicule.UserServiceTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.820 s -- in com.projet.testing.vehicule.UserServiceTest

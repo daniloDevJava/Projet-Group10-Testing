@@ -1,4 +1,4 @@
-# Étape 1 : Construire l'application
+# Étape 1 : Build avec Maven
 FROM maven:3.9.4-eclipse-temurin-21 AS builder
 
 LABEL authors="danilo"
@@ -6,32 +6,33 @@ LABEL authors="danilo"
 WORKDIR /vehicule
 
 COPY pom.xml .
-
-
 RUN mvn dependency:go-offline -B
 
-# Copier le code source de l'application
 COPY src ./src
-
-# Compiler et créer le fichier .jar
 RUN mvn clean package -DskipTests
 
-# Étape 2 : Construire une image légère pour exécuter l'application
+# Étape 2 : Image finale avec JDK minimal
 FROM openjdk:21-jdk-slim
 
 WORKDIR /vehicule
 
+# Copier le jar compilé depuis l'étape builder
 COPY --from=builder /vehicule/target/vehicule-0.0.1-SNAPSHOT.jar vehicule.jar
 
-# Étape 4 : Définir les variables d'environnement pour la connexion à PostgreSQL
-ENV DB_HOST=postgres-container
-ENV DB_PORT=5432
-ENV DB_NAME=vehicule
-ENV DB_USER=group10
-ENV DB_PASSWORD=10-sftw-testing-java
+# --- Variables d'environnement injectables via .env (via docker-compose)
+ARG DB_HOST
+ARG DB_PORT
+ARG DB_NAME
+ARG DB_USER
+ARG DB_PASSWORD
+
+ENV DB_HOST=${DB_HOST}
+ENV DB_PORT=${DB_PORT}
+ENV DB_NAME=${DB_NAME}
+ENV DB_USER=${DB_USER}
+ENV DB_PASSWORD=${DB_PASSWORD}
 
 EXPOSE 9000
 
-
-# Commande pour exécuter l'application
 CMD ["java", "-jar", "vehicule.jar"]
+

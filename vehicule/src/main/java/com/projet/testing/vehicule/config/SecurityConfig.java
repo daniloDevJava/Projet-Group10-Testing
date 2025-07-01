@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class SecurityConfig {
      * @return the security filter chain
      * @throws Exception the exception
      */
+     
+     @Value("${frontend.url}")
+     private String frontendUrl;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -47,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:9000","http://localhost:3000","http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of("http://localhost:9000","http://localhost:3000","http://localhost:5173",frontendUrl));
         configuration.setAllowedMethods(List.of("GET", "POST","PUT","PATCH"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(List.of("*"));

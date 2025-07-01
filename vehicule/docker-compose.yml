@@ -6,14 +6,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        DB_HOST: ${DB_HOST}
+        DB_PORT: ${DB_PORT}
+        DB_NAME: ${DB_NAME}
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     ports:
       - "9000:9000"
-    environment:
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_NAME=vehicule
-      - DB_USER=group10
-      - DB_PASSWORD=10-sftw-testing-java
     depends_on:
       - db
 
@@ -25,5 +31,7 @@ services:
       POSTGRES_DB: vehicule
       POSTGRES_USER: group10
       POSTGRES_PASSWORD: 10-sftw-testing-java
+    volumes:
+      - ./init_db:/docker-entrypoint-initdb.d
     ports:
       - "5433:5432"

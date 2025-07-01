@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.projet.testing.vehicule.JwtUtilTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 74.99 s -- in com.projet.testing.vehicule.JwtUtilTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.20 s -- in com.projet.testing.vehicule.JwtUtilTest
