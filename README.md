@@ -107,6 +107,7 @@ docker compose up -d
 ```
 
 - Backend accessible sur : `http://localhost:9000`
+- Documentation swagger de l'api: `http://localhost:9000/swagger-ui/index.html`
 - Frontend (React + Vite) : `http://localhost:5173`
 
 ---
